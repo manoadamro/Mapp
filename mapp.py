@@ -1,20 +1,10 @@
 
 from lib.server import Server
-from controllers.app import App
+from controllers import site_map
 
 
-# route config
-config = {
-    '/': App
-}
+if __name__ == '__main__':
+    server = Server(site_map)
+    server.build()
+    server.start()
 
-# create server
-server = Server(config)
-
-# build routes
-server.build()
-
-# start server
-server.start()
-
-# visit http://localhost:8080/ to see html file
