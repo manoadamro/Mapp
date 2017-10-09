@@ -1,5 +1,8 @@
 # Mapp
-Msn messenger (but better)
+
+A new messaging app. Built by millennials, for millennials.
+
+Made by [Adam Romano](https://github.com/manoadamro), [Olivia Frost](https://github.com/ofrost617), [Lizzie Hard](https://github.com/lizh90) and [Stephen Geller](https://github.com/stephengeller) in two weeks while at [Makers Academy](http://makersacademy.com), a 12-week software development bootcamp.
 
 
 ## How to use
@@ -14,3 +17,15 @@ $ python3 mapp.py
 ```
 
 ## Testing
+
+Run the test folder using ```$ bash test ``` in the terminal.
+
+## Features
+
+TBC
+
+## Technologies
+
+  - Back-end: Python, CherryPy
+  - Front-end: Javascript
+  - Testing: unittest (Python), pytest, Travis CI
