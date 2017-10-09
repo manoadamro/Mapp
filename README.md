@@ -28,3 +28,4 @@ TBC
 
   - Back-end: Python, CherryPy
   - Front-end: Javascript
+  - Testing: unittest (Python), pytest, Travis CI
