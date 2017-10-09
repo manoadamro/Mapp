@@ -5,9 +5,9 @@ class Message:
     def __init__(self):
         pass
 
-    @cherrypy.expose
+    @cherrypy.expose(alias='new')
     @cherrypy.tools.json_out()
-    def new(self, **params):
+    def send_new_message(self, **params):
 
         """
         for sending a new message
@@ -16,9 +16,9 @@ class Message:
         """
         pass
 
-    @cherrypy.expose
+    @cherrypy.expose(alias='updates')
     @cherrypy.tools.json_out()
-    def update(self, **params):
+    def get_updates(self, **params):
 
         """
         for updating received messages

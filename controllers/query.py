@@ -6,7 +6,7 @@ class Query:
     def __init__(self):
         pass
 
-    @cherrypy.expose
+    @cherrypy.expose(alias='online')
     @cherrypy.tools.json_out()
     def online(self, **params):
 
@@ -17,6 +17,8 @@ class Query:
         """
         pass
 
+    @cherrypy.expose(alias='find')
+    @cherrypy.tools.json_out()
     def find(self, **params):
 
         """
