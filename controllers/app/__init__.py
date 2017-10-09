@@ -16,3 +16,12 @@ class App:
 
         return open(path.join('views/index.html'))
 
+    @cherrypy.expose()
+    def test(self):
+
+        """
+        Serves the app page (index.html)
+        :return: the html file
+        """
+
+        return open(path.join('./SpecRunner.html'))

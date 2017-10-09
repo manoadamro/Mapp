@@ -13,7 +13,7 @@ class Message:
         :param params: POST params
         :return: json response
         """
-        pprint(params)
+        print(params)
         pass
 
     @cherrypy.expose(alias='updates')
