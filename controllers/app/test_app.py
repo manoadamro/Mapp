@@ -1,4 +1,5 @@
 from unittest import TestCase
+from . import App
 
 
 class TestApp(TestCase):
