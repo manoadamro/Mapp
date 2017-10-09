@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for f in tests/*; do
+  echo 'Test file: '$f
+  python3 $f
+done
