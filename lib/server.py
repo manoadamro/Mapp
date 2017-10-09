@@ -10,8 +10,8 @@ class Server:
             app = self.config[item]()
             self.mount(app, item)
 
-    def mount(self, app, route, config=None):
-        cherrypy.tree.mount(app, route, config)
+    def mount(self, app, route):
+        cherrypy.tree.mount(app, route)
 
     def start(self):
         cherrypy.engine.start()
