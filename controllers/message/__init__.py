@@ -1,6 +1,4 @@
 import cherrypy
-from . import Message
-
 
 class Message:
     def __init__(self):
