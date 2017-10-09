@@ -14,4 +14,5 @@ class App:
         :return: the html file
         """
 
-        return open(path.join('./app/index.html'))
+        return open(path.join('views/index.html'))
+

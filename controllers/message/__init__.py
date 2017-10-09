@@ -1,5 +1,6 @@
 import cherrypy
-from . import Message
+
+from pprint import pprint
 
 
 class Message:
@@ -15,6 +16,7 @@ class Message:
         :param params: POST params
         :return: json response
         """
+        pprint(params)
         pass
 
     @cherrypy.expose(alias='updates')
