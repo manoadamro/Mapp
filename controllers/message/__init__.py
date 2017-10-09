@@ -1,19 +1,19 @@
 import cherrypy
 
+
 class Message:
     def __init__(self):
         pass
 
     @cherrypy.expose(alias='new')
     @cherrypy.tools.json_out()
-    def send_new_message(self, **params):
-
+    def new_message(self, **params):
+        print(params)
         """
         for sending a new message
         :param params: POST params
         :return: json response
         """
-        pprint(params)
         pass
 
     @cherrypy.expose(alias='updates')
