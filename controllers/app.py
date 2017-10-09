@@ -8,4 +8,10 @@ class App:
 
     @cherrypy.expose()
     def index(self):
+
+        """
+        Serves the app page (index.html)
+        :return: the html file
+        """
+
         return open(path.join('./app/index.html'))
