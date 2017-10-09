@@ -4,5 +4,3 @@ python:
 cache: pip
 install:
   - pip install -r ./config/requirements
-#script:
-#  - python ./tests/tests.py
