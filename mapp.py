@@ -1,5 +1,5 @@
 from lib.server import Server
-from controllers import site_map
+from config.routes import site_map
 
 
 if __name__ == '__main__':
