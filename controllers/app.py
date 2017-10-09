@@ -1,4 +1,5 @@
 import cherrypy
+from os import path
 
 
 class App:
@@ -7,4 +8,4 @@ class App:
 
     @cherrypy.expose()
     def index(self):
-        pass
+        return open(path.join('./app/index.html'))
