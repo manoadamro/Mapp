@@ -1,4 +1,3 @@
-
 from lib.server import Server
 from controllers import site_map
 
