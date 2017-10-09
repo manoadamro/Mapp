@@ -1,14 +1,14 @@
 import cherrypy
+from lib.message_log import MessageLog
 
 
 class Message:
     def __init__(self):
-        pass
+        self.message_log = MessageLog()
 
     @cherrypy.expose(alias='new')
     @cherrypy.tools.json_out()
     def new_message(self, **params):
-        print(params)
         """
         for sending a new message
         :param params: POST params
@@ -25,5 +25,4 @@ class Message:
         :param params: GET params
         :return: json response
         """
-
         pass
