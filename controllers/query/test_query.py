@@ -1,4 +1,5 @@
 from unittest import TestCase
+from . import Query
 
 
 class TestQuery(TestCase):
