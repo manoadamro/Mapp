@@ -1,6 +1,7 @@
 $("#send").click(function(event) {
-            message = document.getElementById('messageform').value;
+            message = document.getElementById('messageForm').value;
             $.post("/message/new", {"message": message}).done
-            document.getElementById('messageform').value = ''
+            document.getElementById('messageList').innerHTML += (message + '<br/>')
+            document.getElementById('messageForm').value = ''
             event.preventDefault();
         });
