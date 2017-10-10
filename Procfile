@@ -1,1 +1,1 @@
-web: python3 mapp.py
+web: gunicorn web:app --log-file=-
