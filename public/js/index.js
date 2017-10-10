@@ -1,4 +1,4 @@
-var index = 0
+var index = -1
 
 $("#send").click(function(event) {
 			message = document.getElementById('messageForm').value;
