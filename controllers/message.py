@@ -1,5 +1,4 @@
 import cherrypy
-
 from scripts.message_log import MessageLog
 
 
@@ -15,7 +14,7 @@ class Message:
         :param params: POST params
         :return: json response
         """
-        pass
+        self.message_log.add_message(params['message'])
 
     @cherrypy.expose(alias='updates')
     @cherrypy.tools.json_out()
@@ -26,4 +25,4 @@ class Message:
         :param params: GET params
         :return: json response
         """
-        pass
+        return self.message_log.get_messages(params['index'])

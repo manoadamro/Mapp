@@ -4,12 +4,9 @@ from scripts.message_log import MessageLog
 
 class TestMessageLog(TestCase):
 
-    def test_message_log_starts_empty(self):
+    def test_add_message(self):
         log = MessageLog()
         self.assertEqual(len(log), 0)
-
-    def test_add_message_adds_to_message_list(self):
-        log = MessageLog()
         log.add_message('some message')
         self.assertEqual(len(log), 1)
         self.assertEqual(log.message_list[0]['text'], 'some message')
@@ -23,3 +20,4 @@ class TestMessageLog(TestCase):
         updates = log.get_messages(4)
         self.assertEqual(len(updates), 5)
         self.assertEqual(updates[0]['index'], 5)
+

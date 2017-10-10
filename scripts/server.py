@@ -28,8 +28,8 @@ class Server:
         Build the routes from the config dictionary passed into constructor
         :return: no return value
         """
-        for item in self.config:
-            app = self.config[item]()
+        for item in self.site_map:
+            app = self.site_map[item]()
             self.tree.mount(app, item, self.app_config())
 
     def start(self):
