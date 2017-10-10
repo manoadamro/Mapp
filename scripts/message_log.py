@@ -51,3 +51,9 @@ class MessageLog:
 
     def __len__(self):
         return len(self.message_list)
+
+    def __getitem__(self, item):
+        return self.message_list[item]
+
+    def __setitem__(self, key, value):
+        self.message_list[key] = value
