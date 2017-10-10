@@ -2,9 +2,11 @@ var index = -1
 
 $("#send").click(function(event) {
 			message = document.getElementById('messageForm').value;
-			$.post("/message/new", {"message": message})
-			document.getElementById('messageForm').value = ''
-			event.preventDefault();
+			if (message != '') {
+				$.post("/message/new", {"message": message})
+				document.getElementById('messageForm').value = ''
+				event.preventDefault();
+			}
 		});
 
  function getUpdates() {
