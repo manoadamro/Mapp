@@ -4,7 +4,7 @@ from os import getcwd, environ
 
 class Server:
 
-    ON_HEROKU = environ['ON_HEROKU']
+    ON_HEROKU = environ.get('ON_HEROKU')
 
     def __init__(self, site_map):
 
@@ -31,7 +31,7 @@ class Server:
         :return: no return value
         """
         if self.ON_HEROKU is True or self.ON_HEROKU == 'True':
-            port = int(environ['PORT'])
+            port = int(environ.get('PORT'))
         else:
             port = 8080
         cherrypy.config.update({'server.socket_port': port, 'server.socket_host': '0.0.0.0'})
