@@ -24,4 +24,4 @@ class App:
         :return: the html file
         """
 
-        return open(path.join('views/SpecRunner.html'))
+        return open(path.join('SpecRunner.html'))

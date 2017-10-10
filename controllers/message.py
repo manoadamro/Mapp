@@ -25,4 +25,4 @@ class Message:
         :param params: GET params
         :return: json response
         """
-        return self.message_log.get_messages(params['index'])
+        return self.message_log.get_messages(int(params['index']))
