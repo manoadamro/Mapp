@@ -7,7 +7,7 @@ $("#send").click(function(event) {
 			event.preventDefault();
 		});
 
- getUpdates = function() {
+ function getUpdates() {
     $.get("/message/updates", {"index": index}).done(function(data){
 	var parsedMessages = (data);
 	if (parsedMessages.length > 0) {
@@ -20,7 +20,7 @@ $("#send").click(function(event) {
 function renderHTML(data) {
  var htmlString = '';
  for (i = 0; i < data.length; i++) {
-     console.log(data[i].text)
+    //  console.log(data[i].text)
    htmlString += data[i].text + data[i].author + '<br/>'
  }
  document.getElementById("messageList").innerHTML += htmlString;
