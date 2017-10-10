@@ -1,21 +1,51 @@
-.clear{
-clear:both;
+.clear {
+  clear: both;
 }
-.main{
-width:500px;
+
+.main {
+  width: auto;
 }
-.top {
-background: blue;
-width:500px;
-height: 92px;
+
+.banner {
+  background: blue;
+  width: auto;
+  height: 92px;
 }
+
 .left {
-float:left;
-width: 150px;
-background: red;
+  float: left;
+  width: auto;
+  background: red;
+  color: white;
 }
-.right{
-float:right;
-width:350px;
-background: yellow;
+
+.right {
+  float: right;
+  width: 350px;
+  background: yellow;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.textBox {
+  background: white;
+  width: auto;
+}
+
+h1 {
+  font-family: "Verdana"
+}
+
+.messageList {
+  width: auto;
+  border: 50px;
+}
+
+.message {
+  font-family: "Verdana";
+  width: 50%;
 }

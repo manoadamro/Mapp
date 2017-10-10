@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>ASOL Messenger</title>
-        <script src="/static/js/jquery-3.2.1.js"></script>
-        <link rel="stylesheet" href="/static/css/stylesheet.css">
-    </head>
-    <body>
-        <div class="main">
-            <div class="top"></div><h1>ASOL Messenger</h1></div>
-                <div class="left"></div>
-                    <div class="right">
-                        <div id="messageList"></div>
-                            <form>
-                                <textarea rows="5" cols="50" type="textarea" id="messageForm"></textarea>
-                                <br>
-                            </form>
-                    <button id="send">Send</button>
-                </div>
-        </div>
-        <script src="/static/js/index.js"></script>
 
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <title>ASOL Messenger</title>
+  <script src="/static/js/jquery-3.2.1.js"></script>
+  <link rel="stylesheet" href="/static/css/stylesheet.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="banner"></div>
+      <h1 class="center">ASOL Messenger</h1></div>
+      <div id="messageList" class="center"></div>
+      <form class="center">
+        <textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>
+        <br>
+        <button id="send">Send</button>
+      </form>
+    </div>
+  </div>
+  <script src="/static/js/index.js"></script>
+
+</body>
+
 </html>
