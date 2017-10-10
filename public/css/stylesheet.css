@@ -1,0 +1,21 @@
+.clear{
+clear:both;
+}
+.main{
+width:500px;
+}
+.top {
+background: blue;
+width:500px;
+height: 92px;
+}
+.left {
+float:left;
+width: 150px;
+background: red;
+}
+.right{
+float:right;
+width:350px;
+background: yellow;
+}
