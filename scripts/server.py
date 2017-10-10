@@ -4,7 +4,7 @@ from os import getcwd, environ
 
 class Server:
 
-    ON_HEROKU = environ.get('ON_HEROKU')
+    ON_HEROKU = environ['ON_HEROKU']
 
     def __init__(self, site_map):
 
@@ -30,11 +30,11 @@ class Server:
         Build the routes from the config dictionary passed into constructor
         :return: no return value
         """
-        if self.ON_HEROKU:
-            port = environ.get('PORT', 17995)
+        if self.ON_HEROKU is True or self.ON_HEROKU == 'True':
+            port = int(environ['PORT'])
         else:
             port = 8080
-        cherrypy.config.update({'server.socket_port': int(port)})
+        cherrypy.config.update({'server.socket_port': port})
 
         for item in self.site_map:
             app = self.site_map[item]()
