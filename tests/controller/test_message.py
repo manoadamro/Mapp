@@ -1,5 +1,5 @@
 from unittest import TestCase
-from . import Message
+from controllers.message import Message
 
 
 class TestMessage(TestCase):

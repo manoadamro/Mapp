@@ -1,5 +1,5 @@
 from unittest import TestCase
-from . import App
+from controllers.app import App
 
 
 class TestApp(TestCase):
