@@ -5,6 +5,7 @@ describe('Features', function() {
 
     jqueryDone = function(){}
     $.post = function(){return {done: jqueryDone}}
+    $.get = function(){return {done: jqueryDone}}
   })
 
   afterEach(function() {
@@ -19,8 +20,4 @@ describe('Features', function() {
       expect(document.getElementById('messageList').innerHTML).toEqual('teehee!<br>')
     })
   })
-
-  describe
-
-
-})
+  })
