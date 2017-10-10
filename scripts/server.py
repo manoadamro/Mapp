@@ -1,8 +1,10 @@
 import cherrypy
-from os import getcwd
+from os import getcwd, environ
 
 
 class Server:
+
+    ON_HEROKU = environ.get('ON_HEROKU')
 
     def __init__(self, site_map):
 
@@ -28,7 +30,11 @@ class Server:
         Build the routes from the config dictionary passed into constructor
         :return: no return value
         """
-        cherrypy.config.update({'server.socket_port': 8080})
+        if self.ON_HEROKU:
+            port = environ.get('PORT', 17995)
+        else:
+            port = 8080
+        cherrypy.config.update({'server.socket_port': port})
 
         for item in self.site_map:
             app = self.site_map[item]()
