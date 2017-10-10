@@ -3,7 +3,7 @@ from controllers.query import Query
 
 
 class TestQuery(TestCase):
-    
+
     def test_online(self):
         self.assertTrue(True)
 
