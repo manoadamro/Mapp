@@ -34,7 +34,7 @@ class Server:
             port = environ.get('PORT', 17995)
         else:
             port = 8080
-        cherrypy.config.update({'server.socket_port': port})
+        cherrypy.config.update({'server.socket_port': int(port)})
 
         for item in self.site_map:
             app = self.site_map[item]()
