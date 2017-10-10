@@ -1,5 +1,6 @@
 import cherrypy
-from lib.message_log import MessageLog
+
+from scripts.message_log import MessageLog
 
 
 class Message:

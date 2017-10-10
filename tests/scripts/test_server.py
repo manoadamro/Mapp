@@ -1,5 +1,4 @@
 from unittest import TestCase
-from . import Server
 
 
 class TestServer(TestCase):

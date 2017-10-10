@@ -1,5 +1,5 @@
 from unittest import TestCase
-from . import Query
+from controllers.query import Query
 
 
 class TestQuery(TestCase):

@@ -1,7 +1,7 @@
-from lib.server import Server
-from config.routes import site_map
 from os import getcwd
 
+from config.routes import site_map
+from scripts.server import Server
 
 if __name__ == '__main__':
     app_dir = getcwd()
