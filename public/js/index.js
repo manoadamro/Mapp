@@ -58,7 +58,7 @@ var setChannelView = function(){
         event.preventDefault();
     });
 
-    setTargetLanguage(targetLanguage)
+    refreshTargetLanguage(targetLanguage)
     updateLoop();
 }
 
@@ -97,16 +97,17 @@ var changeLanguage = function() {
 
     $.post("/chat/language", {"language": language}).done(function(response){
         if (response.code === 0) {
-            setTargetLanguage(language)
+            targetLanguage = language
+            refreshTargetLanguage()
         }
         else {
-            // failed to change language
+            displayError('failed to change target message')
         }
     })
 }
 
-var setTargetLanguage = function(language){
-    document.getElementById('targetLanguageLabel').innerHTML = "Target Language: " + language
+var refreshTargetLanguage = function(){
+    document.getElementById('targetLanguageLabel').innerHTML = "Target Language: " + targetLanguage
 }
 
 

@@ -1,6 +1,5 @@
 from time import time
 
-
 class MessageLog:
 
     def __init__(self):
