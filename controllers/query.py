@@ -1,7 +1,8 @@
 import cherrypy
+from scripts.controller import Controller
 
 
-class Query:
+class Query(Controller):
 
     def __init__(self):
         pass
