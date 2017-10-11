@@ -38,7 +38,7 @@ class Server:
         cherrypy.config.update(
           {
             'server.socket_port': port,
-            'server.socket_host': '0.0.0.0'
+            'server.socket_host': '0.0.0.0',
             'tools.sessions.on': True,
             'tools.staticdir.root': getcwd()
           }
