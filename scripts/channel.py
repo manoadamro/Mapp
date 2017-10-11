@@ -1,21 +1,20 @@
 from time import time
 from .message_log import MessageLog
-from .user_log import UserLog
 
 
 class Channel:
     def __init__(self, name, creator):
         self.message_log = MessageLog()
-        self.user_log = UserLog()
+        self.user_log = []
         self.name = name
         self.creator = creator
         self.created_at = time()
 
-    def add_user(self, uid, user):
-        self.user_log.add_user(uid, user)
+    def add_user(self, uid):
+        self.user_log.append(uid)
 
     def remove_user(self, uid):
-        self.user_log.remove_user(uid)
+        self.user_log.remove(uid)
 
     def contains_user(self, uid):
         return uid in self.user_log
