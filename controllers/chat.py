@@ -57,16 +57,19 @@ class Chat(Controller):
         user = cherrypy.session['username']
         channel = params['channel'] if 'channel' in params else ''
         message = params['message'] if 'message' in params else ''
-        # make sure channel exists
-        self.channels[channel].add_message(message)
-        return self.ok()
+        if channel in self.channels:
+            self.channels[channel].add_message(user, message)
+            return self.ok()
+        else:
+            return self.error(message='channel does not exist')
 
     @cherrypy.expose(alias='update')
     @cherrypy.tools.json_out()
     def get_updates(self, **params):
-        user = cherrypy.session['username']
         channel = params['channel'] if 'channel' in params else ''
         index = int(params['index']) if 'index' in params else ''
-        # make sure channel exists
-        data = self.channels[channel].get_messages(index)
-        return self.ok(data=data)
+        if channel in self.channels:
+            data = self.channels[channel].get_messages(index)
+            return self.ok(data=data)
+        else:
+            return self.error(message='channel does not exist')

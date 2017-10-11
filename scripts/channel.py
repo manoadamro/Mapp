@@ -20,8 +20,8 @@ class Channel:
     def contains_user(self, uid):
         return uid in self.user_log
 
-    def add_message(self, text):
-        self.message_log.add_message(text)
+    def add_message(self, author, text):
+        self.message_log.add_message(author, text)
 
     def get_messages(self, index):
         return self.message_log.get_messages(index)
