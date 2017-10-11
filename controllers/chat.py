@@ -11,7 +11,7 @@ class Chat(Controller):
     @cherrypy.tools.json_out()
     def new_channel(self, **params):
         channel = params['channel'] if 'channel' in params else ''
-        user = ''  # from session
+        user = cherrypy.session['username']
         # make sure channel doesnt exist
         # create channel object & add to dict
         # add creator to channel
@@ -22,7 +22,7 @@ class Chat(Controller):
     @cherrypy.tools.json_out()
     def delete_channel(self, **params):
         channel = params['channel'] if 'channel' in params else ''
-        user = ''  # from session
+        user = cherrypy.session['username']
         # make sure channel exists
         # make sure session user is creator
         # remove channel
@@ -33,7 +33,7 @@ class Chat(Controller):
     @cherrypy.tools.json_out()
     def join_channel(self, **params):
         channel = params['channel'] if 'channel' in params else ''
-        user = ''  # from session
+        user = cherrypy.session['username']
         # make sure channel exists
         # make sure user is not already in channel
         # add user to channel
@@ -44,7 +44,7 @@ class Chat(Controller):
     @cherrypy.tools.json_out()
     def leave_channel(self, **params):
         channel = params['channel'] if 'channel' in params else ''
-        user = ''  # from session
+        user = cherrypy.session['username']
         # make sure channel exists
         # make sure user is in channel
         # remove user from channel
@@ -54,6 +54,7 @@ class Chat(Controller):
     @cherrypy.expose(alias='message')
     @cherrypy.tools.json_out()
     def new_message(self, **params):
+        user = cherrypy.session['username']
         channel = params['channel'] if 'channel' in params else ''
         message = params['message'] if 'message' in params else ''
         # make sure channel exists
@@ -63,6 +64,7 @@ class Chat(Controller):
     @cherrypy.expose(alias='update')
     @cherrypy.tools.json_out()
     def get_updates(self, **params):
+        user = cherrypy.session['username']
         channel = params['channel'] if 'channel' in params else ''
         index = int(params['index']) if 'index' in params else ''
         # make sure channel exists
