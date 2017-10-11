@@ -8,10 +8,19 @@ class Session(Controller):
         pass
 
     @cherrypy.expose(alias='login')
-    # @cherrypy.tools.json_out()
-    def login(self,**params):
-        cherrypy.session['username'] = 'Liz'
-        return cherrypy.session['username']
+    @cherrypy.tools.json_out()
+    def login(self, **params):
+        if 'username' not in params:
+            self.error(message='no username provided')
+        else:
+            cherrypy.session['username'] = params['username']
+            self.ok()
 
-    def logout(self,**params):
-        pass
+    @cherrypy.expose(alias='logout')
+    @cherrypy.tools.json_out()
+    def logout(self, **_params):
+        if 'username' in cherrypy.session:
+            del cherrypy.session['username']
+        else:
+            self.error(message='user not logged in')
+            self.ok()
