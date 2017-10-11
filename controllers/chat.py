@@ -10,13 +10,14 @@ class Chat(Controller):
     @cherrypy.expose(alias='create')
     @cherrypy.tools.json_out()
     def new_channel(self, **params):
-        channel = params['channel'] if 'channel' in params else ''
+        if 'channel' not in params:
+            return self.error(message='No channel name given')
+        if params['channel'] in self.channels:
+            return self.error(message='Channel name already exists')
         user = cherrypy.session['username']
-        # make sure channel doesnt exist
-        # create channel object & add to dict
-        # add creator to channel
-        # return ok or error
-        pass
+        channel = Channel(params['channel'], user)
+        self.channels[params['channel']] = channel
+        return self.ok()
 
     @cherrypy.expose(alias='delete')
     @cherrypy.tools.json_out()
