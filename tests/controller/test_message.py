@@ -15,3 +15,4 @@ class TestMessage(TestCase):
         messages = message.get_updates(index=5)
         self.assertEqual(len(messages), 4)
         self.assertEqual(messages[0]['text'], 'message6')
+

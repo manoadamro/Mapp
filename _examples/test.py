@@ -10,7 +10,7 @@ def translate_text(text, target='fr'):
     print('Translation', result['translatedText'])
     print('Detected source lang: ', result['detectedSourceLanguage'])
 
-example_text = '''Hello! My name is Stephen. This app is very good and I like it very much. Hope you can understand my translation!'''
+example_text = '''I don't know.'''
 
 translate_text(example_text)
 
