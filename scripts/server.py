@@ -30,12 +30,19 @@ class Server:
         Build the routes from the config dictionary passed into constructor
         :return: no return value
         """
+
         if self.ON_HEROKU is True or self.ON_HEROKU == 'True':
             port = int(environ.get('PORT'))
         else:
             port = 8080
-        cherrypy.config.update({'server.socket_port': port, 'server.socket_host': '0.0.0.0'})
-
+        cherrypy.config.update(
+          {
+            'server.socket_port': port,
+            'server.socket_host': '0.0.0.0',
+            'tools.sessions.on': True,
+            'tools.staticdir.root': getcwd()
+          }
+        )
         for item in self.site_map:
             app = self.site_map[item]()
             self.tree.mount(app, item, self.app_config())

@@ -6,14 +6,13 @@ class MessageLog:
     def __init__(self):
         self.message_list = []
 
-    def add_message(self, text):
+    def add_message(self, author, text):
         """
         Adds a new message to the log
         :param text: the message body
         :param author: the message author
         :return: no return value
         """
-        author = ''  # get from session
         message = self._new_message(text, author)
         self.message_list.append(message)
 

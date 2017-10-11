@@ -4,6 +4,9 @@
 
 .main {
   width: auto;
+  position: relative;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
 }
 
 .banner {
@@ -48,4 +51,24 @@ h1 {
 .message {
   font-family: "Verdana";
   width: 50%;
+}
+
+#sideBar {
+  position: absolute;
+  top: 152px;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#page {
+    position: absolute;
+    left: 200px;
+    top: 152px;
+    height: 800px;
+    width: 800px;
+    border-style: solid;
+    border-width: 1px;
 }
