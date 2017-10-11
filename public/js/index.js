@@ -38,6 +38,7 @@ var setChannelView = function(){
         $.post("/chat/message", params).done(function(response){
             if (response.code === 0){
                 document.getElementById('messageForm').value = ''
+                displayError('')
             }
         })
         event.preventDefault();
@@ -80,6 +81,7 @@ var setLogInView = function() {
             $.post("/session/login", {'username': username, 'language': 'en'}).done(function(response){
                 if (response.code == 0) {
                     setChannelView();
+                    displayError('')
                 }
                 else {
                     displayError(response.message);
@@ -100,6 +102,8 @@ var changeLanguage = function() {
             if (response.code === 0) {
                 targetLanguage = language
                 refreshTargetLanguage()
+                displayError('')
+
             }
             else {
                 displayError('failed to change target message')
@@ -122,6 +126,7 @@ var getUpdates = function() {
                 renderMessages(parsedMessages);
                 index = parsedMessages[parsedMessages.length - 1].index
             }
+            displayError('')
         }
         else {
             displayError(response.message);
@@ -136,6 +141,7 @@ var createChannel = function(name) {
         if (response.code === 0) {
             channel = name
             clearMessages()
+            displayError('')
         }
         else {
             displayError(response.message);
@@ -150,6 +156,7 @@ var deleteChannel = function() {
         if (response.code === 0) {
             channel = 'global'
             clearMessages()
+            displayError('')
         }
         else {
             displayError(response.message);
@@ -164,6 +171,7 @@ var joinChannel = function(name) {
     $.post("/chat/join", params).done(function(response) {
         if (response.code === 0) {
             channel = name
+            displayError('')
         }
         else {
             displayError(response.message);
@@ -177,6 +185,7 @@ var leaveChannel = function() {
     $.post("/chat/leave", params).done(function(response) {
         if (response.code === 0) {
             channel = 'global'
+            displayError('')
         }
         else {
             displayError(response.message);
