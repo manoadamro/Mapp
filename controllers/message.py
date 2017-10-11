@@ -1,10 +1,13 @@
 import cherrypy
+
 from scripts.message_log import MessageLog
+from scripts.translator import Translator
 
 
 class Message:
     def __init__(self):
         self.message_log = MessageLog()
+        self.translator = Translator()
 
     @cherrypy.expose(alias='new')
     @cherrypy.tools.json_out()
@@ -14,7 +17,8 @@ class Message:
         :param params: POST params
         :return: json response
         """
-        self.message_log.add_message(params['message'])
+        translated_text = self.translator.translate_text(params['message'], 'en')
+        self.message_log.add_message(translated_text)
 
     @cherrypy.expose(alias='updates')
     @cherrypy.tools.json_out()
@@ -25,5 +29,4 @@ class Message:
         :param params: GET params
         :return: json response
         """
-        print(self.message_log)
         return self.message_log.get_messages(int(params['index']))

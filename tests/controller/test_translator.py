@@ -1,5 +1,6 @@
 from unittest import TestCase
-from controllers.translator import Translator
+
+from scripts.translator import Translator
 
 
 class TestTranslate(TestCase):
