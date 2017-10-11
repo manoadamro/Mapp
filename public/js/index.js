@@ -11,6 +11,17 @@ $("#send").click(function(event) {
 	event.preventDefault();
 });
 
+$("#addChannel").click(function(event) {
+    name = document.getElementById('channelForm').value
+    createChannel(name);
+    event.preventDefault();
+});
+
+$("#deleteChannel").click(function(event) {
+    deleteChannel(channel);
+    event.preventDefault();
+});
+
 
 // Get Updates
 var getUpdates = function() {
@@ -24,23 +35,24 @@ var getUpdates = function() {
             }
         }
         else {
+            throw (data.message);
             // error = data.message
         }
     })
 };
 
 
-// Create Channel
-var createChannel = function() {
-    // route -> '/chat/create'
-    // params-> 'channel' (name of channel)
+var createChannel = function(name) {
+    params = {"channel": name}
+    $.post("/chat/create", params).done(function(response) {
+    });
 }
 
 
-// Delete Channel
-var deleteChannel = function() {
-    // route -> '/chat/delete'
-    // params-> 'channel' (name of channel)
+var deleteChannel = function(name) {
+    params = {"channel": name}
+    $.post("/chat/delete", params).done(function(response) {
+    });
 }
 
 
