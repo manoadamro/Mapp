@@ -105,14 +105,14 @@ class Chat(Controller):
         user = cherrypy.session['username']
         channel_name = params['channel']
         message = params['message']
-        translated_text = self.translator.translate_text(message, 'en')
+        # translated_text = self.translator.translate_text(message, 'en')
 
         # value checks
         if channel_name not in self.channels:
             return self.error(message='channel does not exist')
 
         # complete action
-        self.channels[channel_name].add_message(user, translated_text)
+        self.channels[channel_name].add_message(user, message)
         return self.ok()
 
     @cherrypy.expose(alias='update')
@@ -133,3 +133,12 @@ class Chat(Controller):
         # complete action
         data = self.channels[channel_name].get_messages(index)
         return self.ok(data=data)
+
+    @cherrypy.expose(alias='language')
+    @cherrypy.tools.json_out()
+    def change_language(self, **params):
+        if 'language' not in params:
+            return self.error(message='no target language provided')
+
+        cherrypy.session['language'] = params['language']
+        return self.ok()

@@ -1,27 +1,45 @@
 var index = -1;
 var channel = 'global';
 var view = '';
+var targetLanguage = 'en';
 
 
 var setChannelView = function(){
+
+    var languageSelector = '<p id="targetLanguageLabel"></p>' +
+                           '<form id="languageSelector">' +
+                           '<input class="center textBox" type="text" type="text" id="languageForm"></input>' +
+                           '<button id="setLanguage">Set Language</button>' +
+                           '</form>'
+
     var messageList = '<div id="messageList" class="center"></div>'
+
     var messageForm = '<form class="center">' +
                       '<textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>' +
                       '<br />' +
                       '<button id="send">Send</button>' +
                       '</form>' +
                       '<form class="center">' +
+                      '<br />' +
                       '<button id="logout">Log Out</button>' +
                       '</form>'
 
-    document.getElementById('page').innerHTML = messageList + messageForm
+    document.getElementById('page').innerHTML = languageSelector + messageList + messageForm
     view = 'channel'
+
+    $("#setLanguage").click(function(event) {
+        changeLanguage();
+        event.preventDefault();
+    });
 
     $("#send").click(function(event) {
         message = document.getElementById('messageForm').value;
         params = {"message": message, "channel": channel}
-        $.post("/chat/message", params)
-        document.getElementById('messageForm').value = ''
+        $.post("/chat/message", params).done(function(response){
+            if (response.code === 0){
+                document.getElementById('messageForm').value = ''
+            }
+        })
         event.preventDefault();
     });
 
@@ -40,6 +58,7 @@ var setChannelView = function(){
         event.preventDefault();
     });
 
+    setTargetLanguage(targetLanguage)
     updateLoop();
 }
 
@@ -54,17 +73,40 @@ var setLogInView = function() {
 
     $("#login").click(function(event) {
         var username = document.getElementById('usernameForm').value
-        $.post("/session/login", {'username': username}).done(function(response){
-            console.log(response)
-            if (response.code == 0) {
-                setChannelView();
-            }
-            else {
-                displayError(response.message);
-            }
-        });
+        if (username.length === 0) {
+            displayError('Username can not be empty')
+        }
+        else {
+            $.post("/session/login", {'username': username, 'language': 'en'}).done(function(response){
+                if (response.code == 0) {
+                    setChannelView();
+                }
+                else {
+                    displayError(response.message);
+                }
+            });
+        }
         event.preventDefault();
     });
+}
+
+
+var changeLanguage = function() {
+
+    language = document.getElementById('languageForm').value;
+
+    $.post("/chat/language", {"language": language}).done(function(response){
+        if (response.code === 0) {
+            setTargetLanguage(language)
+        }
+        else {
+            // failed to change language
+        }
+    })
+}
+
+var setTargetLanguage = function(language){
+    document.getElementById('targetLanguageLabel').innerHTML = "Target Language: " + language
 }
 
 
@@ -170,6 +212,7 @@ var updateLoop = function(){
 var clearSession = function(){
     $.post("/session/logout", {})
 }
+
 
 // On Start
 clearSession();
