@@ -1,5 +1,5 @@
-var index = -1
-var channel = 'global'
+var index = -1;
+var channel = 'global';
 
 $("#send").click(function(event) {
 	message = document.getElementById('messageForm').value;
@@ -19,6 +19,21 @@ $("#deleteChannel").click(function(event) {
     deleteChannel(channel);
     event.preventDefault();
 });
+
+$("#login").click(function(event) {
+    var username = document.getElementById('usernameForm').value
+    $.post("/session/login", {'username': 'monkey'}).done(function(response){
+        console.log(response)
+        if (response.code == 0) {
+            setChannelView();
+        }
+        else {
+            displayError(data.message);
+        }
+    });
+    event.preventDefault();
+});
+
 
 
 var getUpdates = function() {
@@ -102,12 +117,23 @@ var displayError = function(message) {
 }
 
 
-var channelView = function(){
-
+var setChannelView = function(){
+    var messageList = '<div id="messageList" class="center"></div>'
+    var form = '<form class="center">' +
+               '<textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>' +
+               '<br />' +
+               '<button id="send">Send</button>' +
+               '</form>'
+    document.getElementById('page').innerHTML = messageList + form
 }
 
-var logInView = function() {
-
+var setLogInView = function() {
+    var form = '<form class="center">' +
+               '<input class="center textBox" type="text" type="text" id="usernameForm"></input>' +
+               '<br />' +
+               '<button id="login">Log In</button>' +
+               '</form>'
+    document.getElementById('page').innerHTML = form
 }
 
 
@@ -129,8 +155,8 @@ setTimeout(function () {
 }
 
 
-// Force Login So We Can Use It
-$.post("/session/login", {'username': 'monkey'})
+// set view
+setLogInView();
 
 // Begin Update Loop
 timeout();
