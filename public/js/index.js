@@ -106,7 +106,7 @@ var displayError = function(message) {
 var renderHTML = function(data) {
     var htmlString = '';
     for (i = 0; i < data.length; i++) {
-        htmlString += (data[i].author + ': ' + data[i].text + '<br/>')
+        htmlString += ('<span class="message">' + data[i].author + ': ' + data[i].text + '<br/>' + '</span>')
     }
     document.getElementById("messageList").innerHTML += htmlString;
 }
