@@ -1,11 +1,13 @@
 import cherrypy
 from scripts.channel import Channel
 from scripts.controller import Controller
+from scripts.translator import Translator
 
 
 class Chat(Controller):
     def __init__(self):
         self.channels = {'global': Channel('global', 'system')}
+        self.translator = Translator()
 
     @cherrypy.expose(alias='create')
     @cherrypy.tools.json_out()
@@ -103,13 +105,14 @@ class Chat(Controller):
         user = cherrypy.session['username']
         channel_name = params['channel']
         message = params['message']
+        translated_text = self.translator.translate_text(message, 'en')
 
         # value checks
         if channel_name not in self.channels:
             return self.error(message='channel does not exist')
 
         # complete action
-        self.channels[channel_name].add_message(user, message)
+        self.channels[channel_name].add_message(user, translated_text)
         return self.ok()
 
     @cherrypy.expose(alias='update')
@@ -130,5 +133,3 @@ class Chat(Controller):
         # complete action
         data = self.channels[channel_name].get_messages(index)
         return self.ok(data=data)
-
-

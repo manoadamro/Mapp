@@ -27,8 +27,8 @@ describe("Features", function() {
       sendButton.click();
       // console.log(document.getElementById('messageList').innerHTML)
       setTimeout(function() {
-        expect(document.getElementById("messageList").innerHTML).toEqual(
-          "text<br>text<br>"
+        expect(document.getElementById("message").innerHTML).toEqual(
+          "text<br>"
         );
         done();
       }, 1000);
