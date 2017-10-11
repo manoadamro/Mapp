@@ -6,7 +6,7 @@ from controllers.session import Session
 
 site_map = {
     '/': App,
-    '/message': Chat,
+    '/chat': Chat,
     '/query': Query,
     '/session': Session
 }
