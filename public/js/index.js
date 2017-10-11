@@ -1,14 +1,6 @@
 var index = -1;
 var channel = 'global';
 
-$("#send").click(function(event) {
-	message = document.getElementById('messageForm').value;
-	params = {"message": message, "channel": channel}
-	$.post("/chat/message", params)
-	document.getElementById('messageForm').value = ''
-	event.preventDefault();
-});
-
 $("#addChannel").click(function(event) {
     name = document.getElementById('channelForm').value
     createChannel(name);
@@ -20,20 +12,48 @@ $("#deleteChannel").click(function(event) {
     event.preventDefault();
 });
 
-$("#login").click(function(event) {
-    var username = document.getElementById('usernameForm').value
-    $.post("/session/login", {'username': 'monkey'}).done(function(response){
-        console.log(response)
-        if (response.code == 0) {
-            setChannelView();
-        }
-        else {
-            displayError(data.message);
-        }
-    });
-    event.preventDefault();
-});
 
+var setChannelView = function(){
+    var messageList = '<div id="messageList" class="center"></div>'
+    var form = '<form class="center">' +
+               '<textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>' +
+               '<br />' +
+               '<button id="send">Send</button>' +
+               '</form>'
+    document.getElementById('page').innerHTML = messageList + form
+
+    $("#send").click(function(event) {
+        message = document.getElementById('messageForm').value;
+        params = {"message": message, "channel": channel}
+        $.post("/chat/message", params)
+        document.getElementById('messageForm').value = ''
+        event.preventDefault();
+    });
+}
+
+var setLogInView = function() {
+    var form = '<form class="center">' +
+               '<input class="center textBox" type="text" type="text" id="usernameForm"></input>' +
+               '<br />' +
+               '<button id="login">Log In</button>' +
+               '</form>'
+    document.getElementById('page').innerHTML = form
+
+    $("#login").click(function(event) {
+        alert("THIS IS AN ALERT")
+        var username = document.getElementById('usernameForm').value
+        $.post("/session/login", {'username': username}).done(function(response){
+            console.log(response)
+            if (response.code == 0) {
+                setChannelView();
+            }
+            else {
+                displayError(data.message);
+            }
+        });
+        event.preventDefault();
+    });
+}
 
 
 var getUpdates = function() {
@@ -117,24 +137,6 @@ var displayError = function(message) {
 }
 
 
-var setChannelView = function(){
-    var messageList = '<div id="messageList" class="center"></div>'
-    var form = '<form class="center">' +
-               '<textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>' +
-               '<br />' +
-               '<button id="send">Send</button>' +
-               '</form>'
-    document.getElementById('page').innerHTML = messageList + form
-}
-
-var setLogInView = function() {
-    var form = '<form class="center">' +
-               '<input class="center textBox" type="text" type="text" id="usernameForm"></input>' +
-               '<br />' +
-               '<button id="login">Log In</button>' +
-               '</form>'
-    document.getElementById('page').innerHTML = form
-}
 
 
 // Render Messages As HTML
