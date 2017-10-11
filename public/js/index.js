@@ -27,7 +27,7 @@ var getUpdates = function() {
         if (response.code === 0) {
             var parsedMessages = response.data;
             if (parsedMessages.length > 0) {
-                renderHTML(parsedMessages);
+                renderMessages(parsedMessages);
                 index = parsedMessages[parsedMessages.length - 1].index
             }
         }
@@ -102,8 +102,17 @@ var displayError = function(message) {
 }
 
 
+var channelView = function(){
+
+}
+
+var logInView = function() {
+
+}
+
+
 // Render Messages As HTML
-var renderHTML = function(data) {
+var renderMessages = function(data) {
     var htmlString = '';
     for (i = 0; i < data.length; i++) {
         htmlString += ('<span class="message">' + data[i].author + ': ' + data[i].text + '<br/>' + '</span>')
