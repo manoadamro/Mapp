@@ -64,11 +64,13 @@ var setChannelView = function(){
 }
 
 var setLogInView = function() {
+
     var loginForm = '<form class="center">' +
                '<input class="center textBox" type="text" type="text" id="usernameForm"></input>' +
                '<br />' +
                '<button id="login">Log In</button>' +
                '</form>'
+
     document.getElementById('page').innerHTML = loginForm
     view = 'login'
 
@@ -100,17 +102,19 @@ var changeLanguage = function() {
     if (language.length > 0){
         $.post("/chat/language", {"language": language}).done(function(response){
             if (response.code === 0) {
-                targetLanguage = language
-                refreshTargetLanguage()
-                displayError('')
+                targetLanguage = language;
+                refreshTargetLanguage();
+                reloadMessages();
+                displayError('');
 
             }
             else {
-                displayError('failed to change target message')
+                displayError('failed to change target message');
             }
         })
     }
 }
+
 
 var refreshTargetLanguage = function(){
     document.getElementById('targetLanguageLabel').innerHTML = "Target Language: " + targetLanguage
@@ -133,6 +137,25 @@ var getUpdates = function() {
         }
     })
 };
+
+
+var reloadMessages = function() {
+    params = {"index": -1, "channel": channel}
+    $.get("/chat/update", params).done(function(response){
+        if (response.code === 0) {
+            clearMessages();
+            var parsedMessages = response.data;
+            if (parsedMessages.length > 0) {
+                renderMessages(parsedMessages);
+                index = parsedMessages[parsedMessages.length - 1].index
+            }
+            displayError('')
+        }
+        else {
+            displayError(response.message);
+        }
+    })
+}
 
 
 var createChannel = function(name) {
