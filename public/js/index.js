@@ -23,7 +23,7 @@ function renderHTML(data) {
  var htmlString = '';
  for (i = 0; i < data.length; i++) {
     //  console.log(data[i].text)
-   htmlString += '<span class="message">' + data[i].text + data[i].author + '<br/>' + '</span>'
+   htmlString += '<span id="message" class="message">' + data[i].text + data[i].author + '<br/>' + '</span>'
  }
  document.getElementById("messageList").innerHTML += htmlString;
  index = data[data.length - 1].index
