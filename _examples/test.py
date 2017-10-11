@@ -2,7 +2,7 @@
 
 from google.cloud import translate
 
-def translate_text(text, target='en'):
+def translate_text(text, target='fr'):
     translate_client = translate.Client()
     result = translate_client.translate(text, target_language=target)
 
@@ -10,7 +10,7 @@ def translate_text(text, target='en'):
     print('Translation', result['translatedText'])
     print('Detected source lang: ', result['detectedSourceLanguage'])
 
-example_text = '''Bonjour, comment ça va, mon ami?'''
+example_text = '''Hello! My name is Stephen. This app is very good and I like it very much. Hope you can understand my translation!'''
 
 translate_text(example_text)
 
