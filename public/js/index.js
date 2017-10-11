@@ -1,8 +1,6 @@
 var index = -1
 var channel = 'global'
 
-
-// New Message
 $("#send").click(function(event) {
 	message = document.getElementById('messageForm').value;
 	params = {"message": message, "channel": channel}
@@ -23,7 +21,6 @@ $("#deleteChannel").click(function(event) {
 });
 
 
-// Get Updates
 var getUpdates = function() {
     params = {"index": index, "channel": channel}
     $.get("/chat/update", params).done(function(response){
@@ -35,8 +32,7 @@ var getUpdates = function() {
             }
         }
         else {
-            throw (data.message);
-            // error = data.message
+            displayError(data.message);
         }
     })
 };
@@ -45,32 +41,64 @@ var getUpdates = function() {
 var createChannel = function(name) {
     params = {"channel": name}
     $.post("/chat/create", params).done(function(response) {
+        if (response.code === 0) {
+            channel = name
+            clearMessages()
+        }
+        else {
+            displayError(data.message);
+        }
     });
 }
 
 
-var deleteChannel = function(name) {
-    params = {"channel": name}
+var deleteChannel = function() {
+    params = {"channel": channel}
     $.post("/chat/delete", params).done(function(response) {
+        if (response.code === 0) {
+            channel = 'global'
+            clearMessages()
+        }
+        else {
+            displayError(data.message);
+        }
     });
 }
 
 
-// Join Channel
-var joinChannel = function() {
-    // route -> '/chat/join'
-    // params-> 'channel' (name of channel)
-
-    // set channel var to channel name if response code is 0
+var joinChannel = function(name) {
+    leaveChannel()
+    params = {"channel": name}
+    $.post("/chat/join", params).done(function(response) {
+        if (response.code === 0) {
+            channel = name
+        }
+        else {
+            displayError(data.message);
+        }
+    });
 }
 
 
-// Leave Channel
 var leaveChannel = function() {
-    // route -> '/chat/leave'
-    // params-> 'channel' (name of channel)
+    params = {"channel": channel}
+    $.post("/chat/leave", params).done(function(response) {
+        if (response.code === 0) {
+            channel = 'global'
+        }
+        else {
+            displayError(data.message);
+        }
+    });
+}
 
-    // set channel var to [something] if response code is 0
+
+var clearMessages = function() {
+    document.getElementById("messageList").innerHTML = "";
+}
+
+var displayError = function(message) {
+    throw message;
 }
 
 
