@@ -95,15 +95,17 @@ var changeLanguage = function() {
 
     language = document.getElementById('languageForm').value;
 
-    $.post("/chat/language", {"language": language}).done(function(response){
-        if (response.code === 0) {
-            targetLanguage = language
-            refreshTargetLanguage()
-        }
-        else {
-            displayError('failed to change target message')
-        }
-    })
+    if (language.length > 0){
+        $.post("/chat/language", {"language": language}).done(function(response){
+            if (response.code === 0) {
+                targetLanguage = language
+                refreshTargetLanguage()
+            }
+            else {
+                displayError('failed to change target message')
+            }
+        })
+    }
 }
 
 var refreshTargetLanguage = function(){
