@@ -1,10 +1,10 @@
 from controllers.app import App
-from controllers.message import Message
+from controllers.chat import Chat
 from controllers.query import Query
 
 
 site_map = {
     '/': App,
-    '/message': Message,
+    '/message': Chat,
     '/query': Query
 }

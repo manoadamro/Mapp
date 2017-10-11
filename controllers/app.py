@@ -1,8 +1,9 @@
 import cherrypy
 from os import path
+from scripts.controller import Controller
 
 
-class App:
+class App(Controller):
     def __init__(self):
         pass
 
