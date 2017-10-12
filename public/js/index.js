@@ -1,8 +1,3 @@
-//var index = -1;
-//var channel = 'global';
-//var view = '';
-//var targetLanguage = 'en';
-
 
 var setChannelView = function(){
 
@@ -94,33 +89,6 @@ var setLogInView = function() {
     });
 }
 
-
-var changeLanguage = function() {
-
-    language = document.getElementById('languageForm').value;
-
-    if (language.length > 0){
-        $.post("/chat/language", {"language": language}).done(function(response){
-            if (response.code === 0) {
-                targetLanguage = language;
-                refreshTargetLanguage();
-                displayError('');
-
-            }
-            else {
-                displayError('failed to change target language');
-            }
-        })
-
-    }
-}
-
-
-var refreshTargetLanguage = function(){
-    document.getElementById('targetLanguageLabel').innerHTML = "Target Language: " + targetLanguage
-}
-
-
 var getUpdates = function() {
     params = {"index": index, "channel": channel}
     $.get("/chat/update", params).done(function(response){
@@ -137,75 +105,6 @@ var getUpdates = function() {
         }
     })
 };
-
-
-//var createChannel = function(name) {
-//    params = {"channel": name}
-//    $.post("/chat/create", params).done(function(response) {
-//        if (response.code === 0) {
-//            channel = name
-//            clearMessages()
-//            displayError('')
-//        }
-//        else {
-//            displayError(response.message);
-//        }
-//    });
-//}
-
-
-//var deleteChannel = function() {
-//    params = {"channel": channel}
-//    $.post("/chat/delete", params).done(function(response) {
-//        if (response.code === 0) {
-//            channel = 'global'
-//            clearMessages()
-//            displayError('')
-//        }
-//        else {
-//            displayError(response.message);
-//        }
-//    });
-//}
-
-//
-//var joinChannel = function(name) {
-//    leaveChannel()
-//    params = {"channel": name}
-//    $.post("/chat/join", params).done(function(response) {
-//        if (response.code === 0) {
-//            channel = name
-//            displayError('')
-//        }
-//        else {
-//            displayError(response.message);
-//        }
-//    });
-//}
-//
-//
-//var leaveChannel = function() {
-//    params = {"channel": channel}
-//    $.post("/chat/leave", params).done(function(response) {
-//        if (response.code === 0) {
-//            channel = 'global'
-//            displayError('')
-//        }
-//        else {
-//            displayError(response.message);
-//        }
-//    });
-//}
-
-
-//var clearMessages = function() {
-//    document.getElementById("messageList").innerHTML = "";
-//}
-//
-//var displayError = function(message) {
-//    document.getElementById('message').innerHTML = message
-//}
-
 
 var renderMessages = function(data) {
     var htmlString = '';
