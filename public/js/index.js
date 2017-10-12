@@ -140,9 +140,8 @@ var getUpdates = function() {
 
 
 var reloadMessages = function() {
-    clearMessages();
     index = -1;
-    getUpdates();
+    clearMessages();
 }
 
 
