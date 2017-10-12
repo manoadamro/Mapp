@@ -20,7 +20,7 @@ var getUpdates = function() {
 var renderMessages = function(data) {
     var htmlString = '';
     for (i = 0; i < data.length; i++) {
-        htmlString += ('<span class="message">' + data[i].author + ': ' + data[i].text + '<br/>' + '</span>')
+        htmlString += ('<span class="message">' + '<span class="author">' + data[i].author + '</span>' + ': ' + data[i].text + '<br/>' + '</span>')
     }
     document.getElementById("messageList").innerHTML += htmlString;
 }
