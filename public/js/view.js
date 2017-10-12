@@ -16,7 +16,7 @@ var setChannelView = function(){
         params = {"message": message, "channel": channel}
         $.post("/chat/message", params).done(function(response){
             if (response.code === 0){
-                document.getElementById('messageForm').value = ''
+                document.getElementById('messageForm').innerHTML = ''
                 displayError('')
             }
         })
