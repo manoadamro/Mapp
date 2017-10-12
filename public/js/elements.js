@@ -7,11 +7,11 @@ var languageSelector = '<p id="targetLanguageLabel"></p>' +
                        '</form>'
 
 
-var messageList = '<div id="messageList" class="center"></div>'
+var messageList = '<div id="messageList" class="message-list"></div>'
 
 
-var messageForm = '<form class="center">' +
-                  '<textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>' +
+var messageForm = '<form class="message-form">' +
+                  '<input class="text-box" type="text" type="textarea" id="messageForm"></input>' +
                   '<br />' +
                   '<button id="send">Send</button>' +
                   '</form>' +
@@ -21,8 +21,8 @@ var messageForm = '<form class="center">' +
                   '</form>'
 
 
-var loginForm = '<form class="center">' +
-           '<input class="center textBox" type="text" type="text" id="usernameForm"></input>' +
+var loginForm = '<form>' +
+           '<input class="" type="text" type="text" id="usernameForm"></input>' +
            '<br />' +
-           '<button id="login">Log In</button>' +
+           '<button class="login btn btn-success" id="login">Log In</button>' +
            '</form>'

@@ -2,27 +2,19 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <meta charset="UTF-8">
   <title>Millenial Messenger</title>
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/js/bootstrap.min.js">
   <link rel="stylesheet" href="/static/css/stylesheet.css" />
   <link href="/static/css/simple-sidebar.css" rel="stylesheet">
-  <script src="/static/js/jquery-3.2.1.js"></script>
-
 </head>
 
 <body>
-
   <div id="wrapper">
-
-    <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
         <li class="sidebar-brand">
@@ -33,58 +25,42 @@
         </li>
       </ul>
     </div>
-    <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
-
     <div id="page-content-wrapper">
-
       <div class="container-fluid">
-        <div>
-
-          <h1 class="center">Millenial Messenger</h1>
+        <div class="jumbotron map">
+          <h1 class="h1">GloboMessenger</h1>
         </div>
         <div id="sideBar"></div>
-        <div class="center" id="page"></div>
-        <center class="center">
+        <div class="main-page" id="page"></div>
           <div class="center" id="message"></div>
-        </center>
         <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-
         <script src="/static/js/index.js"></script>
         <script src="/static/js/jquery-3.2.1.js"></script>
       </div>
-
     </div>
   </div>
-  <!-- /#wrapper -->
 
-  <!-- Bootstrap core JavaScript -->
   <script src="/static/js/jquery-3.2.1.js"></script>
   <script src="/static/vendor/jquery/jquery.js"></script>
   <script src="/static/vendor/popper/popper.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="/static/js/sidebar.js"></script>
-  <div id="sideBar"></div>
-  <div id="page"></div>
-  <center><div id="message"></div></center>
+  <script src="/static/js/elements.js"></script>
   <script src="/static/js/helper.js"></script>
   <script src="/static/js/language.js"></script>
   <script src="/static/js/messages.js"></script>
   <script src="/static/js/channel.js"></script>
-  <script src="/static/js/elements.js"></script>
   <script src="/static/js/view.js"></script>
   <script src="/static/js/index.js"></script>
+  <script src="/static/js/sidebar.js"></script>
 
 
-  <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-
 </body>
 
 </html>
