@@ -12,7 +12,7 @@ var setChannelView = function(){
     var messageForm = '<form class="center">' +
                       '<textarea class="center textBox" type="text" type="textarea" id="messageForm"></textarea>' +
                       '<br />' +
-                      '<button id="send">Send</button>' +
+                      '<button id="send" class="btn btn-primary">Send</button>' +
                       '</form>' +
                       '<form class="center">' +
                       '<br />' +
