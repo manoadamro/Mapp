@@ -5,8 +5,6 @@ from controllers.chat import Chat
 
 class TestMessage(TestCase):
 
-    Translator = object
-
     def test_new_channel(self):
         chat = Chat()
         cherrypy.session = {'username': 'George', 'language': 'en'}
