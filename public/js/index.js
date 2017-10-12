@@ -104,14 +104,14 @@ var changeLanguage = function() {
             if (response.code === 0) {
                 targetLanguage = language;
                 refreshTargetLanguage();
-                reloadMessages();
                 displayError('');
 
             }
             else {
-                displayError('failed to change target message');
+                displayError('failed to change target language');
             }
         })
+
     }
 }
 
@@ -137,12 +137,6 @@ var getUpdates = function() {
         }
     })
 };
-
-
-var reloadMessages = function() {
-    index = -1;
-    clearMessages();
-}
 
 
 var createChannel = function(name) {
