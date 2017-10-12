@@ -2,27 +2,24 @@
 
 from google.cloud import translate
 from os import getcwd, environ
-from json import loads, dumps
-path = "%s/config/google.json" % getcwd()
+from json import loads, dumps, dump
+path = "%s/config/key.json" % getcwd()
+environ['GOOGLE_APPLICATION_CREDENTIALS'] = path
 
 file = open(path, 'r')
 json = loads(file.read())
 file.close()
-
-print(json)
-
-json['private_key_id'] = environ["PRIVATE_KEY_ID_TRANSLATOR"]
-json['private_key'] = environ["PRIVATE_KEY_TRANSLATOR"]
-
+json["private_key_id"] = environ["PRIVATE_KEY_ID_TRANSLATOR"]
+json["private_key"] = environ["PRIVATE_KEY_TRANSLATOR"]
 file = open(path, 'w')
-file.write(dumps(json))
+file.write(dumps(json, separators=(',',':')))
 file.close()
 
-print(json)
+print("\n\n %s" % environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
 class Translator:
     def __init__(self):
-        self.translate_client = translate.Client.from_service_account_json(environ['GOOGLE_APPLICATION_CREDENTIALS'])
+        self.translate_client = translate.Client()
 
     def translate_text(self, text, target='en'):
         result = self.translate_client.translate(text, target_language=target)
