@@ -8,7 +8,6 @@ class Channel:
         self.user_log = []
         self.name = name
         self.creator = creator
-        self.created_at = time()
 
     def add_user(self, uid):
         self.user_log.append(uid)
