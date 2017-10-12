@@ -4,16 +4,6 @@ from google.cloud import translate
 from os import getcwd, environ
 from json import loads
 
-
-print(environ['GOOGLE_APPLICATION_CREDENTIALS'])
-
-f = open(environ['GOOGLE_APPLICATION_CREDENTIALS'], 'r')
-j = f.read()
-f.close()
-print(j)
-
-# environ['GOOGLE_APPLICATION_CREDENTIALS'] = j
-
 print(environ['GOOGLE_APPLICATION_CREDENTIALS'])
 class Translator:
     def __init__(self):
