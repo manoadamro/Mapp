@@ -10,12 +10,12 @@ file = open(path, 'r')
 json = loads(file.read())
 file.close()
 json["private_key_id"] = environ["PRIVATE_KEY_ID_TRANSLATOR"]
+print("\n\n\n %s\n\n\n" % environ["PRIVATE_KEY_ID_TRANSLATOR"])
 json["private_key"] = environ["PRIVATE_KEY_TRANSLATOR"]
 file = open(path, 'w')
 file.write(dumps(json, separators=(',',':')))
 file.close()
 
-print("\n\n %s" % environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
 class Translator:
     def __init__(self):
