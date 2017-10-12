@@ -4,11 +4,11 @@ describe("Features", function() {
   beforeEach(function() {
     updateLoop = function() {};
     jqueryDone = function(func) {
-      func([{
+      func({
             'code': 0,
             'message': 'hello',
             'data': { text: "text", author: "" }
-        }]);
+        });
     };
     $.post = function() {
       return { done: jqueryDone };
@@ -26,16 +26,13 @@ describe("Features", function() {
   });
 
   describe("send a message", function() {
-    it("text box clears", function(done) {
-      document.getElementById("messageForm").value = "text";
+    it("text box clears", function() {
+      document.getElementById("messageForm").innerHTML = "text";
+      console.log(document.getElementById("messageForm").innerHTML)
       sendButton.click();
-//       console.log(document.getElementById('messageList').innerHTML)
-      setTimeout(function() {
-        expect(document.getElementById("messageForm").innerHTML).toEqual(
-          ""
-        );
-        done();
-      }, 1000);
+      expect(document.getElementById("messageForm").innerHTML).toEqual(
+      ""
+       );
     });
   });
 });
