@@ -68,7 +68,6 @@ class TestMessage(TestCase):
 
     def test_get_updates(self):
         chat = Chat()
-        chat.translator = TranslatorDouble()
         cherrypy.session = {'username': 'George', 'language': 'en'}
 
         for i in range(0, 10):
@@ -77,8 +76,3 @@ class TestMessage(TestCase):
         response = chat.get_updates(channel='global', index=4)
         self.assertEqual(len(response['data']), 5)
         self.assertEqual(response['data'][0]['index'], 5)
-
-
-class TranslatorDouble:
-    def translate_text(self, text, language):
-        return ''
