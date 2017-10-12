@@ -1,4 +1,4 @@
-describe("Features", function() {
+describe("Channel view", function() {
 
 
   beforeEach(function() {
@@ -16,8 +16,7 @@ describe("Features", function() {
     $.get = function() {
       return { done: jqueryDone };
     };
-    setChannelView();
-    sendButton = document.getElementById("send");
+//    setChannelView();
   });
 
   afterEach(function() {
@@ -26,10 +25,10 @@ describe("Features", function() {
     document.getElementById("languageForm").value = "";
   });
 
-  describe("send a message", function() {
-    it("text box clears", function() {
+  describe("Sending a message", function() {
+    it("The text box clears after sending", function() {
       document.getElementById("messageForm").innerHTML = "text";
-      sendButton.click();
+      send.click();
       expect(document.getElementById("messageForm").innerHTML).toEqual(
       ""
        );
@@ -39,8 +38,8 @@ describe("Features", function() {
       document.getElementById("languageForm").value = "fr";
       setLanguage.click();
       expect(document.getElementById("targetLanguageLabel").innerHTML).toEqual(
-      "Target Language: fr"
+        "Target Language: fr"
       );
-      });
+     });
   });
 });
