@@ -1,12 +1,14 @@
 describe("Features", function() {
 
 
-
   beforeEach(function() {
-    sendButton = document.getElementById("send");
-    timeout = function() {};
+    updateLoop = function() {};
     jqueryDone = function(func) {
-      func([{ text: "text", author: "" }]);
+      func([{
+            'code': 0,
+            'message': 'hello',
+            'data': { text: "text", author: "" }
+        }]);
     };
     $.post = function() {
       return { done: jqueryDone };
@@ -14,6 +16,8 @@ describe("Features", function() {
     $.get = function() {
       return { done: jqueryDone };
     };
+    setChannelView();
+    sendButton = document.getElementById("send");
   });
 
   afterEach(function() {
@@ -22,13 +26,13 @@ describe("Features", function() {
   });
 
   describe("send a message", function() {
-    it("renders on screen", function(done) {
-      messageForm.value = "text";
+    it("text box clears", function(done) {
+      document.getElementById("messageForm").value = "text";
       sendButton.click();
-      // console.log(document.getElementById('messageList').innerHTML)
+//       console.log(document.getElementById('messageList').innerHTML)
       setTimeout(function() {
-        expect(document.getElementById("message").innerHTML).toEqual(
-          "text<br>"
+        expect(document.getElementById("messageForm").innerHTML).toEqual(
+          ""
         );
         done();
       }, 1000);

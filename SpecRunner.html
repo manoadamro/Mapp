@@ -11,34 +11,37 @@
   <script src="lib/jasmine-2.8.0/jasmine-html.js"></script>
   <script src="lib/jasmine-2.8.0/boot.js"></script>
 
-  <!-- include source files here... -->
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-  <script src="public/js/index.js"></script>
-  <script src="public/js/send_message.js"></script>
-
   <head>
       <meta charset="UTF-8">
-      <title>ASOL Messenger</title>
+      <title>Millenial Messenger</title>
       <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   </head>
-  <body>
-      <div><h1>ASOL Messenger</h1>
-        <div id="messageList"></div>
-          <form>
-              <textarea rows="5" cols="50" type="textarea" id="messageForm"></textarea>
-              <br>
-          </form>
-          <button id="send">Send</button>
-      </div>
-      <script src="public/js/index.js"></script>
+<body>
+  <div class="main">
+    <div class="banner"></div>
+      <h1 class="center">Millenial Messenger</h1>
+  </div>
+  <div id="sideBar"></div>
+  <div id="page"></div>
+  <center><div id="message"></div></center>
 
-  </body>
+</body>
 
-</head>
+  <!-- include source files here... -->
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="public/js/helper.js"></script>
+  <script src="public/js/language.js"></script>
+  <script src="public/js/messages.js"></script>
+  <script src="public/js/channel.js"></script>
+  <script src="public/js/elements.js"></script>
+  <script src="public/js/view.js"></script>
+  <script src="public/js/index.js"></script>
+
+
+
   <!-- include spec files here... -->
   <script src="spec/SpecHelper.js"></script>
-  <script src="spec/ServerSpec.js"></script>
+  <script src="spec/ChannelViewSpec.js"></script>
 
-<body>
-</body>
+
 </html>
