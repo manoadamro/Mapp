@@ -4,7 +4,7 @@ from google.cloud import translate
 from os import getcwd, environ
 
 
-# environ['GOOGLE_APPLICATION_CREDENTIALS'] = '%s/config/google.json' % getcwd()
+environ['GOOGLE_APPLICATION_CREDENTIALS'] = '%s/config/google.json' % getcwd()
 
 
 class Translator:
