@@ -6,13 +6,13 @@ from controllers.chat import Chat
 class TestMessage(TestCase):
     def test_new_channel(self):
         chat = Chat()
-        cherrypy.session = {'username': 'George'}
+        cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
         self.assertEqual('Ducks' in chat.channels, True)
 
     def test_delete_channel(self):
         chat = Chat()
-        cherrypy.session = {'username': 'George'}
+        cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
         self.assertEqual(chat.channels['Ducks'].creator, 'George')
 
@@ -30,7 +30,7 @@ class TestMessage(TestCase):
     def test_join_channel(self):
         chat = Chat()
 
-        cherrypy.session = {'username': 'George'}
+        cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
 
         cherrypy.session['username'] = 'Mike'
@@ -43,7 +43,7 @@ class TestMessage(TestCase):
     def delete_channel(self):
         chat = Chat()
 
-        cherrypy.session = {'username': 'George'}
+        cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
 
         cherrypy.session['username'] = 'Mike'
@@ -56,7 +56,7 @@ class TestMessage(TestCase):
 
     def test_new_message(self):
         chat = Chat()
-        cherrypy.session = {'username': 'George'}
+        cherrypy.session = {'username': 'George', 'language': 'en'}
 
         for i in range(0, 10):
             chat.new_message(channel='global', message='message%i' % i)
@@ -67,7 +67,7 @@ class TestMessage(TestCase):
 
     def test_get_updates(self):
         chat = Chat()
-        cherrypy.session = {'username': 'George'}
+        cherrypy.session = {'username': 'George', 'language': 'en'}
 
         for i in range(0, 10):
             chat.new_message(channel='global', message='message%i' % i)
