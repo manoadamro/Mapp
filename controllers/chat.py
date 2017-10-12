@@ -43,7 +43,7 @@ class Chat(Controller):
         # value checks
         if channel_name not in self.channels:
             return self.error(message='channel does not exist')
-        if self.channels[channel_name].creator is not user:
+        elif self.channels[channel_name].creator is not user:
             return self.error(message='only the channel creator can delete the channel')
 
         # complete action
@@ -64,7 +64,7 @@ class Chat(Controller):
         # value checks
         if channel_name not in self.channels:
             return self.error(message='Channel does not')
-        if user in self.channels[channel_name].user_log:
+        elif user in self.channels[channel_name].user_log:
             return self.error(message='You are already in this channel')
 
         # complete action
@@ -85,7 +85,7 @@ class Chat(Controller):
         # value checks
         if channel_name in self.channels:
             return self.error(message='Channel name already exists')
-        if user not in self.channels[channel_name].user_log:
+        elif user not in self.channels[channel_name].user_log:
             return self.error(message='You are not in this channel')
 
         # complete action
@@ -98,14 +98,13 @@ class Chat(Controller):
         # param checks
         if 'channel' not in params:
             return self.error(message='no channel name provided')
-        if 'message' not in params:
+        elif 'message' not in params:
             return self.error(message='no message provided')
 
         # values
         user = cherrypy.session['username']
         channel_name = params['channel']
         message = params['message']
-        # translated_text = self.translator.translate_text(message, 'en')
 
         # value checks
         if channel_name not in self.channels:
@@ -132,6 +131,11 @@ class Chat(Controller):
 
         # complete action
         data = self.channels[channel_name].get_messages(index)
+        
+        target_language = cherrypy.session['language']
+        for message in data:
+            message['text'] = self.translator.translate_text(message['text'], target_language)
+
         return self.ok(data=data)
 
     @cherrypy.expose(alias='language')

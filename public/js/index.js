@@ -1,8 +1,3 @@
-var index = -1;
-var channel = 'global';
-var view = '';
-var targetLanguage = 'en';
-
 
 var setChannelView = function(){
 
@@ -38,6 +33,7 @@ var setChannelView = function(){
         $.post("/chat/message", params).done(function(response){
             if (response.code === 0){
                 document.getElementById('messageForm').value = ''
+                displayError('')
             }
         })
         event.preventDefault();
@@ -58,16 +54,18 @@ var setChannelView = function(){
         event.preventDefault();
     });
 
-    setTargetLanguage(targetLanguage)
+    refreshTargetLanguage(targetLanguage)
     updateLoop();
 }
 
 var setLogInView = function() {
+
     var loginForm = '<form class="center">' +
                '<input class="center textBox" type="text" type="text" id="usernameForm"></input>' +
                '<br />' +
                '<button id="login">Log In</button>' +
                '</form>'
+
     document.getElementById('page').innerHTML = loginForm
     view = 'login'
 
@@ -80,6 +78,7 @@ var setLogInView = function() {
             $.post("/session/login", {'username': username, 'language': 'en'}).done(function(response){
                 if (response.code == 0) {
                     setChannelView();
+                    displayError('')
                 }
                 else {
                     displayError(response.message);
@@ -90,26 +89,6 @@ var setLogInView = function() {
     });
 }
 
-
-var changeLanguage = function() {
-
-    language = document.getElementById('languageForm').value;
-
-    $.post("/chat/language", {"language": language}).done(function(response){
-        if (response.code === 0) {
-            setTargetLanguage(language)
-        }
-        else {
-            // failed to change language
-        }
-    })
-}
-
-var setTargetLanguage = function(language){
-    document.getElementById('targetLanguageLabel').innerHTML = "Target Language: " + language
-}
-
-
 var getUpdates = function() {
     params = {"index": index, "channel": channel}
     $.get("/chat/update", params).done(function(response){
@@ -119,77 +98,13 @@ var getUpdates = function() {
                 renderMessages(parsedMessages);
                 index = parsedMessages[parsedMessages.length - 1].index
             }
+            displayError('')
         }
         else {
             displayError(response.message);
         }
     })
 };
-
-
-var createChannel = function(name) {
-    params = {"channel": name}
-    $.post("/chat/create", params).done(function(response) {
-        if (response.code === 0) {
-            channel = name
-            clearMessages()
-        }
-        else {
-            displayError(response.message);
-        }
-    });
-}
-
-
-var deleteChannel = function() {
-    params = {"channel": channel}
-    $.post("/chat/delete", params).done(function(response) {
-        if (response.code === 0) {
-            channel = 'global'
-            clearMessages()
-        }
-        else {
-            displayError(response.message);
-        }
-    });
-}
-
-
-var joinChannel = function(name) {
-    leaveChannel()
-    params = {"channel": name}
-    $.post("/chat/join", params).done(function(response) {
-        if (response.code === 0) {
-            channel = name
-        }
-        else {
-            displayError(response.message);
-        }
-    });
-}
-
-
-var leaveChannel = function() {
-    params = {"channel": channel}
-    $.post("/chat/leave", params).done(function(response) {
-        if (response.code === 0) {
-            channel = 'global'
-        }
-        else {
-            displayError(response.message);
-        }
-    });
-}
-
-
-var clearMessages = function() {
-    document.getElementById("messageList").innerHTML = "";
-}
-
-var displayError = function(message) {
-    document.getElementById('message').innerHTML = message
-}
-
 
 var renderMessages = function(data) {
     var htmlString = '';

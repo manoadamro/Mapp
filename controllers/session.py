@@ -9,7 +9,7 @@ class Session(Controller):
     def login(self, **params):
         if 'username' not in params:
             return self.error(message='no username provided')
-        if 'language' not in params:
+        elif 'language' not in params:
             return self.error(message='no target language provided')
         elif 'username' in cherrypy.session:
             return self.error(message='already logged in')
