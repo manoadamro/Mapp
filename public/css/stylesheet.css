@@ -1,3 +1,43 @@
 body {
   margin-top: 15px;
 }
+
+.vertical-center {
+  min-height: 100%;
+  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh;
+  /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+
+.h1 {
+  text-align: center;
+}
+
+.main-page {
+  text-align: center;
+}
+
+.login {
+  margin: 5%
+}
+
+.map {
+  background-image: url("./../images/world-map.jpg");
+  text-shadow: 1px 1px white;
+  border-radius: 25px;
+}
+
+.message-form {
+  border-radius: 25px;
+  padding: 5%
+}
+
+.text-box {
+  margin: 5%
+}
+
+.message-list {
+  padding: 5%
+}
