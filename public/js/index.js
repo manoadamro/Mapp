@@ -140,21 +140,9 @@ var getUpdates = function() {
 
 
 var reloadMessages = function() {
-    params = {"index": -1, "channel": channel}
-    $.get("/chat/update", params).done(function(response){
-        if (response.code === 0) {
-            clearMessages();
-            var parsedMessages = response.data;
-            if (parsedMessages.length > 0) {
-                renderMessages(parsedMessages);
-                index = parsedMessages[parsedMessages.length - 1].index
-            }
-            displayError('')
-        }
-        else {
-            displayError(response.message);
-        }
-    })
+    clearMessages();
+    index = -1;
+    getUpdates();
 }
 
 
