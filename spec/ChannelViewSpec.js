@@ -23,16 +23,24 @@ describe("Features", function() {
   afterEach(function() {
     document.getElementById("messageForm").innerHTML = "";
     document.getElementById("messageList").innerHTML = "";
+    document.getElementById("languageForm").value = "";
   });
 
   describe("send a message", function() {
     it("text box clears", function() {
       document.getElementById("messageForm").innerHTML = "text";
-      console.log(document.getElementById("messageForm").innerHTML)
       sendButton.click();
       expect(document.getElementById("messageForm").innerHTML).toEqual(
       ""
        );
     });
+
+    it("Target language updates when you set language", function() {
+      document.getElementById("languageForm").value = "fr";
+      setLanguage.click();
+      expect(document.getElementById("targetLanguageLabel").innerHTML).toEqual(
+      "Target Language: fr"
+      );
+      });
   });
 });
