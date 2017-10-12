@@ -8,8 +8,9 @@ environ['GOOGLE_APPLICATION_CREDENTIALS'] = '%s/config/google.json' % getcwd()
 
 
 class Translator:
+    def __init__(self):
+        self.translate_client = translate.Client()
 
     def translate_text(self, text, target='en'):
-        self.translate_client = translate.Client()
         result = self.translate_client.translate(text, target_language=target)
         return result['translatedText']
