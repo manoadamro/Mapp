@@ -4,8 +4,8 @@ from controllers.chat import Chat
 
 
 class TestMessage(TestCase):
-    def __init__(self):
-        Translator = object
+
+    Translator = object
 
     def test_new_channel(self):
         chat = Chat()
