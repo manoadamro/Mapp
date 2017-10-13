@@ -1,27 +1,20 @@
-var targetLanguage = "en";
+var targetLanguage = "English";
 
-var changeLanguage = function() {
-	language = document.getElementById("languageForm").value;
-
+var changeLanguage = function(language) {
 	if (language.length > 0) {
-//		$.post("/chat/language", { language: language }).done(function(response) {
-//			if (response.code === 0) {
-//				targetLanguage = language;
-//				refreshTargetLanguage();
-//				displayError("");
-//			} else {
-//				displayError("failed to change target language");
-//			}
-//		});
-		params = { language: language }
-		postRequest("/chat/language", params, function(){
-			targetLanguage = language;
-		    refreshTargetLanguage();
-		})
+		params = { language: language };
+		postRequest("/chat/language", params, function() {
+			fullLanguage = getKeyByValue(LANGUAGES, language);
+			refreshTargetLanguage(fullLanguage);
+		});
 	}
 };
 
-var refreshTargetLanguage = function() {
+var refreshTargetLanguage = function(name) {
 	document.getElementById("targetLanguageLabel").innerHTML =
-		"Target Language: " + targetLanguage;
+		"Target Language: " + name;
 };
+
+function getKeyByValue(object, value) {
+	return Object.keys(object).find(key => object[key] === value);
+}

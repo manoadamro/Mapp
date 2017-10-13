@@ -2,7 +2,7 @@ var view = "";
 
 var setChannelView = function() {
 	document.getElementById("page").innerHTML =
-		languageSelector + messageList + messageForm;
+		languageList + messageList + messageForm;
 	view = "channel";
 
 	$("#setLanguage").click(function(event) {
