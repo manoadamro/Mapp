@@ -146,3 +146,8 @@ class Chat(Controller):
 
         cherrypy.session['language'] = params['language']
         return self.ok()
+
+    @cherrypy.expose(alias='channels')
+    @cherrypy.tools.json_out()
+    def channels(self, **_params):
+        return [channel for channel in self.channels]
