@@ -27,8 +27,8 @@ var setChannelView = function() {
 	});
 
 	$("#addChannel").click(function(event) {
-        console.log('hello!')
 		name = document.getElementById("channelForm").value;
+		console.log("adding channel: " + name);
 		createChannel(name);
 		getChannelList();
 		document.getElementById("channelForm").value = "";
@@ -59,7 +59,7 @@ var setLogInView = function() {
 			}).done(function(response) {
 				if (response.code == 0) {
 					setChannelView();
-					joinChannel('global')
+					joinChannel("global");
 					displayError("");
 				} else {
 					displayError(response.message);

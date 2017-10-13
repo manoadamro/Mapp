@@ -1,42 +1,46 @@
 .vertical-center {
-  min-height: 100%;
-  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+	min-height: 100%;
+	/* Fallback for browsers do NOT support vh unit */
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.addChannel {
+	color: rgb(186, 255, 229);
 }
 
 .h1 {
-  text-align: center;
+	text-align: center;
 }
 
 .main-page {
-  text-align: center;
+	text-align: center;
 }
 
 .login {
-  margin: 5%
+	margin: 5%;
 }
 
 .map {
-  background-image: url("./../images/world-map.jpg");
-  text-shadow: 1px 1px white;
-  border-radius: 25px;
+	background-image: url("./../images/world-map.jpg");
+	text-shadow: 1px 1px white;
+	border-radius: 25px;
 }
 
 .message-form {
-  border-radius: 25px;
-  padding: 5%
+	border-radius: 25px;
+	padding: 5%;
 }
 
 .text-box {
-  margin: 5%
+	margin: 5%;
 }
 
 .message-list {
-  padding: 5%
+	padding: 5%;
 }
 
 .author {
-  font-weight: bold;
+	font-weight: bold;
 }

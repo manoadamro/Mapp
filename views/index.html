@@ -7,10 +7,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>GloboMessenger</title>
+  <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico" />
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/js/bootstrap.min.js">
-  <link rel="stylesheet" href="/static/css/stylesheet.css" />
-  <link href="/static/css/simple-sidebar.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/simple-sidebar.css">
+  <link rel="stylesheet" href="/static/css/stylesheet.css">
 </head>
 
 <body>
@@ -23,23 +24,24 @@
         <li>
           <!--<a href="#">Create Channel</a>-->
           <form id="createChannel">
-            <input class="" type="text" id="channelForm">
-            <button id="addChannel">Create Channel</button>
+            <input class="channelForm" type="text" placeholder="Channel name" id="channelForm">
+            <li class="addChannel" id="addChannel" style="">Create Channel</input>
           </form>
+          <br />
           <li style="color: white">Channels</li>
           <div id="sidebar-channels"></div>
-        </li>
+          </li>
       </ul>
     </div>
 
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper" class="background">
       <div class="container-fluid">
         <div class="jumbotron map">
           <h1 class="h1">GloboMessenger</h1>
         </div>
+        <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Toggle Menu</a>
         <div class="main-page" id="page"></div>
         <div class="center" id="message"></div>
-        <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
       </div>
     </div>
   </div>
