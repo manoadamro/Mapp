@@ -16,7 +16,7 @@
 <body>
   <div id="wrapper">
     <div id="sidebar-wrapper">
-      <ul class="sidebar-nav">
+      <ul id="sidebar" class="sidebar-nav">
         <li class="sidebar-brand">
           <a href="#">GloboMessenger</a>
         </li>
@@ -45,7 +45,6 @@
   <script src="/static/vendor/jquery/jquery.js"></script>
   <script src="/static/vendor/popper/popper.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/static/js/sidebar.js"></script>
   <script src="/static/js/elements.js"></script>
   <script src="/static/js/helper.js"></script>
   <script src="/static/js/language.js"></script>
@@ -55,13 +54,6 @@
   <script src="/static/js/index.js"></script>
   <script src="/static/js/sidebar.js"></script>
 
-
-  <script>
-  $("#menu-toggle").click(function(e) {
-	e.preventDefault();
-	$("#wrapper").toggleClass("toggled");
-});
-</script>
 </body>
 
 </html>
