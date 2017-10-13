@@ -8,6 +8,8 @@ from .private_key_adder import PrivateKeyAdder
 path = "%s/config/key.json" % getcwd()
 original_key_path = "%s/config/safe-key.json" % getcwd()
 
+environ['GOOGLE_APPLICATION_CREDENTIALS'] = path
+
 
 class Translator:
     def __init__(self):
