@@ -7,10 +7,6 @@ class Server:
     ON_HEROKU = environ.get('ON_HEROKU')
 
     def __init__(self, site_map):
-        """
-        Handles cherrypy.
-        :param config: the site map. key = route, value = class
-        """
         self.site_map = site_map
         self.tree = cherrypy.tree
         self.engine = cherrypy.engine
@@ -24,11 +20,6 @@ class Server:
         }
 
     def build(self):
-        """
-        Build the routes from the config dictionary passed into constructor
-        :return: no return value
-        """
-
         if self.ON_HEROKU is True or self.ON_HEROKU == 'True':
             port = int(environ.get('PORT'))
         else:
@@ -46,9 +37,5 @@ class Server:
             self.tree.mount(app, item, self.app_config())
 
     def start(self):
-        """
-        start the cherrypy server
-        :return: no return value
-        """
         self.engine.start()
         self.engine.block()
