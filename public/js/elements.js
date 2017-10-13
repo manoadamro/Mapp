@@ -1,10 +1,3 @@
-var languageSelector =
-	'<p id="targetLanguageLabel"></p>' +
-	'<form id="languageSelector">' +
-	'<input class="center textBox" type="text" type="text" id="languageForm"></input>' +
-	'<button id="setLanguage">Set Language</button>' +
-	"</form>";
-
 var languageList =
 	'<p id="targetLanguageLabel"></p>' +
 	'<div class="dropdown">' +
