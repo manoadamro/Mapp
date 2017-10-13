@@ -11,11 +11,11 @@ var messageForm =
 	'<form class="message-form">' +
 	'<input class="text-box" type="text" type="textarea" id="messageForm"></input>' +
 	"<br />" +
-	'<button id="send">Send</button>' +
+	'<button class="btn" id="send">Send</button>' +
 	"</form>" +
 	'<form class="center">' +
 	"<br />" +
-	'<button id="logout">Log Out</button>' +
+	'<button class="btn btn-danger" id="logout">Log Out</button>' +
 	"</form>";
 
 var loginForm =

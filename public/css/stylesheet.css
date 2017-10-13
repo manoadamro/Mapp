@@ -10,6 +10,21 @@
 	color: rgb(186, 255, 229);
 }
 
+.background {
+	background-color: rgb(238, 241, 231);
+}
+
+.createChannelButton {
+	background: none !important;
+	color: inherit;
+	border: none;
+	padding: 0 !important;
+	font: inherit;
+	/*border is optional*/
+	border-bottom: 1px solid #444;
+	cursor: pointer;
+}
+
 .h1 {
 	text-align: center;
 }

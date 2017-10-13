@@ -9,12 +9,11 @@
   <title>GloboMessenger</title>
   <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico" />
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/js/bootstrap.min.js">
   <link rel="stylesheet" href="/static/css/simple-sidebar.css">
   <link rel="stylesheet" href="/static/css/stylesheet.css">
 </head>
 
-<body>
+<body class="background">
   <div id="wrapper">
     <div id="sidebar-wrapper">
       <ul id="sidebar" class="sidebar-nav">
@@ -25,7 +24,7 @@
           <!--<a href="#">Create Channel</a>-->
           <form id="createChannel">
             <input class="channelForm" type="text" placeholder="Channel name" id="channelForm">
-            <li class="addChannel" id="addChannel" style="">Create Channel</input>
+            <li class="addChannel" id="addChannel"><button class="createChannelButton">Create Channel</button></input>
           </form>
           <br />
           <li style="color: white">Channels</li>
@@ -34,7 +33,7 @@
       </ul>
     </div>
 
-    <div id="page-content-wrapper" class="background">
+    <div id="page-content-wrapper">
       <div class="container-fluid">
         <div class="jumbotron map">
           <h1 class="h1">GloboMessenger</h1>
