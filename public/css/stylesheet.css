@@ -49,18 +49,28 @@
 }
 
 .message-form {
-	border-radius: 25px;
-	padding: 5%;
+	border-radius: 10px;
+	padding: 5px;
 }
 
 .text-box {
-	margin: 5%;
+	margin: 0px;
 }
 
 .message-list {
 	padding: 5%;
+	margin: 10px;
+	max-height: 300px;
+	width: auto;
+	border: 1px solid #ccc;
+	overflow: auto;
+	background-color: white;
 }
 
 .author {
 	font-weight: bold;
+}
+
+#send {
+	margin: 10px;
 }
