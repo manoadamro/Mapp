@@ -20,6 +20,7 @@ var getUpdates = function() {
 			renderMessages(parsedMessages);
 			index = parsedMessages[parsedMessages.length - 1].index;
 	    }
+	    updateLoop();
 	})
 };
 

@@ -1,3 +1,4 @@
+
 var clearMessages = function() {
 	document.getElementById("messageList").innerHTML = "";
 };
