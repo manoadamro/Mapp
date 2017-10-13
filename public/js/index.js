@@ -7,6 +7,5 @@ var updateLoop = function() {
 	}, 1000);
 };
 
-// On Start
 clearSession();
 setLogInView();
