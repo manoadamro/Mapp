@@ -13,11 +13,8 @@ var setChannelView = function() {
 	$("#send").click(function(event) {
 		message = document.getElementById("messageForm").value;
 		params = { message: message, channel: channel };
-		$.post("/chat/message", params).done(function(response) {
-			if (response.code === 0) {
-				document.getElementById("messageForm").value = "";
-				displayError("");
-			}
+		postRequest("/chat/message", params, function(response){
+	        document.getElementById("messageForm").value = "";
 		});
 		event.preventDefault();
 	});
@@ -56,18 +53,12 @@ var setLogInView = function() {
 		if (username.length === 0) {
 			displayError("Username can not be empty");
 		} else {
-			$.post("/session/login", {
-				username: username,
-				language: "en"
-			}).done(function(response) {
-				if (response.code == 0) {
-					setChannelView();
-					joinChannel("global");
-					displayError("");
-				} else {
-					displayError(response.message);
-				}
-			});
+		    params = {username: username, language: "en"}
+			postRequest("/session/login", params, function(response){
+			    setChannelView();
+				joinChannel("global");
+			})
+
 		}
 		event.preventDefault();
 	});
