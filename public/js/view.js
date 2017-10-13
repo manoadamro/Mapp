@@ -15,7 +15,7 @@ var setChannelView = function() {
 		params = { message: message, channel: channel };
 		$.post("/chat/message", params).done(function(response) {
 			if (response.code === 0) {
-				document.getElementById("messageForm").innerHTML = "";
+				document.getElementById("messageForm").value = "";
 				displayError("");
 			}
 		});
@@ -30,7 +30,8 @@ var setChannelView = function() {
         console.log('hello!')
 		name = document.getElementById("channelForm").value;
 		createChannel(name);
-		getChannelList()
+		getChannelList();
+		document.getElementById("channelForm").value = "";
 		event.preventDefault();
 	});
 
@@ -58,6 +59,7 @@ var setLogInView = function() {
 			}).done(function(response) {
 				if (response.code == 0) {
 					setChannelView();
+					joinChannel('global')
 					displayError("");
 				} else {
 					displayError(response.message);
