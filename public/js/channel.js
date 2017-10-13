@@ -4,9 +4,7 @@ var createChannel = function(name) {
     params = {"channel": name}
     $.post("/chat/create", params).done(function(response) {
         if (response.code === 0) {
-            channel = name
-            clearMessages()
-            displayError('')
+            joinChannel(name)
         }
         else {
             displayError(response.message);
@@ -20,9 +18,7 @@ var deleteChannel = function() {
     params = {"channel": channel}
     $.post("/chat/delete", params).done(function(response) {
         if (response.code === 0) {
-            channel = 'global'
-            clearMessages()
-            displayError('')
+            leaveChannel()
         }
         else {
             displayError(response.message);
@@ -31,7 +27,9 @@ var deleteChannel = function() {
 }
 
 var joinChannel = function(name) {
-    leaveChannel()
+    if (channel !== '') {
+        leaveChannel()
+    }
     params = {"channel": name}
     $.post("/chat/join", params).done(function(response) {
         if (response.code === 0) {
@@ -49,7 +47,7 @@ var leaveChannel = function() {
     params = {"channel": channel}
     $.post("/chat/leave", params).done(function(response) {
         if (response.code === 0) {
-            channel = 'global'
+            channel = ''
             displayError('')
         }
         else {
