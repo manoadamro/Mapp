@@ -1,7 +1,3 @@
-body {
-  margin-top: 15px;
-}
-
 .vertical-center {
   min-height: 100%;
   /* Fallback for browsers do NOT support vh unit */
