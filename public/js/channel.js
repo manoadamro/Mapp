@@ -10,8 +10,7 @@ var createChannel = function(name) {
             displayError(response.message);
         }
     });
-    }
-
+}
 
 
 var deleteChannel = function() {
@@ -54,4 +53,17 @@ var leaveChannel = function() {
             displayError(response.message);
         }
     });
+}
+
+
+var getChannelList = function() {
+    $.get("/chat/channels", {}).done(function(response){
+        if (response.code === 0) {
+            // channel list is in response.data
+            displayError('')
+        }
+        else {
+            displayError(response.message);
+        }
+    })
 }

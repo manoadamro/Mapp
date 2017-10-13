@@ -150,4 +150,6 @@ class Chat(Controller):
     @cherrypy.expose(alias='channels')
     @cherrypy.tools.json_out()
     def channels(self, **_params):
-        return [channel for channel in self.channels]
+        list = [channel for channel in self.channels]
+        return self.ok(data=list)
+
