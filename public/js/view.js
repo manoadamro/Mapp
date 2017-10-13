@@ -24,6 +24,9 @@ var setChannelView = function() {
 
 	$("#logout").click(function(event) {
 		clearSession();
+		console.log("suh");
+		setLogInView();
+		updateChannelName();
 	});
 
 	$("#addChannel").click(function(event) {

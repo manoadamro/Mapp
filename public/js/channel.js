@@ -21,7 +21,13 @@ var joinChannel = function(name) {
 		channel = name;
 		clearMessages();
 		index = -1;
+		updateChannelName();
 	});
+};
+
+var updateChannelName = function() {
+	currentChannel = "You are currently in: " + channel;
+	document.getElementById("currentChannel").innerHTML = currentChannel;
 };
 
 var switchChannel = function(name) {
