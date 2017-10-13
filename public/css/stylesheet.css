@@ -16,7 +16,14 @@
 }
 
 .background {
-	background-color: rgb(238, 241, 231);
+	/*background-color: rgb(238, 241, 231);*/
+	background: #c9d6ff;
+	/* Chrome 10-25, Safari 5.1-6 */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .createChannelButton {
@@ -53,18 +60,28 @@
 	padding: 5px;
 }
 
+.name-input {
+	font-family: "Helvetica";
+	font-size: 20px;
+	color: rgb(27, 29, 43);
+}
+
 .text-box {
 	margin: 0px;
+	box-shadow: 1px 1px grey;
 }
 
 .message-list {
 	padding: 5%;
 	margin: 10px;
 	max-height: 300px;
-	width: auto;
+	height: inherit;
+	width: inherit;
 	border: 1px solid #ccc;
 	overflow: auto;
 	background-color: white;
+	box-shadow: 5px 5px grey;
+	border-radius: 15px;
 }
 
 .author {
