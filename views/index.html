@@ -23,8 +23,10 @@
         <li>
           <a href="#">Create Channel</a>
         </li>
+        <li style="color: white">Channels</li>
       </ul>
     </div>
+
     <div id="page-content-wrapper">
       <div class="container-fluid">
         <div class="jumbotron map">
@@ -32,12 +34,13 @@
         </div>
         <div id="sideBar"></div>
         <div class="main-page" id="page"></div>
-          <div class="center" id="message"></div>
+        <div class="center" id="message"></div>
         <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
       </div>
     </div>
   </div>
 
+  <!--scripts-->
   <script src="/static/js/jquery-3.2.1.js"></script>
   <script src="/static/vendor/jquery/jquery.js"></script>
   <script src="/static/vendor/popper/popper.min.js"></script>
@@ -54,11 +57,11 @@
 
 
   <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+  $("#menu-toggle").click(function(e) {
+	e.preventDefault();
+	$("#wrapper").toggleClass("toggled");
+});
+</script>
 </body>
 
 </html>

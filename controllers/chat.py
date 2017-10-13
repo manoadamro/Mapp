@@ -131,8 +131,9 @@ class Chat(Controller):
 
         # complete action
         data = self.channels[channel_name].get_messages(index)
-        
+
         target_language = cherrypy.session['language']
+
         for message in data:
             message['text'] = self.translator.translate_text(message['text'], target_language)
 
