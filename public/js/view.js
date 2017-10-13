@@ -27,8 +27,10 @@ var setChannelView = function() {
 	});
 
 	$("#addChannel").click(function(event) {
+        console.log('hello!')
 		name = document.getElementById("channelForm").value;
 		createChannel(name);
+		getChannelList()
 		event.preventDefault();
 	});
 

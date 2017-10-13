@@ -21,13 +21,14 @@ var messageForm =
 
 var loginForm =
 	"<form>" +
-	'<input class="" type="text" type="text" id="usernameForm"></input>' +
+	'<input class="" type="text" id="usernameForm"></input>' +
 	"<br />" +
 	'<button class="login btn btn-success" id="login">Log In</button>' +
 	"</form>";
 
 var createChannel =
-    '<div id="addChat">' +
-    '<button>Add Chat</button>' +
-    '</div>'
+    '<form id="createChannel">' +
+	'<input class="" type="text" id="channelForm"></input>' +
+    '<button>Create Channel</button>' +
+    '</form>'
 

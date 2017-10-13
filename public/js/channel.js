@@ -57,13 +57,17 @@ var leaveChannel = function() {
 
 
 var getChannelList = function() {
-    $.get("/chat/channels", {}).done(function(response){
+    $.get("/chat/list", {}).done(function(response){
         if (response.code === 0) {
             // channel list is in response.data
             displayError('')
+            renderChannels(response.data)
         }
         else {
             displayError(response.message);
+//            return []
         }
     })
 }
+
+getChannelList()
