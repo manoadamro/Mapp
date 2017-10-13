@@ -1,6 +1,6 @@
 # Mapp
 
-A new messaging app. Built by millennials, for millennials.
+A new messaging app.
 
 Made by [Adam Romano](https://github.com/manoadamro), [Olivia Frost](https://github.com/ofrost617), [Lizzie Hard](https://github.com/lizh90) and [Stephen Geller](https://github.com/stephengeller) in two weeks while at [Makers Academy](http://makersacademy.com), a 12-week software development bootcamp.
 

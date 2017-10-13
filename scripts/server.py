@@ -7,7 +7,6 @@ class Server:
     ON_HEROKU = environ.get('ON_HEROKU')
 
     def __init__(self, site_map):
-
         """
         Handles cherrypy.
         :param config: the site map. key = route, value = class
@@ -25,7 +24,6 @@ class Server:
         }
 
     def build(self):
-
         """
         Build the routes from the config dictionary passed into constructor
         :return: no return value
@@ -36,19 +34,18 @@ class Server:
         else:
             port = 8080
         cherrypy.config.update(
-          {
-            'server.socket_port': port,
-            'server.socket_host': '0.0.0.0',
-            'tools.sessions.on': True,
-            'tools.staticdir.root': getcwd()
-          }
+            {
+                'server.socket_port': port,
+                'server.socket_host': '0.0.0.0',
+                'tools.sessions.on': True,
+                'tools.staticdir.root': getcwd()
+            }
         )
         for item in self.site_map:
             app = self.site_map[item]()
             self.tree.mount(app, item, self.app_config())
 
     def start(self):
-
         """
         start the cherrypy server
         :return: no return value

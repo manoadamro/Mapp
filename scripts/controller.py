@@ -1,5 +1,3 @@
-
-
 class Controller:
 
     def ok(self, data=None, message=''):

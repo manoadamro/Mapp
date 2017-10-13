@@ -8,6 +8,7 @@ from .private_key_adder import PrivateKeyAdder
 path = "%s/config/key.json" % getcwd()
 original_key_path = "%s/config/safe-key.json" % getcwd()
 
+
 class Translator:
     def __init__(self):
         self.private_key_adder = PrivateKeyAdder(path, original_key_path)
