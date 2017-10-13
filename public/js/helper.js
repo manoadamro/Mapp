@@ -29,9 +29,3 @@ var postRequest = function(route, params, onPass) {
 var getRequest = function(route, params, onPass) {
     request($.get, route, params, onPass)
 }
-
-var onClick = function(name, callback) {
-    $(name).click(function(event) {
-		callback(event)
-	});
-}
