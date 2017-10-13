@@ -26,3 +26,7 @@ var loginForm = '<form>' +
            '<br />' +
            '<button class="login btn btn-success" id="login">Log In</button>' +
            '</form>'
+
+var createChannel = '<div id="addChat">' +
+             '<button>Add Chat</button>' +
+             '</div>'
