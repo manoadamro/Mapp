@@ -18,14 +18,16 @@ $ python3 mapp.py
 
 ## Testing
 
-Run the test folder using ```$ bash test ``` in the terminal.
+Run the unit test folder using ```$ bash test ``` in the terminal.
+To run the feature tests open SpecRunner.html in the browser.
 
 ## Features
 
-TBC
+* Chat with your friends in a chatroom or one to one message
+* Receive messages in any language of your choice from a dropdown menu
 
 ## Technologies
 
   - Back-end: Python, CherryPy
-  - Front-end: Javascript
-  - Testing: unittest (Python), pytest, Travis CI
+  - Front-end: Javascript, JQuery
+  - Testing: unittest (Python), pytest, Jasmine, Travis CI

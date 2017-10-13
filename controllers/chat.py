@@ -15,6 +15,8 @@ class Chat(Controller):
         # param checks
         if 'channel' not in params:
             return self.error(message='No channel name given')
+        elif 'username' not in cherrypy.session:
+            return self.error(message='You must be logged into to create channels')
 
         # values
         channel_name = params['channel']
@@ -63,7 +65,7 @@ class Chat(Controller):
 
         # value checks
         if channel_name not in self.channels:
-            return self.error(message='Channel does not')
+            return self.error(message='Channel does not exist')
         elif user in self.channels[channel_name].user_log:
             return self.error(message='You are already in this channel')
 
@@ -83,9 +85,7 @@ class Chat(Controller):
         user = cherrypy.session['username']
 
         # value checks
-        if channel_name in self.channels:
-            return self.error(message='Channel name already exists')
-        elif user not in self.channels[channel_name].user_log:
+        if user not in self.channels[channel_name].user_log:
             return self.error(message='You are not in this channel')
 
         # complete action
@@ -147,3 +147,10 @@ class Chat(Controller):
 
         cherrypy.session['language'] = params['language']
         return self.ok()
+
+    @cherrypy.expose(alias='list')
+    @cherrypy.tools.json_out()
+    def channel_list(self, **_params):
+        list = [channel for channel in self.channels]
+        return self.ok(data=list)
+
