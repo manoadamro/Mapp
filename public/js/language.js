@@ -12,7 +12,7 @@ var changeLanguage = function(language) {
 
 var refreshTargetLanguage = function(name) {
 	document.getElementById("targetLanguageLabel").innerHTML =
-		"Target Language: " + name;
+		"Target Language: <strong>" + name + "</strong>";
 };
 
 function getKeyByValue(object, value) {

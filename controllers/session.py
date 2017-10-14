@@ -21,7 +21,6 @@ class Session(Controller):
     @cherrypy.expose(alias='logout')
     @cherrypy.tools.json_out()
     def logout(self, **_params):
-        print('\n\n\n\nLOGOUT\n\n\n\n')
         if 'username' in cherrypy.session:
             user = cherrypy.session['username']
             self._perge_user(user)
