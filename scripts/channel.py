@@ -24,7 +24,7 @@ class Channel:
         return uid in self.user_log
 
     def add_message(self, author, text):
-        self.total_sentiment += self.sentiment_analyzer.analyze(text)
+        # self.total_sentiment += self.sentiment_analyzer.analyze(text)
         self.message_log.add_message(author, text)
 
     def get_messages(self, index):
