@@ -2,3 +2,6 @@
 */__pycache__
 *.pyc
 .idea/
+
+config/safe-key.json
+config/key.json
