@@ -1,3 +1,4 @@
+from nltk.sentiment import sentiment_analyzer
 
 
 class SentimentAnalyzer:
