@@ -1,5 +1,5 @@
 from time import time
-from .sentiment_analyzer import SentimentAnalyzer
+from .sentiment import Sentiment
 from .message_log import MessageLog
 
 
@@ -11,7 +11,7 @@ class Channel:
         self.creator = creator
         self.created_at = time()
 
-        self.sentiment_analyzer = SentimentAnalyzer()
+        self.sentiment_analyzer = Sentiment()
         self.total_sentiment = 0
 
     def add_user(self, uid):
