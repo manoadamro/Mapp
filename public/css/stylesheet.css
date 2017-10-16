@@ -12,12 +12,16 @@
 
 .currentChannel {
 	text-align: center;
-	padding: 20px;
+	margin: 0;
+	text-align: left;
+	position: absolute;
+	margin-top: 5px;
+	width: 12%;
 }
 
 .background {
 	/*background-color: rgb(238, 241, 231);*/
-	background: #c9d6ff;
+	background: white;
 	/* Chrome 10-25, Safari 5.1-6 */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -71,20 +75,37 @@
 	box-shadow: 1px 1px grey;
 }
 
+.message {
+	margin: 30px;
+}
+
 .message-list {
-	padding: 5%;
-	margin: 10px;
 	max-height: 300px;
+	min-height: 300px;
 	height: inherit;
-	width: inherit;
-	border: 1px solid #ccc;
+	border: 1px solid black;
 	overflow: auto;
 	background-color: white;
-	box-shadow: 5px 5px grey;
+	/*box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 1);*/
 	border-radius: 15px;
+	margin: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 15px;
+	max-width: 50%;
+	font-size: inherit;
+	text-align: center;
 }
 
 .author {
+	font-weight: bold;
+}
+
+#send {
+	margin: 10px;
+}
+
+hor {
 	font-weight: bold;
 }
 

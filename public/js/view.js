@@ -12,16 +12,21 @@ var setChannelView = function() {
 
 	$("#send").click(function(event) {
 		message = document.getElementById("messageForm").value;
-		params = { message: message, channel: channel };
-		postRequest("/chat/message", params, function(response){
-	        document.getElementById("messageForm").value = "";
-		});
+		console.log(message);
+		if (message != "") {
+			params = { message: message, channel: channel };
+			$.post("/chat/message", params).done(function(response) {
+				if (response.code === 0) {
+					document.getElementById("messageForm").value = "";
+					displayError("");
+				}
+			});
+		}
 		event.preventDefault();
 	});
 
 	$("#logout").click(function(event) {
 		clearSession();
-		console.log("suh");
 		setLogInView();
 		updateChannelName("");
 	});

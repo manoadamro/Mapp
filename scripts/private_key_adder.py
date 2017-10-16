@@ -20,6 +20,16 @@ class PrivateKeyAdder:
         file.write(dumps(json, separators=(',', ':')))
         file.close()
 
+    def add_google_key_to_json_file(self):
+        file = open(self.path, 'r')
+        json = loads(file.read())
+        file.close()
+        json["private_key_id"] = environ["PRIVATE_KEY_ID_TRANSLATOR"]
+        json["private_key"] = environ["PRIVATE_KEY_TRANSLATOR"]
+        file = open(self.path, 'w')
+        file.write(dumps(json, separators=(',', ':')))
+        file.close()
+
     def reset_key(self):
         file = open(self.original_key_path, 'r')
         original_key_info = loads(file.read())

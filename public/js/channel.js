@@ -26,7 +26,7 @@ var joinChannel = function(name) {
 };
 
 var updateChannelName = function() {
-	currentChannel = "You are currently in: " + channel;
+	currentChannel = "You are currently in: <strong>" + channel + "</strong>";
 	document.getElementById("currentChannel").innerHTML = currentChannel;
 };
 
