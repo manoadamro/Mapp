@@ -4,6 +4,7 @@
 	var ADD_CHANNEL_ROUTE = '/chat/add'
 	var REMOVE_CHANNEL_ROUTE = '/chat/delete'
 	var UPDATE_CHANNEL_DATA_ROUTE = '/chat/update'
+	var ADD_MESSAGE_ROUTE = '/chat/message'
 	var CHANNEL_MESSAGES_ROUTE = '/chat/messages'
 
 	var Channels = function(){
@@ -19,9 +20,8 @@
 	};
 
 	Channels.prototype.add = function(name, whiteList, callback) {
-		var channels = this;
 		var params = {
-			name: name, 
+			channel: name, 
 			white_list: whiteList
 		}
 		var request = getRequest(ADD_CHANNEL_ROUTE);
@@ -29,18 +29,25 @@
 	};
 
 	Channels.prototype.remove = function(name, callback) {
-		var channels = this;
 		var params = {
-			name: name, 
+			channel: name, 
 		}
 		var request = getRequest(REMOVE_CHANNEL_ROUTE);
 		request.execute(params, callback);
 	};
 
 	Channels.prototype.update = function(callback){
-		var channels = this;
 		var params = {}
 		var request = getRequest(UPDATE_CHANNEL_DATA_ROUTE);
+		request.execute(params, callback);
+	}
+
+	Channels.prototype.newMessage = function(message, channel, callback) {
+		var params = {
+			message: message,
+			channel: channel
+		}
+		var request = getRequest(ADD_MESSAGE_ROUTE);
 		request.execute(params, callback);
 	}
 
@@ -52,9 +59,6 @@
 		request.execute(params, callback);
 	};
 
-	var channelsObj = new Channels();
-	channelsObj.update();
-
-	exports.channels = channelsObj
+	exports.channels = new Channels();
 
 })(this);

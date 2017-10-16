@@ -17,7 +17,6 @@
             else {
                 errors.append(response.message);
                 errors.render();
-                errors.clear();
             }
         });
     };

@@ -1,64 +1,60 @@
 
+var DEFAULT_CHANNEL_NAME = 'global'
+var user = null;
 var view = "";
 
+
 var renderLogInView = function(){
+
+	session.logOut(null);
     document.getElementById("page").innerHTML = loginForm;
 	view = "login";
 
 	$("#login").click(function(event) {
 		var username = document.getElementById("usernameForm").value;
-		if (username.length === 0)
+		if (username.length === 0){
+			errors.append('Username can not be empty')
+			errors.render();
+
+		} else {
+			session.logIn(username, function(response){
+				user = new User(username);
+				user.joinChannel(DEFAULT_CHANNEL_NAME, function(response){
+					renderChannelView();		
+				})
+			})
+		}
 		event.preventDefault();
 	});
 }
 
-var renderChannelView = function(channelName){
-    document.getElementById("page").innerHTML =
-		languageList + messageList + messageForm;
+var renderChannelView = function(){
+
+    document.getElementById("page").innerHTML = languageList + messageList + messageForm;
 	view = "channel";
 
 	$("#setLanguage").click(function(event) {
-		changeLanguage();
+		alert('change language')
 		event.preventDefault();
 	});
 
 	$("#send").click(function(event) {
+		console.log(user.channel)
 		message = document.getElementById("messageForm").value;
-		console.log(message);
-		if (message != "") {
-			params = { message: message, channel: channel };
-			$.post("/chat/message", params).done(function(response) {
-				if (response.code === 0) {
-					document.getElementById("messageForm").value = "";
-					displayError("");
-				}
-			});
+		if(user !== null){
+			channels.newMessage(message, user.channel, function(response){
+				document.getElementById("messageForm").value = "";
+			})
 		}
 		event.preventDefault();
 	});
 
 	$("#logout").click(function(event) {
-		clearSession();
-		setLogInView();
-		updateChannelName("");
+		session.logOut(function(response){
+			user = null;
+			renderLogInView();
+		})
 	});
-
-	$("#addChannel").click(function(event) {
-		name = document.getElementById("channelForm").value;
-		console.log("adding channel: " + name);
-		createChannel(name);
-		getChannelList();
-		document.getElementById("channelForm").value = "";
-		event.preventDefault();
-	});
-
-	$("#deleteChannel").click(function(event) {
-		deleteChannel(channel);
-		event.preventDefault();
-	});
-
-	refreshTargetLanguage(targetLanguage);
-	updateLoop();
 }
 
 var renderMessages = function(messageList){

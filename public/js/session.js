@@ -26,10 +26,8 @@
 	};
 
 	Session.prototype.logOut = function(callback) {
-		if(this.username !== null) {
-			var request = postRequest(LOG_OUT_ROUTE);
-			request.execute({}, callback);
-		}
+		var request = postRequest(LOG_OUT_ROUTE);
+		request.execute({}, callback);
 	};
 
 	exports.session = new Session()

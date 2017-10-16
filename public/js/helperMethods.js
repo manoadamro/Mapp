@@ -3,21 +3,8 @@ var DEFAULT_CHANNEL_NAME = 'global'
 var user = null;
 
 
-var logIn = function(){
-	username = ''; 
-	session.logIn(username, function(response){
-		user = new User(username);
-		user.join(DEFAULT_CHANNEL_NAME, function(response){
-			renderChannelView(user.channel);		
-		})
-	})
-}
-
 var logOut = function(){
-	session.logOut(function(response){
-		user = null;
-		renderLogInView();
-	})
+
 }
 
 var updateChannelList = function() {

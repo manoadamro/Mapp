@@ -1,6 +1,7 @@
 
 (function(exports){
 
+	var DEFAULT_LANGUAGE = 'en';
 	var JOIN_CHANNEL_ROUTE = '/chat/join';
 	var LEAVE_CHANNEL_ROUTE = '/chat/leave';
 
@@ -14,8 +15,12 @@
 			var params = {
 				channel: channelName, 
 			}
+			var user = this;
 			var request = getRequest(JOIN_CHANNEL_ROUTE);
-			request.execute(params, callback);
+			request.execute(params, function(response){
+				user.channel = channelName;
+				callback();
+			});
 		} else {
 			var user = this;
 			this.leaveChannel(function(response){
