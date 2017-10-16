@@ -32,7 +32,7 @@ class Session(Controller):
         else:
             return self.error(message='user not logged in')
 
-    @cherrypy.expose(alias='users')
+    @cherrypy.expose(alias='online_users')
     @cherrypy.tools.json_out()
     def user_list(self, **_params):
         return self.ok(data=self.onlineusers)
