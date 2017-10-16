@@ -1,52 +1,60 @@
-var channel = "";
 
-var createChannel = function(name) {
-	params = { channel: name };
-	postRequest("/chat/create", params, function(response) {
-		switchChannel(name);
-		getChannelList();
-	});
-};
+(function(exports){
+	
+	var ADD_CHANNEL_ROUTE = '/chat/add'
+	var REMOVE_CHANNEL_ROUTE = '/chat/delete'
+	var UPDATE_CHANNEL_DATA_ROUTE = '/chat/update'
+	var CHANNEL_MESSAGES_ROUTE = '/chat/messages'
 
-var deleteChannel = function() {
-	params = { channel: channel };
-	postRequest("/chat/delete", params, function(response) {
-		switchChannel("global");
-	});
-};
-
-var joinChannel = function(name) {
-	params = { channel: name };
-	postRequest("/chat/join", params, function(response) {
-		channel = name;
-		clearMessages();
-		index = -1;
-		updateChannelName();
-	});
-};
-
-var updateChannelName = function() {
-	currentChannel = "You are currently in: <strong>" + channel + "</strong>";
-	document.getElementById("currentChannel").innerHTML = currentChannel;
-};
-
-var switchChannel = function(name) {
-	if (channel !== "") {
-		params = { channel: channel };
-		postRequest("/chat/leave", params, function(response) {
-			joinChannel(name);
-		});
-	} else if (channel === name) {
-		displayError("you are already in this channel");
-	} else {
-		joinChannel(name);
+	var Channels = function(){
+		this.channelList = {};
 	}
-};
 
-var getChannelList = function() {
-	getRequest("/chat/list", {}, function(response) {
-		renderChannels(response.data);
-	});
-};
+	Channels.prototype.get = function(name) {
+		if(name in this.channelList) {
+			return this.channelList[key];
+		} else {
+			return null;
+		}
+	};
 
-getChannelList();
+	Channels.prototype.add = function(name, whiteList, callback) {
+		var channels = this;
+		var params = {
+			name: name, 
+			white_list: whiteList
+		}
+		var request = getRequest(ADD_CHANNEL_ROUTE);
+		request.execute(params, callback);
+	};
+
+	Channels.prototype.remove = function(name, callback) {
+		var channels = this;
+		var params = {
+			name: name, 
+		}
+		var request = getRequest(REMOVE_CHANNEL_ROUTE);
+		request.execute(params, callback);
+	};
+
+	Channels.prototype.update = function(callback){
+		var channels = this;
+		var params = {}
+		var request = getRequest(UPDATE_CHANNEL_DATA_ROUTE);
+		request.execute(params, callback);
+	}
+
+	Channels.prototype.messages = function(channelName, callback) {
+		var params = {
+			channel: channelName
+		}
+		var request = getRequest(UPDATE_CHANNEL_DATA_ROUTE);
+		request.execute(params, callback);
+	};
+
+	var channelsObj = new Channels();
+	channelsObj.update();
+
+	exports.channels = channelsObj
+
+})(this);
