@@ -179,8 +179,10 @@ class Chat(Controller):
         if 'user' not in params:
             return self.error(message='no username provided')\
 
-        if params['user'] not in self.channels[params['channel']].whitelist:
+        if params['user'] not in self.channels[params['channel']].whitelist and '*' not in self.channels[params['channel']].whitelist:
             self.channels[params['channel']].whitelist.append(params['user'])
+
+        print(self.channels[params['channel']].whitelist)
 
         return self.ok()
 
