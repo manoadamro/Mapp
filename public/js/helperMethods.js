@@ -27,7 +27,7 @@ var updateChannelList = function() {
 }
 
 var updateChannelMessages = function(){
-	if(user !=== null) {
+	if(user !== null) {
 		var channelName = user.channel;
 		channels.messages(channelName, function(response){
 			renderMessages(response)
@@ -61,7 +61,7 @@ var addPrivateChannel = function(channelName, whiteList){
 }
 
 var removeChannel = function(){
-	if(user !=== null) {
+	if(user !== null) {
 		var channelName = user.channel;
 		channels.remove(channelName, function(response){
 			user.join(DEFAULT_CHANNEL_NAME, function(response){

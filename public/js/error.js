@@ -27,7 +27,7 @@
     	this.element.innerHTML = ''
     };
 
-    ErrorLog.prototype.formatList(first_argument) {
+    ErrorLog.prototype.formatList = function() {
     	var string = '';
     	for (var i = this.log.length - 1; i >= 0; i--) {
     		var line =  this.log[i].format() + '<br />';

@@ -29,9 +29,6 @@
 
     var getRequest = function(route) {
         var req = new Request($.get, route);
-        if(execute_now) {
-            req.execute(params);
-        }
         return req;
     }
 
