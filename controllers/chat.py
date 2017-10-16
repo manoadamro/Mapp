@@ -100,9 +100,16 @@ class Chat(Controller):
     @cherrypy.expose(alias='update')
     @cherrypy.tools.json_out()
     def get_updates(self, **params):
+        print(params)
 
         if 'channel' not in params:
             return self.error(message='no channel name provided')
+
+        if 'language' not in params:
+            return self.error(message='no target language provided')
+
+        if 'index' not in params:
+            return self.error(message='no index provided')
 
         channel_name = params['channel']
         index = int(params['index'])
@@ -112,21 +119,10 @@ class Chat(Controller):
 
         data = self.channels[channel_name].get_messages(index)
 
-        target_language = cherrypy.session['language']
-
-        for message in data:
-            message['text'] = self.translator.translate_text(message['text'], target_language)
+        # for message in data:
+        #     message['text'] = self.translator.translate_text(message['text'], params['language'])
 
         return self.ok(data=data)
-
-    @cherrypy.expose(alias='language')
-    @cherrypy.tools.json_out()
-    def change_language(self, **params):
-        if 'language' not in params:
-            return self.error(message='no target language provided')
-
-        cherrypy.session['language'] = params['language']
-        return self.ok()
 
     @cherrypy.expose(alias='list')
     @cherrypy.tools.json_out()

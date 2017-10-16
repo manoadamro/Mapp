@@ -34,12 +34,15 @@ var renderChannelView = function(){
 	view = "channel";
 
 	$("#setLanguage").click(function(event) {
-		alert('change language')
+		if(user !== null){
+			var language = 'en'
+			user.setLanguage(language);
+		}
+
 		event.preventDefault();
 	});
 
 	$("#send").click(function(event) {
-		console.log(user.channel)
 		message = document.getElementById("messageForm").value;
 		if(user !== null){
 			channels.newMessage(message, user.channel, function(response){
@@ -55,9 +58,20 @@ var renderChannelView = function(){
 			renderLogInView();
 		})
 	});
+
+	var messageLoop = function(){
+		channels.messages(user.channel, user.language, user.messageIndex, function(response){
+			user.messageIndex += response.length;
+			renderMessages(response);
+			setTimeout(function() {
+				messageLoop();
+			}, 1000);
+		})
+	}
+	messageLoop();
 }
 
-var renderMessages = function(messageList){
+var renderMessages = function(data){
 	var htmlString = "";
 	for (i = 0; i < data.length; i++) {
 		htmlString +=

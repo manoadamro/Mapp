@@ -1,25 +1,11 @@
 
-var DEFAULT_CHANNEL_NAME = 'global'
-var user = null;
 
 
-var logOut = function(){
-
-}
 
 var updateChannelList = function() {
 	channels.update(function(response){
 		renderChannelList(response);
 	})
-}
-
-var updateChannelMessages = function(){
-	if(user !== null) {
-		var channelName = user.channel;
-		channels.messages(channelName, function(response){
-			renderMessages(response)
-		});
-	}
 }
 
 var addPublicChannel = function(channelName){

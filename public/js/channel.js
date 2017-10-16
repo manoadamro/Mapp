@@ -1,11 +1,11 @@
 
 (function(exports){
-	
+
 	var ADD_CHANNEL_ROUTE = '/chat/add'
 	var REMOVE_CHANNEL_ROUTE = '/chat/delete'
-	var UPDATE_CHANNEL_DATA_ROUTE = '/chat/update'
+	var CHANNEL_DATA_ROUTE = '/chat/update'
 	var ADD_MESSAGE_ROUTE = '/chat/message'
-	var CHANNEL_MESSAGES_ROUTE = '/chat/messages'
+	var CHANNEL_MESSAGES_ROUTE = '/chat/update'
 
 	var Channels = function(){
 		this.channelList = {};
@@ -38,7 +38,7 @@
 
 	Channels.prototype.update = function(callback){
 		var params = {}
-		var request = getRequest(UPDATE_CHANNEL_DATA_ROUTE);
+		var request = getRequest(CHANNEL_DATA_ROUTE);
 		request.execute(params, callback);
 	}
 
@@ -51,14 +51,18 @@
 		request.execute(params, callback);
 	}
 
-	Channels.prototype.messages = function(channelName, callback) {
+	Channels.prototype.messages = function(channelName, targetLanguage, index, callback) {
 		var params = {
-			channel: channelName
+			channel: channelName,
+			language: targetLanguage,
+			index: index
 		}
-		var request = getRequest(UPDATE_CHANNEL_DATA_ROUTE);
+		var request = getRequest(CHANNEL_MESSAGES_ROUTE);
 		request.execute(params, callback);
 	};
 
 	exports.channels = new Channels();
 
 })(this);
+
+

@@ -7,11 +7,11 @@
         this.route = route;
     }
 
-    Request.prototype.execute = function(params, onPass) {
+    Request.prototype.execute = function(params, callback) {
         this.method(this.route, params).done(function(response){
             if (response.code == 0){
-                if(onPass !== null) {
-                    onPass(response.data);
+                if(callback !== null) {
+                    callback(response.data);
                 }
             }
             else {

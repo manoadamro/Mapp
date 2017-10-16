@@ -13,7 +13,6 @@ class Session(Controller):
             return self.error(message='already logged in')
         else:
             cherrypy.session['username'] = params['username']
-            cherrypy.session['language'] = 'en'
             return self.ok()
 
     @cherrypy.expose(alias='logout')

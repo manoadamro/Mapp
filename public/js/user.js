@@ -8,6 +8,8 @@
 	var User = function(name){
 		this.name = name;
 		this.channel = null
+		this.language = 'en'
+		this.messageIndex = -1
 	}
 
 	User.prototype.joinChannel = function(channelName, callback) {
@@ -19,6 +21,7 @@
 			var request = getRequest(JOIN_CHANNEL_ROUTE);
 			request.execute(params, function(response){
 				user.channel = channelName;
+				this.messageIndex = -1;
 				callback();
 			});
 		} else {
@@ -35,6 +38,10 @@
 		var request = getRequest(LEAVE_CHANNEL_ROUTE);
 		request.execute(params, callback);
 	};
+
+	User.prototype.setLanguage = function(language) {
+		this.language = language
+	}
 
 	exports.User = User;
 
