@@ -17,11 +17,17 @@ class Chat(Controller):
             return self.error(message='No channel name given')
         elif 'username' not in cherrypy.session:
             return self.error(message='You must be logged into to create channels')
+        if 'while_list' in params:
+            while_list = params['white_list']
+            if cherrypy.session['username'] not in while_list:
+                while_list.append(cherrypy.session['username'])
+        else:
+            while_list = '*'
 
         # values
         channel_name = params['channel']
         user = cherrypy.session['username']
-        channel = Channel(channel_name, user)
+        channel = Channel(channel_name, user, while_list)
 
         # value checks
         if channel_name in self.channels:
@@ -59,6 +65,8 @@ class Chat(Controller):
         # param checks
         if 'channel' not in params:
             return self.error(message='no channel name provided')
+        if cherrypy.session['username'] not in self.channels[params['channel']].whitelist:
+            return self.error(message='you do not have permission to enter this channel')
 
         # values
         channel_name = params['channel']
@@ -153,6 +161,21 @@ class Chat(Controller):
     @cherrypy.expose(alias='list')
     @cherrypy.tools.json_out()
     def channel_list(self, **_params):
-        list = [channel for channel in self.channels]
+        list = [channel for channel in self.channels
+                if cherrypy.session['username'] in self.channels[channel].whitelist
+                or '*' in self.channels[channel].whitelist]
         return self.ok(data=list)
+
+    @cherrypy.expose(alias='add_user')
+    @cherrypy.tools.json_out()
+    def add_user_to_channel(self, **params):
+        if 'channel' not in params:
+            return self.error(message='no channel name provided')
+        if 'user' not in params:
+            return self.error(message='no username provided')\
+
+        if params['user'] not in self.channels[params['channel']].whitelist:
+            self.channels[params['channel']].whitelist.append(params['user'])
+
+        return self.ok()
 
