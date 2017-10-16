@@ -100,7 +100,6 @@ class Chat(Controller):
     @cherrypy.expose(alias='update')
     @cherrypy.tools.json_out()
     def get_updates(self, **params):
-        print(params)
 
         if 'channel' not in params:
             return self.error(message='no channel name provided')

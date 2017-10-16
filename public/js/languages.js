@@ -104,13 +104,3 @@ var LANGUAGES = {
 	Yoruba: "yo",
 	Zulu: "zu"
 };
-
-var generateLanguageList = function() {
-	str = "";
-	Object.keys(LANGUAGES).forEach(function(key) {
-		var value = LANGUAGES[key];
-		str +=
-			"<a href=" + 'javascript:changeLanguage("' + value + '")>' + key + "</a>";
-	});
-	return str;
-};

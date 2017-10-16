@@ -1,11 +1,3 @@
-var languageList =
-	'<p id="targetLanguageLabel"></p>' +
-	'<div class="dropdown">' +
-	'<button class="dropbtn">Languages</button>' +
-	'<div class="dropdown-content">' +
-	generateLanguageList() +
-	"</div>" +
-	"</div>";
 
 var messageList = '<div id="messageList" class="message-list"></div>';
 

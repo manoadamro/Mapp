@@ -38,7 +38,6 @@ var renderChannelView = function(){
 			var language = 'en'
 			user.setLanguage(language);
 		}
-
 		event.preventDefault();
 	});
 
@@ -59,7 +58,64 @@ var renderChannelView = function(){
 		})
 	});
 
-	var messageLoop = function(){
+	$("#menu-toggle").click(function(event) {
+		channels.update(function(response){
+			renderChannelList(response);
+			$("#wrapper").toggleClass("toggled");
+		})
+		event.preventDefault();
+	});
+
+	$("#addPublicChannel").click(function(event) {
+		channelName = document.getElementById("channelForm").value;
+		channels.add(channelName, ['*'], function(response){
+			if(user !== null) {
+				user.joinChannel(channelName, function(response){
+					renderChannelView(user.channel);
+				})
+				channels.update(function(response){
+					renderChannelList(response);
+				})
+			}
+		})
+		document.getElementById("channelForm").value = "";
+		event.preventDefault();
+	});
+
+	$("#addPrivateChannel").click(function(event) {
+		name = document.getElementById("channelForm").value;
+		if(!(user.name in whiteList)) {
+			whiteList.push(user.name);
+		}
+		channels.add(channelName, whiteList, function(response){
+			if(user !== null) {
+				user.join(channelName, function(response){
+					renderChannelView(user.channel);
+				})
+				channels.update(function(response){
+					renderChannelList(response);
+				})			}
+		})
+		document.getElementById("channelForm").value = "";
+		event.preventDefault();
+	});
+
+	$("#deleteChannel").click(function(event) {
+		if(user !== null) {
+			var channelName = user.channel;
+			channels.remove(channelName, function(response){
+				user.join(DEFAULT_CHANNEL_NAME, function(response){
+					renderChannelView(user.channel);	
+				})
+			})
+		}	
+		event.preventDefault();
+	});
+	messageLoop();
+}
+
+var messageLoop = function(){
+	if(user.channel !== null){
 		channels.messages(user.channel, user.language, user.messageIndex, function(response){
 			user.messageIndex += response.length;
 			renderMessages(response);
@@ -67,8 +123,11 @@ var renderChannelView = function(){
 				messageLoop();
 			}, 1000);
 		})
+	} else {
+		setTimeout(function() {
+			messageLoop();
+		}, 1000);	
 	}
-	messageLoop();
 }
 
 var renderMessages = function(data){
@@ -87,15 +146,25 @@ var renderMessages = function(data){
 	document.getElementById("messageList").innerHTML += htmlString;
 }
 
-var renderChannelList = function(channelList){
-    document.getElementById('sidebar-channels').innerHTML = ''
-   for(i=0; i<channels.length; i++) {
-    document.getElementById('sidebar-channels').innerHTML += '<li><a href=' +
-        'javascript:switchChannel("' +
-        channels[i] + '")>' +
-        channels[i] +
-        '</a></li>'
-    }
+var clearMessages = function(){
+	document.getElementById("messageList").innerHTML = '';
 }
 
-renderLogInView();
+var switchChannel = function(channelName) {
+	user.leaveChannel(user.channel, function(response){
+		clearMessages();
+		user.joinChannel(channelName, null)
+	})
+}
+
+var renderChannelList = function(channelList){
+
+	var sideBarChans = document.getElementById('sidebar-channels')
+    sideBarChans.innerHTML = ''
+    for(i=0; i<channelList.length; i++) {
+	    sideBarChans.innerHTML += '<li>' +
+	    '<a href=javascript:switchChannel("' + channelList[i] + '") >' +
+	    channelList[i] + '</a>' +
+	    '</li>'
+    }
+}

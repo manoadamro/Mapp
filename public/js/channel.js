@@ -1,9 +1,9 @@
 
 (function(exports){
 
-	var ADD_CHANNEL_ROUTE = '/chat/add'
+	var ADD_CHANNEL_ROUTE = '/chat/create'
 	var REMOVE_CHANNEL_ROUTE = '/chat/delete'
-	var CHANNEL_DATA_ROUTE = '/chat/update'
+	var CHANNEL_DATA_ROUTE = '/chat/list'
 	var ADD_MESSAGE_ROUTE = '/chat/message'
 	var CHANNEL_MESSAGES_ROUTE = '/chat/update'
 
