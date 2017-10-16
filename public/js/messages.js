@@ -22,9 +22,9 @@ var renderMessages = function(data) {
 			"</span>" +
 			": " +
 			data[i].text +
-		
-			"</span>" +
+			'<span class="time">' +
 			data[i].timestamp +
+			"</span>" +
 			"<br/>" +
 			"</span>";
 	}

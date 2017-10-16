@@ -28,7 +28,7 @@ class MessageLog:
             'index': index,
             'text': text,
             'author': author,
-            'timestamp': strftime("%H:%M:%S", gmtime())
+            'timestamp': strftime("%H:%M", gmtime())
         }
 
     def __len__(self):
