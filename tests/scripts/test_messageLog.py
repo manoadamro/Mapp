@@ -30,5 +30,4 @@ class TestMessageLog(TestCase):
         c.execute(
             "SELECT * FROM chatMessages WHERE author = 'me' AND message='dbmessage'")
         data = c.fetchall()
-        print("\n\n\n\n%s\n\n\n\n" % data)
         self.assertEqual(len(data), 1)
