@@ -57,4 +57,12 @@ var getChannelList = function() {
 	});
 };
 
+
+var getUserList = function(){
+	getRequest("/session/users", {}, function(response) {
+		userList = response.data;
+		// do stuff with userList
+	});
+}
+
 getChannelList();
