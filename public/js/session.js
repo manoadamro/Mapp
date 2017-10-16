@@ -30,6 +30,6 @@
 		request.execute({}, callback);
 	};
 
-	exports.session = new Session()
+	exports.session = new Session();
 
 })(this);

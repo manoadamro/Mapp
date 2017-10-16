@@ -1,37 +1,47 @@
 (function(exports){
 
-	var refreshTargetLanguage = function(name) {
-		document.getElementById("targetLanguageLabel").innerHTML = "Target Language: <strong>" + name + "</strong>";
+	DEFAULT_LANGUAGE = 'en'
+
+	var Language = function(){
+		this.languageCode = DEFAULT_LANGUAGE;
+		this.languageString = getKeyByValue(LANGUAGES, DEFAULT_LANGUAGE)
+	}
+
+	Language.prototype.targetLanguageHTML = function() {
+		return "Target Language: <strong>" + this.languageString + "</strong>";
 	};
 
 	function getKeyByValue(object, value) {
 		return Object.keys(object).find(key => object[key] === value);
 	}
 
-	var changeLanguage = function(language) {
-		console.log('switched language: ' + language); // <--- never gets called
+	Language.prototype.changeLanguage = function(language) {
+		console.log('switched language: ' + language);
 		var fullLanguage = getKeyByValue(LANGUAGES, language);
-		refreshTargetLanguage(fullLanguage);
+		this.languageCode = language
+		this.languageString = fullLanguage
+		document.getElementById("targetLanguageLabel").innerHTML = this.targetLanguageHTML();
 	};
 
-	var generateLanguageList = function() {
+	Language.prototype.generateLanguageList = function() {
 		var str = "";
 		Object.keys(LANGUAGES).forEach(function(key) {
 			var value = LANGUAGES[key];
-			str += "<a href=" + 'javascript:changeLanguage("' + value + '")>' + key + "</a>";
+			str += "<a href=" + 'javascript:language.changeLanguage("' + value + '")>' + key + "</a>";
 		});
 		return str;
 	};
 
-	var languageList =
-		'<p id="targetLanguageLabel"></p>' +
+	Language.prototype.languageListHtml = function() {
+		return '<p id="targetLanguageLabel">' + this.targetLanguageHTML() + '</p>' +
 		'<div class="dropdown">' +
 		'<button class="dropbtn">Languages</button>' +
 		'<div class="dropdown-content">' +
-		generateLanguageList() +
+		this.generateLanguageList() +
 		"</div>" +
 		"</div>";
+	}
 
-	exports.languageList = languageList;
-	exports.changeLanguage = changeLanguage;
+	exports.language = new Language();
+	
 })(this);

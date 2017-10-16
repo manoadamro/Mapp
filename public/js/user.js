@@ -8,7 +8,6 @@
 	var User = function(name){
 		this.name = name;
 		this.channel = null
-		this.language = 'en'
 		this.messageIndex = -1
 	}
 
@@ -42,10 +41,6 @@
 			}
 		});
 	};
-
-	User.prototype.setLanguage = function(language) {
-		this.language = language
-	}
 
 	exports.User = User;
 

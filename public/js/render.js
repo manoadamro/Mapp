@@ -57,16 +57,8 @@ var renderChannelView = function(){
 		"<button>Create Channel</button>" +
 		"</form>";
 
-    document.getElementById("page").innerHTML = languageList + messageList + messageForm;
+    document.getElementById("page").innerHTML = language.languageListHtml() + messageList + messageForm;
 	view = "channel";
-
-	$("#setLanguage").click(function(event) {
-		if(user !== null){
-			var language = 'en'
-			user.setLanguage(language);
-		}
-		event.preventDefault();
-	});
 
 	$("#send").click(function(event) {
 		message = document.getElementById("messageForm").value;
@@ -140,7 +132,7 @@ var renderChannelView = function(){
 
 var messageLoop = function(){
 	if(user.channel !== null){
-		channels.messages(user.channel, user.language, user.messageIndex, function(response){
+		channels.messages(user.channel, language.languageCode, user.messageIndex, function(response){
 			user.messageIndex += response.length;
 			renderMessages(response);
 			setTimeout(function() {
