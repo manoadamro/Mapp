@@ -4,10 +4,10 @@ from .message_log import MessageLog
 
 
 class Channel:
-    def __init__(self, name, creator, while_list):
+    def __init__(self, name, creator, white_list):
         self.message_log = MessageLog()
         self.user_log = []
-        self.whitelist = while_list
+        self.whitelist = white_list
         self.name = name
         self.creator = creator
         self.created_at = time()

@@ -6,7 +6,7 @@ from scripts.translator import Translator
 
 class Chat(Controller):
     def __init__(self):
-        self.channels = {'global': Channel('global', 'system')}
+        self.channels = {'global': Channel('global', 'system', ['*'])}
         self.translator = Translator()
 
     @cherrypy.expose(alias='create')
