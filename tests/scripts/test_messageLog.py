@@ -1,5 +1,9 @@
 from unittest import TestCase
 from scripts.message_log import MessageLog
+import sqlite3
+
+conn = sqlite3.connect('./db/messenger.db', check_same_thread=False)
+c = conn.cursor()
 
 
 class TestMessageLog(TestCase):
@@ -19,3 +23,12 @@ class TestMessageLog(TestCase):
         updates = log.get_messages(4)
         self.assertEqual(len(updates), 5)
         self.assertEqual(updates[0]['index'], 5)
+
+    def test_message_added_to_db(self):
+        log = MessageLog()
+        log.add_message('dbmessage', 'me')
+        c.execute(
+            "SELECT * FROM chatMessages WHERE author = 'me' AND message='dbmessage'")
+        data = c.fetchall()
+        print("\n\n\n\n%s\n\n\n\n" % data)
+        self.assertEqual(len(data), 1)

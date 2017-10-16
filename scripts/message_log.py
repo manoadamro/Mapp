@@ -8,9 +8,9 @@ class MessageLog:
         self.message_list = []
         self.db = DatabaseController()
 
-    def add_message(self, author, text):
+    def add_message(self, text, author):
         message = self._new_message(text, author)
-        self.db.add_message(author, text)
+        self.db.add_message(message=text, author=author)
         self.message_list.append(message)
 
     def get_messages(self, index):

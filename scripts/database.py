@@ -12,11 +12,12 @@ class DatabaseController:
             'CREATE TABLE IF NOT EXISTS chatMessages(datestamp TEXT, message TEXT, author TEXT)')
 
     def add_message(self, message, author):
+        self.create_table()
         today = datetime.datetime.now()
         c.execute(
             "INSERT INTO chatMessages VALUES(?, ?, ?)", (today, message, author))
         conn.commit()
-        self.get_all_messages()
+        # self.get_all_messages()
         # c.close()
         # conn.close()
 
