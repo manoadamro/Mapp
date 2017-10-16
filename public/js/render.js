@@ -7,16 +7,7 @@ var renderLogInView = function(){
 
 	$("#login").click(function(event) {
 		var username = document.getElementById("usernameForm").value;
-		if (username.length === 0) {
-			displayError("Username can not be empty");
-		} else {
-		    params = {username: username, language: "en"}
-			postRequest("/session/login", params, function(response){
-			    setChannelView();
-				joinChannel("global");
-			})
-
-		}
+		if (username.length === 0)
 		event.preventDefault();
 	});
 }
