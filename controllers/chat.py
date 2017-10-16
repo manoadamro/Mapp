@@ -17,17 +17,18 @@ class Chat(Controller):
             return self.error(message='No channel name given')
         elif 'username' not in cherrypy.session:
             return self.error(message='You must be logged into to create channels')
-        if 'while_list' in params:
-            while_list = params['white_list']
-            if cherrypy.session['username'] not in while_list:
-                while_list.append([cherrypy.session['username']])
+
+        if 'white_list' in params:
+            white_list = params['white_list']
+            if cherrypy.session['username'] not in white_list:
+                white_list.append([cherrypy.session['username']])
         else:
-            while_list = ['*']
+            white_list = ['*']
 
         # values
         channel_name = params['channel']
         user = cherrypy.session['username']
-        channel = Channel(channel_name, user, while_list)
+        channel = Channel(channel_name, user, white_list)
 
         # value checks
         if channel_name in self.channels:
