@@ -17,9 +17,6 @@ class DatabaseController:
         c.execute(
             "INSERT INTO chatMessages VALUES(?, ?, ?)", (today, message, author))
         conn.commit()
-        # self.get_all_messages()
-        # c.close()
-        # conn.close()
 
     def get_all_messages(self):
         with conn:
