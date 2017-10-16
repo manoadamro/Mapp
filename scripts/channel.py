@@ -4,9 +4,10 @@ from .message_log import MessageLog
 
 
 class Channel:
-    def __init__(self, name, creator):
+    def __init__(self, name, creator, white_list):
         self.message_log = MessageLog()
         self.user_log = []
+        self.white_list = white_list
         self.name = name
         self.creator = creator
         self.created_at = time()
@@ -24,7 +25,6 @@ class Channel:
         return uid in self.user_log
 
     def add_message(self, author, text):
-        # self.total_sentiment += self.sentiment_analyzer.analyze(text)
         self.message_log.add_message(author, text)
 
     def get_messages(self, index):

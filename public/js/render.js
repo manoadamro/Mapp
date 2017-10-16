@@ -68,7 +68,7 @@ var renderChannelView = function(){
 
 	$("#addPublicChannel").click(function(event) {
 		channelName = document.getElementById("channelForm").value;
-		channels.add(channelName, ['*'], function(response){
+		channels.add(channelName, '*', function(response){
 			if(user !== null) {
 				user.joinChannel(channelName, function(response){
 					renderChannelView(user.channel);
@@ -83,13 +83,10 @@ var renderChannelView = function(){
 	});
 
 	$("#addPrivateChannel").click(function(event) {
-		name = document.getElementById("channelForm").value;
-		if(!(user.name in whiteList)) {
-			whiteList.push(user.name);
-		}
-		channels.add(channelName, whiteList, function(response){
+		channelName = document.getElementById("channelForm").value;
+		channels.add(channelName, user.name, function(response){
 			if(user !== null) {
-				user.join(channelName, function(response){
+				user.joinChannel(channelName, function(response){
 					renderChannelView(user.channel);
 				})
 				channels.update(function(response){
