@@ -7,4 +7,5 @@ class Sentiment:
 
     def analyze(self, text):
         # analyze and return num between -1 and 1
+        return 0
         pass

@@ -6,6 +6,7 @@ var getUpdates = function() {
 		var parsedMessages = response.data;
 		if (parsedMessages.length > 0) {
 			renderMessages(parsedMessages);
+			document.getElementById('xyz').play();
 			index = parsedMessages[parsedMessages.length - 1].index;
 		}
 		updateLoop();
@@ -27,3 +28,4 @@ var renderMessages = function(data) {
 	}
 	document.getElementById("messageList").innerHTML += htmlString;
 };
+

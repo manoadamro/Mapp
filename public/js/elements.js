@@ -7,7 +7,9 @@ var languageList =
 	"</div>" +
 	"</div>";
 
-var messageList = '<div id="messageList" class="message-list"></div>';
+var messageList =
+    '<div id="messageList" class="message-list"></div>' +
+    '<audio id="xyz" src="theme.mp3" preload="auto"></audio>';
 
 var messageForm =
 	'<form class="message-form">' +
