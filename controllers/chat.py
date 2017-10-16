@@ -182,3 +182,10 @@ class Chat(Controller):
 
         return self.ok()
 
+    @cherrypy.expose(alias='users')
+    @cherrypy.tools.json_out()
+    def users(self, **params):
+        if 'channel' not in params:
+            return self.error(message='no channel name provided')
+        return self.ok(data=self.channels[params].user_log)
+
