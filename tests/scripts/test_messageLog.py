@@ -16,7 +16,6 @@ class TestMessageLog(TestCase):
         log = MessageLog()
         for i in range(0, 10):
             log.add_message(text='message%i' % i, author='me')
-
         updates = log.get_messages(4)
         self.assertEqual(len(updates), 5)
         self.assertEqual(updates[0]['index'], 5)

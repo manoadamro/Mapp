@@ -40,5 +40,7 @@ class DatabaseController:
                 "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
 
 
+DatabaseController().create_table()
+
 # c.close()
 # conn.close()
