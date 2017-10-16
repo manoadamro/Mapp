@@ -29,6 +29,7 @@ class Chat(Controller):
 
         # complete action
         self.channels[channel_name] = channel
+        # self.channels[channel_name].add_user(user)
         return self.ok()
 
     @cherrypy.expose(alias='delete')
@@ -71,6 +72,7 @@ class Chat(Controller):
 
         # complete action
         self.channels[channel_name].add_user(user)
+        print(self.channels[channel_name].user_log)
         return self.ok()
 
     @cherrypy.expose(alias='leave')

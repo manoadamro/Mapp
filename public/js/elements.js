@@ -28,8 +28,20 @@ var loginForm =
 	'<button class="login btn btn-success" id="login">Log In</button>' +
 	"</form>";
 
-var createChannel =
+var createPublicChannel =
 	'<form id="createChannel">' +
-	'<input class="" type="text" id="channelForm"></input>' +
-	"<button>Create Channel</button>" +
+	'<input class="" type="text" id="publicChannelForm"></input>' +
+	"<button>Create Public Channel</button>" +
+	"</form>";
+
+var createPrivateChannel =
+	'<form id="createChannel">' +
+	'<input class="" type="text" id="privateChannelForm"></input>' +
+	"<button>Create Private Channel</button>" +
+	"</form>";
+
+var addUser=
+    '<form id="addUser">' +
+	'<input class="" type="text" id="userForm"></input>' +
+	"<button>Add User</button>" +
 	"</form>";
