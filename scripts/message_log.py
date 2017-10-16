@@ -1,4 +1,4 @@
-from time import time
+from time import gmtime, strftime
 
 
 class MessageLog:
@@ -28,7 +28,7 @@ class MessageLog:
             'index': index,
             'text': text,
             'author': author,
-            'timestamp': time()
+            'timestamp': strftime("%H:%M", gmtime())
         }
 
     def __len__(self):
