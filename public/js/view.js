@@ -2,7 +2,7 @@ var view = "";
 
 var setChannelView = function() {
 	document.getElementById("page").innerHTML =
-		languageList + messageList + messageForm;
+		languageList + messageList + messageForm + addUser;
 	view = "channel";
 
 	$("#setLanguage").click(function(event) {
@@ -25,17 +25,40 @@ var setChannelView = function() {
 		event.preventDefault();
 	});
 
+	$("#addUser").click(function(event) {
+		user = document.getElementById("userForm").value;
+		console.log(user);
+		if (user!= "") {
+			params = { user: user, channel: channel };
+			$.post("/chat/add_user", params).done(function(response) {
+				if (response.code === 0) {
+					document.getElementById("userForm").value = "";
+					displayError("");
+				}
+			});
+		}
+		event.preventDefault();
+	});
+
 	$("#logout").click(function(event) {
 		clearSession();
 		setLogInView();
 		updateChannelName("");
 	});
 
-	$("#addChannel").click(function(event) {
+	$("#addPublicChannel").click(function(event) {
 		name = document.getElementById("publicChannelForm").value;
 		createPublicChannel(name);
 		getChannelList();
-		document.getElementById("channelForm").value = "";
+		document.getElementById("publicChannelForm").value = "";
+		event.preventDefault();
+	});
+
+	$("#addPrivateChannel").click(function(event) {
+		name = document.getElementById("privateChannelForm").value;
+		createPrivateChannel(name);
+		getChannelList();
+		document.getElementById("privateChannelForm").value = "";
 		event.preventDefault();
 	});
 

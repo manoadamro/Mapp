@@ -1,7 +1,15 @@
 var channel = "";
 
-var createChannel = function(name) {
+var createPublicChannel = function(name) {
 	params = { channel: name };
+	postRequest("/chat/create", params, function(response) {
+		switchChannel(name);
+		getChannelList();
+	});
+};
+
+var createPrivateChannel = function(name) {
+	params = { channel: name, white_list: [] };
 	postRequest("/chat/create", params, function(response) {
 		switchChannel(name);
 		getChannelList();
