@@ -27,7 +27,6 @@ class Session(Controller):
         if 'username' in cherrypy.session:
             user = cherrypy.session['username']
             self._perge_user(user)
-            self.users.remove(user)
             del cherrypy.session['username']
             return self.ok()
         else:
@@ -39,6 +38,7 @@ class Session(Controller):
         return self.ok(data=self.users)
 
     def _perge_user(self, user):
+        self.users.remove(user)
         if '/chat' in cherrypy.tree.apps:
             chans = cherrypy.tree.apps['/chat'].root.channels
             for chan in chans:
