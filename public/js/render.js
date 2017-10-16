@@ -38,27 +38,15 @@ var renderLogInView = function(){
 
 var renderChannelView = function(){
 
-	var messageList = '<div id="messageList" class="message-list"></div>';
-
-	var messageForm =
-		'<form class="message-form">' +
-		'<input class="text-box" type="text" type="textarea" id="messageForm"></input>' +
-		"<br />" +
-		'<button class="btn btn-primary" id="send">Send</button>' +
-		"</form>" +
-		'<form class="center">' +
-		"<br />" +
-		'<button class="btn btn-danger" id="logout">Log Out</button>' +
-		"</form>";
-
 	var createChannel =
 		'<form id="createChannel">' +
 		'<input class="" type="text" id="channelForm"></input>' +
 		"<button>Create Channel</button>" +
 		"</form>";
 
-    document.getElementById("page").innerHTML = language.languageListHtml() + messageList + messageForm;
+	document.getElementById("page").innerHTML = language.languageListHtml() + channels.messageListHTML();
 	view = "channel";
+	messageLoop();
 
 	$("#send").click(function(event) {
 		message = document.getElementById("messageForm").value;
@@ -127,7 +115,6 @@ var renderChannelView = function(){
 		}	
 		event.preventDefault();
 	});
-	messageLoop();
 }
 
 var messageLoop = function(){

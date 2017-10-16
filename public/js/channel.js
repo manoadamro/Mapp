@@ -61,6 +61,20 @@
 		request.execute(params, callback);
 	};
 
+
+	Channels.prototype.messageListHTML = function(){
+		return '<div id="messageList" class="message-list"></div>' +
+		'<form class="message-form">' +
+		'<input class="text-box" type="text" type="textarea" id="messageForm"></input>' +
+		"<br />" +
+		'<button class="btn btn-primary" id="send">Send</button>' +
+		"</form>" +
+		'<form class="center">' +
+		"<br />" +
+		'<button class="btn btn-danger" id="logout">Log Out</button>' +
+		"</form>";
+	}
+
 	exports.channels = new Channels();
 
 })(this);
