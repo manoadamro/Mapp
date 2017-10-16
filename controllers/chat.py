@@ -163,9 +163,11 @@ class Chat(Controller):
     @cherrypy.tools.json_out()
     def channel_list(self, **_params):
         list = []
-        for channel in self.channels:
-            if 'username' in cherrypy.session['username'] and (cherrypy.session['username'] in self.channels[channel].whitelist or '*' in self.channels[channel].whitelist):
-                list.append(channel)
+
+        if 'username' in cherrypy.session['username']:
+            for channel in self.channels:
+                 if cherrypy.session['username'] in self.channels[channel].whitelist or '*' in self.channels[channel].whitelist:
+                    list.append(channel)
 
         return self.ok(data=list)
 
