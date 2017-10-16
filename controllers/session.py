@@ -4,7 +4,7 @@ from scripts.controller import Controller
 
 class Session(Controller):
 
-    users = []
+    onlineusers = []
 
     @cherrypy.expose(alias='login')
     @cherrypy.tools.json_out()
@@ -18,7 +18,7 @@ class Session(Controller):
         else:
             cherrypy.session['username'] = params['username']
             cherrypy.session['language'] = params['language']
-            self.users.append(params['username'])
+            self.onlineusers.append(params['username'])
             return self.ok()
 
     @cherrypy.expose(alias='logout')
@@ -35,10 +35,10 @@ class Session(Controller):
     @cherrypy.expose(alias='users')
     @cherrypy.tools.json_out()
     def user_list(self, **_params):
-        return self.ok(data=self.users)
+        return self.ok(data=self.onlineusers)
 
     def _perge_user(self, user):
-        self.users.remove(user)
+        self.onlineusers.remove(user)
         if '/chat' in cherrypy.tree.apps:
             chans = cherrypy.tree.apps['/chat'].root.channels
             for chan in chans:

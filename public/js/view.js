@@ -37,6 +37,7 @@ var setChannelView = function() {
 				}
 			});
 		}
+		getUserList();
 		event.preventDefault();
 	});
 
@@ -47,18 +48,18 @@ var setChannelView = function() {
 	});
 
 	$("#addPublicChannel").click(function(event) {
-		name = document.getElementById("publicChannelForm").value;
+		name = document.getElementById("channelForm").value;
 		createPublicChannel(name);
 		getChannelList();
-		document.getElementById("publicChannelForm").value = "";
+		document.getElementById("channelForm").value = "";
 		event.preventDefault();
 	});
 
 	$("#addPrivateChannel").click(function(event) {
-		name = document.getElementById("privateChannelForm").value;
+		name = document.getElementById("channelForm").value;
 		createPrivateChannel(name);
 		getChannelList();
-		document.getElementById("privateChannelForm").value = "";
+		document.getElementById("channelForm").value = "";
 		event.preventDefault();
 	});
 

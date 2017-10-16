@@ -38,6 +38,7 @@ var updateChannelName = function() {
 	document.getElementById("currentChannel").innerHTML = currentChannel;
 };
 
+
 var switchChannel = function(name) {
 	if (channel !== "") {
 		params = { channel: channel };
@@ -59,9 +60,13 @@ var getChannelList = function() {
 
 
 var getUserList = function(){
-	getRequest("/session/users", {}, function(response) {
+	getRequest("/chat/users", {channel: channel}, function(response) {
 		userList = response.data;
-		// do stuff with userList
+        document.getElementById('userForm').innerHTML =''
+        for(i=0; i<userList.length; i++) {
+        document.getElementById('userList').innerHTML += '<li>' +
+            userList[i] + '</li>'
+        }
 	});
 }
 
