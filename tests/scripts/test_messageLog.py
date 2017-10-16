@@ -26,7 +26,7 @@ class TestMessageLog(TestCase):
 
     def test_message_added_to_db(self):
         log = MessageLog()
-        log.add_message('dbmessage', 'me')
+        log.add_message(text='dbmessage', author='me')
         c.execute(
             "SELECT * FROM chatMessages WHERE author = 'me' AND message='dbmessage'")
         data = c.fetchall()
