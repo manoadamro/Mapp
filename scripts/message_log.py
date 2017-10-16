@@ -1,13 +1,16 @@
 from time import time
+from .database import DatabaseController
 
 
 class MessageLog:
 
     def __init__(self):
         self.message_list = []
+        self.db = DatabaseController()
 
     def add_message(self, author, text):
         message = self._new_message(text, author)
+        self.db.add_message(author, text)
         self.message_list.append(message)
 
     def get_messages(self, index):
