@@ -19,9 +19,7 @@ class Chat(Controller):
             return self.error(message='You must be logged into to create channels')
 
         if 'white_list' in params:
-            white_list = params['white_list']
-            if cherrypy.session['username'] not in white_list:
-                white_list.append([cherrypy.session['username']])
+            white_list = [cherrypy.session['username']]
         else:
             white_list = ['*']
 
@@ -164,7 +162,6 @@ class Chat(Controller):
     @cherrypy.tools.json_out()
     def channel_list(self, **_params):
         list = []
-
         if 'username' in cherrypy.session:
             for channel in self.channels:
                  if cherrypy.session['username'] in self.channels[channel].whitelist or '*' in self.channels[channel].whitelist:
@@ -182,8 +179,6 @@ class Chat(Controller):
 
         if params['user'] not in self.channels[params['channel']].whitelist and '*' not in self.channels[params['channel']].whitelist:
             self.channels[params['channel']].whitelist.append(params['user'])
-
-        print(self.channels[params['channel']].whitelist)
 
         return self.ok()
 
