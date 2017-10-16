@@ -1,23 +1,15 @@
 
 var DEFAULT_CHANNEL_NAME = 'global'
 var user = null;
-var view = "";
 
 
 var renderLogInView = function(){
 	session.logOut(null);
 	var loginForm = new LoginForm(user);
 	loginForm.render("page");
-	view = "login";
 }
 
 var renderChannelView = function(){
-
-	// var createChannel =
-	// 	'<form id="createChannel">' +
-	// 	'<input class="" type="text" id="channelForm"></input>' +
-	// 	"<button>Create Channel</button>" +
-	// 	"</form>";
 
 	var setTriggers = function(){
 		$("#send").click(function(event) {
@@ -91,7 +83,6 @@ var renderChannelView = function(){
 
 	document.getElementById("page").innerHTML = language.languageListHtml() + channels.messageListHTML();
 	setTriggers()
-	view = "channel";
 	messageLoop();
 }
 

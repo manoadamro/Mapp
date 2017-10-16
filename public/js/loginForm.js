@@ -2,7 +2,7 @@
 (function(exports){
 	
 	var LoginForm = function (user){
-		this.user = user
+		this.user = user;
 	}
 
 	LoginForm.prototype.login = function(){
@@ -15,7 +15,7 @@
 			session.logIn(username, function(response){
 				this.user = new User(username);
 				this.user.joinChannel(DEFAULT_CHANNEL_NAME, function(response){
-					renderChannelView();		
+					renderChannelView();	
 				})
 			})
 		}
