@@ -9,11 +9,6 @@ class App(Controller):
 
     @cherrypy.expose()
     def index(self):
-        """
-        Serves the app page (index.html)
-        :return: the html file
-        """
-
         return open(path.join('views/index.html'))
 
     @cherrypy.expose()

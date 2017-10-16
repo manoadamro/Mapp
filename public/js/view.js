@@ -58,18 +58,12 @@ var setLogInView = function() {
 		if (username.length === 0) {
 			displayError("Username can not be empty");
 		} else {
-			$.post("/session/login", {
-				username: username,
-				language: "en"
-			}).done(function(response) {
-				if (response.code == 0) {
-					setChannelView();
-					joinChannel("global");
-					displayError("");
-				} else {
-					displayError(response.message);
-				}
-			});
+		    params = {username: username, language: "en"}
+			postRequest("/session/login", params, function(response){
+			    setChannelView();
+				joinChannel("global");
+			})
+
 		}
 		event.preventDefault();
 	});
