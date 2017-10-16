@@ -187,5 +187,5 @@ class Chat(Controller):
     def users(self, **params):
         if 'channel' not in params:
             return self.error(message='no channel name provided')
-        return self.ok(data=self.channels[params].user_log)
+        return self.ok(data=self.channels[params['channel']].user_log)
 
