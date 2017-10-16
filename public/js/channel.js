@@ -62,10 +62,11 @@ var getChannelList = function() {
 var getUserList = function(){
 	getRequest("/chat/users", {channel: channel}, function(response) {
 		userList = response.data;
-        document.getElementById('userForm').innerHTML =''
+        document.getElementById('userForm').innerHTML = ''
+        document.getElementById('userList').innerHTML = ''
+        console.log(userList)
         for(i=0; i<userList.length; i++) {
-        document.getElementById('userList').innerHTML += '<li>' +
-            userList[i] + '</li>'
+            document.getElementById('userList').innerHTML += '<li>' + userList[i] + '</li>'
         }
 	});
 }

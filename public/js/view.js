@@ -27,17 +27,17 @@ var setChannelView = function() {
 
 	$("#addUser").click(function(event) {
 		user = document.getElementById("userForm").value;
-		console.log(user);
 		if (user!= "") {
 			params = { user: user, channel: channel };
 			$.post("/chat/add_user", params).done(function(response) {
 				if (response.code === 0) {
 					document.getElementById("userForm").value = "";
 					displayError("");
+					getUserList()
 				}
 			});
 		}
-		getUserList();
+//		getUserList();
 		event.preventDefault();
 	});
 
