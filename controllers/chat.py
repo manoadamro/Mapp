@@ -65,7 +65,8 @@ class Chat(Controller):
         # param checks
         if 'channel' not in params:
             return self.error(message='no channel name provided')
-        if cherrypy.session['username'] not in self.channels[params['channel']].whitelist:
+
+        if '*' not in self.channels[params['channel']].whitelist and cherrypy.session['username'] not in self.channels[params['channel']].whitelist:
             return self.error(message='you do not have permission to enter this channel')
 
         # values
@@ -161,9 +162,11 @@ class Chat(Controller):
     @cherrypy.expose(alias='list')
     @cherrypy.tools.json_out()
     def channel_list(self, **_params):
-        list = [channel for channel in self.channels
-                if cherrypy.session['username'] in self.channels[channel].whitelist
-                or '*' in self.channels[channel].whitelist]
+        list = []
+        for channel in self.channels:
+            if cherrypy.session['username'] in self.channels[channel].whitelist or '*' in self.channels[channel].whitelist:
+                list.append(channel)
+
         return self.ok(data=list)
 
     @cherrypy.expose(alias='add_user')
