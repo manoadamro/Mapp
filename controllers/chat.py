@@ -20,9 +20,9 @@ class Chat(Controller):
         if 'while_list' in params:
             while_list = params['white_list']
             if cherrypy.session['username'] not in while_list:
-                while_list.append(cherrypy.session['username'])
+                while_list.append([cherrypy.session['username']])
         else:
-            while_list = '*'
+            while_list = ['*']
 
         # values
         channel_name = params['channel']
