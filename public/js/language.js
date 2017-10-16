@@ -1,7 +1,6 @@
 
 var refreshTargetLanguage = function(name) {
-	document.getElementById("targetLanguageLabel").innerHTML =
-		"Target Language: <strong>" + name + "</strong>";
+	document.getElementById("targetLanguageLabel").innerHTML = "Target Language: <strong>" + name + "</strong>";
 };
 
 function getKeyByValue(object, value) {
