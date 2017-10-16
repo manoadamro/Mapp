@@ -23,13 +23,13 @@ class Session(Controller):
     def logout(self, **_params):
         if 'username' in cherrypy.session:
             user = cherrypy.session['username']
-            self._perge_user(user)
+            self._purge_user(user)
             del cherrypy.session['username']
             return self.ok()
         else:
             return self.error(message='user not logged in')
 
-    def _perge_user(self, user):
+    def _purge_user(self, user):
         if '/chat' in cherrypy.tree.apps:
             chans = cherrypy.tree.apps['/chat'].root.channels
             for chan in chans:
