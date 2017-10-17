@@ -1,26 +1,11 @@
 describe("Channel view", function() {
 	beforeEach(function() {
-		updateLoop = function() {};
-		jqueryDone = function(func) {
-			func({
-				code: 0,
-				message: "hello",
-				data: { text: "text", author: "" }
-			});
-		};
-		$.post = function() {
-			return { done: jqueryDone };
-		};
-		$.get = function() {
-			return { done: jqueryDone };
-		};
-		//    setChannelView();
+		jQueryStub();
 	});
 
 	afterEach(function() {
 		document.getElementById("messageForm").innerHTML = "";
 		document.getElementById("messageList").innerHTML = "";
-		document.getElementById("languageForm").value = "";
 	});
 
 	describe("Sending a message", function() {
@@ -31,10 +16,9 @@ describe("Channel view", function() {
 		});
 
 		it("Target language updates when you set language", function() {
-			document.getElementById("languageForm").value = "fr";
-			setLanguage.click();
+			document.getElementById("language-af").click()
 			expect(document.getElementById("targetLanguageLabel").innerHTML).toEqual(
-				"Target Language: fr"
+				"Target Language: <strong>Afrikaans</strong>"
 			);
 		});
 	});

@@ -17,58 +17,72 @@
     <title>SpecRunner</title>
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   </head>
-
-<body class="background">
-  <div id="wrapper">
-    <div id="sidebar-wrapper">
-      <ul id="sidebar" class="sidebar-nav">
-        <li class="sidebar-brand">
-          <a href="#">GloboMessenger</a>
-        </li>
-        <li>
-          <!--<a href="#">Create Channel</a>-->
-          <form id="createChannel">
-            <input class="channelForm" type="text" placeholder="Channel name" id="channelForm">
-            <li class="addChannel" id="addChannel"><button class="createChannelButton">Create Channel</button></input>
-          </form>
-          <br />
-          <li style="color: white">Channels</li>
-          <div id="sidebar-channels"></div>
+  <body class="background" id="background">
+    <!-- <div id="html" style="display:none;"> -->
+    <div id="wrapper">
+      <div id="sidebar-wrapper">
+        <ul id="sidebar" class="sidebar-nav">
+          <li class="sidebar-brand">
+            <a href="#">GloboMessenger</a>
           </li>
-      </ul>
-    </div>
+          <li>
+            <form id="createChannel">
+              <input class="channelForm" type="text" placeholder="Channel name" id="channelForm" onkeydown="if (event.keyCode == 13) return false;" >
+              <li class="addChannel"><button id="addPublicChannel" class="createChannelButton">Create Public Channel</button></li>
+              <li class="addChannel"><button id="addPrivateChannel" class="createChannelButton">Create Private Channel</button></li>
+            </form>
+            <br />
+            <li style="color: white">Channels</li>
+            <div id="sidebar-channels"></div>
+            </li>
+        </ul>
+      </div>
 
-    <div id="page-content-wrapper">
-      <div class="container-fluid">
-        <div class="jumbotron map">
-          <h1 class="h1">GloboMessenger</h1>
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="jumbotron map">
+            <h1 class="h1">GloboMessenger</h1>
+          </div>
+          <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Channels</a>
+          <div id="currentChannel" class="currentChannel"></div>
+
+          <div class="main-page" id="page"></div>
+            <div id="userList" class="userList"></div>
+
+            <div id ="addUser" class="dropdown">
+                <button class="dropbtn">Add User</button>
+                <div id="onlineUsers" class="dropdown-content"></div>
+            </div>
+
+          <div class="center" id="error-messages"></div>
         </div>
-        <a href="#menu-toggle" class="btn btn-primary" id="menu-toggle">Channels</a>
-        <div id="currentChannel" class="currentChannel"></div>
-        <div class="main-page" id="page"></div>
-        <div class="center" id="error-messages"></div>
       </div>
     </div>
   </div>
+  </body>
+  <footer>
 
-  <!--scripts-->
-  <script src="public/js/jquery-3.2.1.js"></script>
-  <script src="public/vendor/jquery/jquery.js"></script>
-  <script src="public/vendor/popper/popper.min.js"></script>
-  <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="public/js/old/languages.js"></script>
-  <script src="public/js/error.js"></script>
-  <script src="public/js/old/elements.js"></script>
-  <script src="public/js/request.js"></script>
-  <script src="public/js/session.js"></script>
-  <script src="public/js/channel.js"></script>
-  <script src="public/js/user.js"></script>
-  <script src="public/js/render.js"></script>
-  <script src="public/js/helperMEthods.js"></script>
+    <!--scripts-->
+    <script src="public/js/jquery-3.2.1.js"></script>
+    <script src="public/vendor/jquery/jquery.js"></script>
+    <script src="public/vendor/popper/popper.min.js"></script>
+    <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="public/js/error.js"></script>
+    <script src="public/js/languages.js"></script>
+    <script src="public/js/language.js"></script>
+    <script src="public/js/request.js"></script>
+    <script src="public/js/session.js"></script>
+    <script src="public/js/channel.js"></script>
+    <script src="public/js/user.js"></script>
+    <script src="public/js/messages.js"></script>
+    <script src="public/js/sideBar.js"></script>
+    <script src="public/js/loginForm.js"></script>
+    <script src="public/js/render.js"></script>
 
-  <!-- include spec files here... -->
-  <script src="spec/LoginViewSpec.js"></script>
-  <script src="spec/ChannelViewSpec.js"></script>
-
-
+    <!-- include spec files here... -->
+    <script src="spec/helperSpec.js"></script>
+    <script src="spec/LoginViewSpec.js"></script>
+    <script src="spec/ChannelViewSpec.js"></script>
+    <script src="spec/ErrorSpec.js"></script>
+  </footer>
 </html>
