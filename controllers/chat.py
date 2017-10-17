@@ -142,3 +142,17 @@ class Chat(Controller):
 
         return self.ok(data=self.channels[params['channel']].white_list)
 
+    @cherrypy.expose(alias='add_to_whitelist')
+    @cherrypy.tools.json_out()
+    def add_to_whitelist(self, **params):
+        if 'username' not in params:
+            return self.error(message='no username provided')
+        elif 'channel' not in params:
+            return self.error(message='no channel name provided')
+
+        chan = self.channels[params['channel']]
+        if params['username'] not in chan.white_list:
+            chan.white_list.append(params['username'])
+            return self.ok()
+        else:
+            return self.error(message='user is already in whitelist')
