@@ -11,9 +11,6 @@ class Channel:
         self.creator = creator
         self.created_at = time()
 
-        self.sentiment_analyzer = Sentiment()
-        self.total_sentiment = 0
-
     def add_user(self, uid):
         self.user_log.append(uid)
 
