@@ -21,7 +21,7 @@ $ python3 mapp.py
 Run the unit test folder using ```$ bash test ``` in the terminal.
 To run the feature tests open SpecRunner.html in the browser.
 
-To test coverage run: ````--cov=.``` tests/ in the terminal.
+To test coverage run: ````--cov=. tests/``` in the terminal.
 
 ## Features
 
