@@ -83,7 +83,6 @@
 		'<button class="btn btn-danger" id="logout">Log Out</button>' +
 		"</form>";
 	}
-
 	exports.Channels = Channels;
 
 })(this);

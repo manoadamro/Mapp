@@ -25,8 +25,14 @@ var renderChannelView = function(){
 
 	var sideBar = new SideBar(user, channels, messages);
 	sideBar.render();
-
 	channels.getWhiteList(user.channel, function(response) {
+        userlist = document.getElementById('userList')
+        userList.innerHTML = ''
+        for(i=0; i<response.length; i++) {
+            userList.innerHTML += '<li>' +
+            response[i] +
+            '</li>'
+        }
 	})
 
 	document.getElementById('menu-toggle').style.display = 'initial'
