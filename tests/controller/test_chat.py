@@ -11,8 +11,9 @@ class TestMessage(TestCase):
         chat.new_channel(channel='Ducks')
         self.assertEqual('Ducks' in chat.channels, True)
 
-    def test_delete_channel(self):
+    def test_delete1_channel(self):
         chat = Chat()
+        print("\n\n\n\n\nTEST DELETE1 CHANNEL\n\n\n\n\n\n")
         cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
         self.assertEqual(chat.channels['Ducks'].creator, 'George')
@@ -30,6 +31,7 @@ class TestMessage(TestCase):
 
     def test_join_channel(self):
         chat = Chat()
+        print("\n\n\n\n\nTEST JOIN CHANNEL\n\n\n\n\n\n")
 
         cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
@@ -41,9 +43,9 @@ class TestMessage(TestCase):
         response = chat.join_channel(channel='Ducks')
         self.assertEqual(response['code'], 0)
 
-    def delete_channel(self):
+    def test_delete_channel(self):
         chat = Chat()
-
+        print("\n\n\n\n\nTEST DELETE CHANNEL\n\n\n\n\n\n")
         cherrypy.session = {'username': 'George', 'language': 'en'}
         chat.new_channel(channel='Ducks')
 
