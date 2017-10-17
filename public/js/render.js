@@ -26,6 +26,10 @@ var renderChannelView = function(){
 	var sideBar = new SideBar(user, channels, messages);
 	sideBar.render();
 
+	channels.renderWhiteList(user.channel, function(response) {
+	console.log(response)
+	})
+
 	document.getElementById('menu-toggle').style.display = 'initial'
 		
 	$("#logout").click(function(event) {

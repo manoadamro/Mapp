@@ -6,6 +6,7 @@
 	var CHANNEL_DATA_ROUTE = '/chat/list'
 	var ADD_MESSAGE_ROUTE = '/chat/message'
 	var CHANNEL_MESSAGES_ROUTE = '/chat/update'
+	var CHANNEL_WHITELIST_ROUTE = '/chat/whitelist'
 
 	var Channels = function(){
 		this.channelList = {};
@@ -41,6 +42,14 @@
 		var request = getRequest(CHANNEL_DATA_ROUTE);
 		request.execute(params, callback);
 	}
+
+	Channels.prototype.renderWhiteList = function(name, callback) {
+	var params = {
+			channel: name,
+		}
+		var request = getRequest(CHANNEL_WHITELIST_ROUTE);
+		request.execute(params, callback);
+	};
 
 	Channels.prototype.newMessage = function(message, channel, callback) {
 		var params = {
