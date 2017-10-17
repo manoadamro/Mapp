@@ -63,11 +63,9 @@
 
 		$("#addPublicChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
+			if(channelName.length === 0){ return; }
 			sideBar.channels.add(channelName, '*', function(response){
 				if(user !== null) {
-//					user.joinChannel(channelName, function(response){
-//						renderChannelView(user.channel);
-//					})
 					sideBar.channels.update(function(response){
 						sideBar.renderChannelList(response);
 					})
@@ -79,11 +77,9 @@
 
 		$("#addPrivateChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
+			if(channelName.length === 0){ return; }
 			sideBar.channels.add(channelName, user.name, function(response){
 				if(user !== null) {
-//					user.joinChannel(channelName, function(response){
-//						renderChannelView(user.channel);
-//					})
 					sideBar.channels.update(function(response){
 						sideBar.renderChannelList(response);
 					})			
