@@ -6,7 +6,7 @@
 	}
 
 	LoginForm.prototype.login = function(){
-		var username = document.getElementById("usernameForm").value.replace(' ', '_');
+		var username = document.getElementById("usernameForm").value.replace(new RegExp(" ", "g"), '_');
 		if (username.length === 0){
 			errors.append('Username can not be empty')
 			errors.render();
