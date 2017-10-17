@@ -140,5 +140,5 @@ class Chat(Controller):
         if 'channel' not in params:
             return self.error(message='no channel name provided')
 
-        return self.channels[params['channel']].white_list
+        return self.ok(data=self.channels[params['channel']].white_list)
 
