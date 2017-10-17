@@ -15,6 +15,7 @@ $ cd Mapp
 $ bash install
 $ python3 mapp.py
 ```
+To run the server use ```bash start``` and access in your browser on http://localhost:8080/
 
 ## Testing
 
