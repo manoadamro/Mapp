@@ -1,9 +1,11 @@
 describe("element", function() {
   beforeEach(function() {
-    message = new Message
+    message = new Messages
+    error = new ErrorLog()
   });
 
   describe("formats message in a span", function() {
 
+    expect(error.format).toEq('')
   })
 });
