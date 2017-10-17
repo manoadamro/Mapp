@@ -63,33 +63,31 @@
 
 		$("#addPublicChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
-			sideBar.channels.add(channelName, '*', function(response){
-				if(user !== null) {
-//					user.joinChannel(channelName, function(response){
-//						renderChannelView(user.channel);
-//					})
-					sideBar.channels.update(function(response){
-						sideBar.renderChannelList(response);
-					})
-				}
-			})
-			document.getElementById("channelForm").value = "";
+			if(channelName.length !== 0){
+                sideBar.channels.add(channelName, '*', function(response){
+                    if(user !== null) {
+                        sideBar.channels.update(function(response){
+                            sideBar.renderChannelList(response);
+                        })
+                    }
+                })
+                document.getElementById("channelForm").value = "";
+			}
 			event.preventDefault();
 		});
 
 		$("#addPrivateChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
-			sideBar.channels.add(channelName, user.name, function(response){
-				if(user !== null) {
-//					user.joinChannel(channelName, function(response){
-//						renderChannelView(user.channel);
-//					})
-					sideBar.channels.update(function(response){
-						sideBar.renderChannelList(response);
-					})			
-				}
-			})
-			document.getElementById("channelForm").value = "";
+			if(channelName.length !== 0){
+                sideBar.channels.add(channelName, user.name, function(response){
+                    if(user !== null) {
+                        sideBar.channels.update(function(response){
+                            sideBar.renderChannelList(response);
+                        })
+                    }
+                })
+                document.getElementById("channelForm").value = "";
+			}
 			event.preventDefault();
 		});
 
