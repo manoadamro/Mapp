@@ -7,13 +7,34 @@
 		this.messages = messages;
 	}
 
+    var renderWhiteList = function(channels, user){
+    	channels.getWhiteList(user.channel, function(response) {
+            userlist = document.getElementById('userList')
+            userList.innerHTML = ''
+            console.log(response[0])
+            if (response[0] != '*') {
+                for(i=0; i<response.length; i++) {
+                    userList.innerHTML += '<li>' +
+                    response[i] +
+                    '</li>'
+                }
+                document.getElementById('addUser').style.display = 'initial'
+            } else {
+                userList.innerHTML += 'Public Channel';
+                document.getElementById('addUser').style.display = 'none'
+            }
+        })
+    }
+
 	var switchChannel = function(channelName) {
-		user = this.user;
-		messages = this.messages
+		var user = this.user;
+		var messages = this.messages;
 		if (channelName !== user.channel) {
 			user.leaveChannel(user.channel, function(response){
 				messages.clear();
-				user.joinChannel(channelName, null)
+				user.joinChannel(channelName, function(response){
+				    renderWhiteList(messages.channels, user);
+				})
 			})
 		}
 	}
@@ -44,9 +65,9 @@
 			var channelName = document.getElementById("channelForm").value;
 			sideBar.channels.add(channelName, '*', function(response){
 				if(user !== null) {
-					user.joinChannel(channelName, function(response){
-						renderChannelView(user.channel);
-					})
+//					user.joinChannel(channelName, function(response){
+//						renderChannelView(user.channel);
+//					})
 					sideBar.channels.update(function(response){
 						sideBar.renderChannelList(response);
 					})
@@ -60,9 +81,9 @@
 			var channelName = document.getElementById("channelForm").value;
 			sideBar.channels.add(channelName, user.name, function(response){
 				if(user !== null) {
-					user.joinChannel(channelName, function(response){
-						renderChannelView(user.channel);
-					})
+//					user.joinChannel(channelName, function(response){
+//						renderChannelView(user.channel);
+//					})
 					sideBar.channels.update(function(response){
 						sideBar.renderChannelList(response);
 					})			

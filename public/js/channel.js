@@ -6,6 +6,7 @@
 	var CHANNEL_DATA_ROUTE = '/chat/list'
 	var ADD_MESSAGE_ROUTE = '/chat/message'
 	var CHANNEL_MESSAGES_ROUTE = '/chat/update'
+	var CHANNEL_WHITELIST_ROUTE = '/chat/whitelist'
 
 	var Channels = function(){
 		this.channelList = {};
@@ -42,6 +43,14 @@
 		request.execute(params, callback);
 	}
 
+	Channels.prototype.getWhiteList = function(name, callback) {
+	var params = {
+			channel: name,
+		}
+		var request = getRequest(CHANNEL_WHITELIST_ROUTE);
+		request.execute(params, callback);
+	};
+
 	Channels.prototype.newMessage = function(message, channel, callback) {
 		var params = {
 			message: message,
@@ -74,7 +83,6 @@
 		'<button class="btn btn-danger" id="logout">Log Out</button>' +
 		"</form>";
 	}
-
 	exports.Channels = Channels;
 
 })(this);

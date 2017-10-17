@@ -24,6 +24,8 @@
 			if(callback !== undefined && callback !== null) {
 				callback(response);
 			}
+		document.getElementById('currentChannel').innerHTML =
+		'You are currently in ' + user.channel
 		});
 	};
 
