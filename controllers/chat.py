@@ -94,7 +94,8 @@ class Chat(Controller):
         if channel_name not in self.channels:
             return self.error(message='channel does not exist')
 
-        self.channels[channel_name].add_message(text=message, author=user)
+        self.channels[channel_name].add_message(
+            text=message, author=user, channel=channel_name)
         return self.ok()
 
     @cherrypy.expose(alias='update')
@@ -110,13 +111,15 @@ class Chat(Controller):
         if channel_name not in self.channels:
             return self.error(message='channel does not exist')
 
-        data = self.channels[channel_name].get_messages(index)
+        data = self.channels[channel_name].get_messages(
+            channel=channel_name, index=index)
 
         target_language = cherrypy.session['language']
 
         for message in data:
-            message['text'] = self.translator.translate_text(
-                message['text'], target_language)
+            message = list(message)
+            message[1] = self.translator.translate_text(
+                message[1], target_language)
 
         return self.ok(data=data)
 

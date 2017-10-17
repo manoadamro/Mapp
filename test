@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 python3 -m unittest discover -s . -p 'test_*.py'
-rm db/messenger.db
+rm db/*

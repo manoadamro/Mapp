@@ -6,7 +6,10 @@ var getUpdates = function() {
 		var parsedMessages = response.data;
 		if (parsedMessages.length > 0) {
 			renderMessages(parsedMessages);
-			index = parsedMessages[parsedMessages.length - 1].index;
+			console.log(parsedMessages);
+			console.log(parsedMessages.length);
+			index = parsedMessages[parsedMessages.length - 1];
+			console.log(index);
 		}
 		updateLoop();
 	});
@@ -18,10 +21,10 @@ var renderMessages = function(data) {
 		htmlString +=
 			'<span class="message">' +
 			'<span class="author">' +
-			data[i].author +
+			data[i][2] +
 			"</span>" +
 			": " +
-			data[i].text +
+			data[i][1] +
 			"<br/>" +
 			"</span>";
 	}

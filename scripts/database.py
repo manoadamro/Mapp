@@ -1,29 +1,35 @@
 import sqlite3
 import datetime
 
-conn = sqlite3.connect('./db/messenger.db', check_same_thread=False)
+conn = sqlite3.connect('./db/messages.db', check_same_thread=False)
 c = conn.cursor()
 
 
 class DatabaseController:
 
-    def create_table(self):
+    def create_table(self, table):
         c.execute(
-            'CREATE TABLE IF NOT EXISTS chatMessages(datestamp TEXT, message TEXT, author TEXT)')
+            'CREATE TABLE IF NOT EXISTS {}(datestamp TEXT, message TEXT, author TEXT)'.format(table))
 
-    def add_message(self, message, author):
-        self.create_table()
+    def add_message(self, message, author, table):
+        self.create_table(table)
         today = datetime.datetime.now()
         c.execute(
-            "INSERT INTO chatMessages VALUES(?, ?, ?)", (today, message, author))
+            "INSERT INTO {} VALUES(?, ?, ?)".format(table), (today, message, author,))
         conn.commit()
-        self.get_all_messages()
+        self.get_all_messages(table)
 
-    def get_all_messages(self):
+    def print_all_messages(self, table):
         with conn:
-            c.execute("SELECT * FROM chatMessages")
+            c.execute("SELECT * FROM {}".format(table))
             for row in c.fetchall():
                 print(row)
+
+    def get_all_messages(self, table):
+        str = ''
+        with conn:
+            c.execute("SELECT * FROM {}".format(table))
+            return c.fetchall()
 
     def delete_message(self, message):
         with conn:
@@ -37,9 +43,6 @@ class DatabaseController:
         with conn:
             c.execute(
                 "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
-
-
-DatabaseController().create_table()
 
 # c.close()
 # conn.close()

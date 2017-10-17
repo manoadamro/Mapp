@@ -8,19 +8,22 @@ class MessageLog:
         self.message_list = []
         self.db = DatabaseController()
 
-    def add_message(self, author, text):
-        print("text is %s" % text)
-        print("author is %s" % author)
+    def add_message(self, author, text, channel='global'):
         message = self._new_message(text=text, author=author)
-        self.db.add_message(message=text, author=author)
+        self.db.add_message(message=text, author=author, table=channel)
         self.message_list.append(message)
 
-    def get_messages(self, index):
+    def get_messages(self, channel, index=0):
+        messages = self.db.get_all_messages(table=channel)
+        print("\n\n\n\n\n")
+        print(messages)
+        print("\n\n\n\n\n")
         if len(self.message_list) > index:
             next_index = index + 1
             return self.message_list[next_index:]
         else:
             return []
+        return
 
     def _new_message(self, text, author):
         length = len(self.message_list)
