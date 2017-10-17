@@ -1,8 +1,9 @@
 
 (function(exports){
 
-	var Messages = function(user){
+	var Messages = function(user, channels){
 		this.user = user;
+		this.channels = channels;
 	}
 
 	Messages.prototype.clear = function() {
@@ -28,7 +29,7 @@
 	Messages.prototype.loop = function(){
 		messages = this;
 		if(user.channel !== null){
-			channels.messages(user.channel, language.languageCode, user.messageIndex, function(response){
+			messages.channels.messages(user.channel, language.languageCode, user.messageIndex, function(response){
 				user.messageIndex += response.length;
 				messages.renderMessages(response);
 				setTimeout(function() {
@@ -43,10 +44,11 @@
 	}
 
 	Messages.prototype.render = function() {
+		messages = this;
 		$("#send").click(function(event) {
 			var message = document.getElementById("messageForm").value;
 			if(user !== null){
-				channels.newMessage(message, user.channel, function(response){
+				messages.channels.newMessage(message, user.channel, function(response){
 					document.getElementById("messageForm").value = "";
 				})
 			}

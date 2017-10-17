@@ -1,6 +1,5 @@
 
 var DEFAULT_CHANNEL_NAME = 'global'
-var channels = new Channels();
 var user = null;
 
 
@@ -8,24 +7,26 @@ var renderLogInView = function(){
 
 	session.logOut(null);
 
-	// hide channels button
-	
+	document.getElementById('menu-toggle').style.display = 'none'
+
 	var loginForm = new LoginForm(user);
 	loginForm.render("page");
 }
 
 var renderChannelView = function(){
 
+	var channels = new Channels();
+
 	var pageHtml = language.languageListHtml() + channels.channelHtml();
 	document.getElementById("page").innerHTML = pageHtml;
 
-	var messages = new Messages();
+	var messages = new Messages(user, channels);
 	messages.render();
 
 	var sideBar = new SideBar(user, channels, messages);
 	sideBar.render();
 
-	// show channels button
+	document.getElementById('menu-toggle').style.display = 'initial'
 		
 	$("#logout").click(function(event) {
 		session.logOut(function(response){
