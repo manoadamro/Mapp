@@ -121,8 +121,8 @@ class Chat(Controller):
 
         data = self.channels[channel_name].get_messages(index)
 
-        # for message in data:
-        #     message['text'] = self.translator.translate_text(message['text'], params['language'])
+        for message in data:
+            message['text'] = self.translator.translate_text(message['text'], params['language'])
 
         return self.ok(data=data)
 
