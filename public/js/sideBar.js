@@ -11,10 +11,15 @@
     	channels.getWhiteList(user.channel, function(response) {
             userlist = document.getElementById('userList')
             userList.innerHTML = ''
-            for(i=0; i<response.length; i++) {
-                userList.innerHTML += '<li>' +
-                response[i] +
-                '</li>'
+            console.log(response[0])
+            if (response[0] != '*') {
+                for(i=0; i<response.length; i++) {
+                    userList.innerHTML += '<li>' +
+                    response[i] +
+                    '</li>'
+                }
+            } else {
+                userList.innerHTML += 'Public Channel';
             }
         })
     }
