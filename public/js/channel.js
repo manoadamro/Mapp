@@ -62,7 +62,7 @@
 	};
 
 
-	Channels.prototype.messageListHTML = function(){
+	Channels.prototype.channelHtml = function(){
 		return '<div id="messageList" class="message-list"></div>' +
 		'<form class="message-form">' +
 		'<input class="text-box" type="text" type="textarea" id="messageForm"></input>' +
@@ -75,7 +75,7 @@
 		"</form>";
 	}
 
-	exports.channels = new Channels();
+	exports.Channels = Channels;
 
 })(this);
 

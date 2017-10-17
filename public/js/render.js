@@ -1,142 +1,40 @@
 
 var DEFAULT_CHANNEL_NAME = 'global'
+var channels = new Channels();
 var user = null;
 
 
 var renderLogInView = function(){
+
 	session.logOut(null);
+
+	// hide channels button
+	
 	var loginForm = new LoginForm(user);
 	loginForm.render("page");
 }
 
 var renderChannelView = function(){
 
-	var setTriggers = function(){
-		$("#send").click(function(event) {
-			var message = document.getElementById("messageForm").value;
-			if(user !== null){
-				channels.newMessage(message, user.channel, function(response){
-					document.getElementById("messageForm").value = "";
-				})
-			}
-			event.preventDefault();
-		});
+	var pageHtml = language.languageListHtml() + channels.channelHtml();
+	document.getElementById("page").innerHTML = pageHtml;
 
-		$("#logout").click(function(event) {
-			session.logOut(function(response){
-				user = null;
-				renderLogInView();
-			})
-		});
+	var messages = new Messages();
+	messages.render();
 
-		$("#menu-toggle").click(function(event) {
-			channels.update(function(response){
-				renderChannelList(response);
-				$("#wrapper").toggleClass("toggled");
-			})
-			event.preventDefault();
-		});
+	var sideBar = new SideBar(user, channels, messages);
+	sideBar.render();
 
-		$("#addPublicChannel").click(function(event) {
-			var channelName = document.getElementById("channelForm").value;
-			channels.add(channelName, '*', function(response){
-				if(user !== null) {
-					user.joinChannel(channelName, function(response){
-						renderChannelView(user.channel);
-					})
-					channels.update(function(response){
-						renderChannelList(response);
-					})
-				}
-			})
-			document.getElementById("channelForm").value = "";
-			event.preventDefault();
-		});
-
-		$("#addPrivateChannel").click(function(event) {
-			var channelName = document.getElementById("channelForm").value;
-			channels.add(channelName, user.name, function(response){
-				if(user !== null) {
-					user.joinChannel(channelName, function(response){
-						renderChannelView(user.channel);
-					})
-					channels.update(function(response){
-						renderChannelList(response);
-					})			}
-			})
-			document.getElementById("channelForm").value = "";
-			event.preventDefault();
-		});
-
-		$("#deleteChannel").click(function(event) {
-			if(user !== null) {
-				var channelName = user.channel;
-				channels.remove(channelName, function(response){
-					user.join(DEFAULT_CHANNEL_NAME, function(response){
-						renderChannelView(user.channel);	
-					})
-				})
-			}	
-			event.preventDefault();
-		});
-	}
-
-	document.getElementById("page").innerHTML = language.languageListHtml() + channels.messageListHTML();
-	setTriggers()
-	messageLoop();
-}
-
-var messageLoop = function(){
-	if(user.channel !== null){
-		channels.messages(user.channel, language.languageCode, user.messageIndex, function(response){
-			user.messageIndex += response.length;
-			renderMessages(response);
-			setTimeout(function() {
-				messageLoop();
-			}, 1000);
+	// show channels button
+		
+	$("#logout").click(function(event) {
+		session.logOut(function(response){
+			user = null;
+			renderLogInView();
 		})
-	} else {
-		setTimeout(function() {
-			messageLoop();
-		}, 1000);	
-	}
+	});
+
+	messages.loop();
 }
 
-var renderMessages = function(data){
-	var htmlString = "";
-	for (i = 0; i < data.length; i++) {
-		htmlString +=
-			'<span class="message">' +
-			'<span class="author">' +
-			data[i].author +
-			"</span>" +
-			": " +
-			data[i].text +
-			"<br/>" +
-			"</span>";
-	}
-	document.getElementById("messageList").innerHTML += htmlString;
-}
-
-var clearMessages = function(){
-	document.getElementById("messageList").innerHTML = '';
-}
-
-var switchChannel = function(channelName) {
-	user.leaveChannel(user.channel, function(response){
-		clearMessages();
-		user.joinChannel(channelName, null)
-	})
-}
-
-var renderChannelList = function(channelList){
-
-	var sideBarChans = document.getElementById('sidebar-channels')
-    sideBarChans.innerHTML = ''
-    for(i=0; i<channelList.length; i++) {
-	    sideBarChans.innerHTML += '<li>' +
-	    '<a href=javascript:switchChannel("' + channelList[i] + '") >' +
-	    channelList[i] + '</a>' +
-	    '</li>'
-    }
-}
+renderLogInView();
