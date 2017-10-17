@@ -145,12 +145,17 @@ class Chat(Controller):
     @cherrypy.expose(alias='add_to_whitelist')
     @cherrypy.tools.json_out()
     def add_to_whitelist(self, **params):
+
         if 'username' not in params:
             return self.error(message='no username provided')
         elif 'channel' not in params:
             return self.error(message='no channel name provided')
 
         chan = self.channels[params['channel']]
+        if 'username' not in cherrypy.session or cherrypy.session['username'] not in chan.white_list:
+            return self.error(message='you do not have permission to edit this whitelist')
+
+
         if params['username'] not in chan.white_list:
             chan.white_list.append(params['username'])
             return self.ok()
