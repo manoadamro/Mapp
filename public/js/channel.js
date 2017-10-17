@@ -43,7 +43,7 @@
 		request.execute(params, callback);
 	}
 
-	Channels.prototype.renderWhiteList = function(name, callback) {
+	Channels.prototype.getWhiteList = function(name, callback) {
 	var params = {
 			channel: name,
 		}

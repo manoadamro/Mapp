@@ -26,8 +26,7 @@ var renderChannelView = function(){
 	var sideBar = new SideBar(user, channels, messages);
 	sideBar.render();
 
-	channels.renderWhiteList(user.channel, function(response) {
-	console.log(response)
+	channels.getWhiteList(user.channel, function(response) {
 	})
 
 	document.getElementById('menu-toggle').style.display = 'initial'
