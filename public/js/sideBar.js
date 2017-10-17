@@ -18,8 +18,10 @@
                     response[i] +
                     '</li>'
                 }
+                document.getElementById('addUser').style.display = 'initial'
             } else {
                 userList.innerHTML += 'Public Channel';
+                document.getElementById('addUser').style.display = 'none'
             }
         })
     }
