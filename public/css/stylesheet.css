@@ -76,8 +76,16 @@
 }
 
 .message {
+    display:block
 	margin: 30px;
 }
+
+.time {
+    display:block;
+    float:right;
+    width:50%;
+    margin-left:10px;
+    }
 
 .message-list {
 	max-height: 300px;

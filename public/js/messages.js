@@ -20,11 +20,14 @@
 				"</span>" +
 				": " +
 				data[i].text +
+        '<span class="time">' +
+			  data[i].timestamp +
+			  "</span>" +
 				"<br/>" +
 				"</span>";
 		}
 		document.getElementById("messageList").innerHTML += htmlString;
-	}
+  };
 
 	Messages.prototype.loop = function(){
 		messages = this;
