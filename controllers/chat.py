@@ -1,6 +1,7 @@
 import cherrypy
 from scripts.channel import Channel
 from scripts.controller import Controller
+from scripts.database import DatabaseController
 from scripts.translator import Translator
 
 
@@ -8,6 +9,7 @@ class Chat(Controller):
     def __init__(self):
         self.channels = {'global': Channel('global', 'system')}
         self.translator = Translator()
+        self.db = DatabaseController()
 
     @cherrypy.expose(alias='create')
     @cherrypy.tools.json_out()
@@ -25,6 +27,8 @@ class Chat(Controller):
             return self.error(message='Channel name already exists')
 
         self.channels[channel_name] = channel
+        self.db.create_table(channel_name)
+
         return self.ok()
 
     @cherrypy.expose(alias='delete')

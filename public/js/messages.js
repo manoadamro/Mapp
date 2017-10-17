@@ -6,10 +6,7 @@ var getUpdates = function() {
 		var parsedMessages = response.data;
 		if (parsedMessages.length > 0) {
 			renderMessages(parsedMessages);
-			console.log(parsedMessages);
-			console.log(parsedMessages.length);
-			index = parsedMessages[parsedMessages.length - 1];
-			console.log(index);
+			index = parsedMessages.length + index;
 		}
 		updateLoop();
 	});

@@ -13,14 +13,11 @@ class MessageLog:
         self.db.add_message(message=text, author=author, table=channel)
         self.message_list.append(message)
 
-    def get_messages(self, channel, index=0):
+    def get_messages(self, channel, index):
         messages = self.db.get_all_messages(table=channel)
-        print("\n\n\n\n\n")
-        print(messages)
-        print("\n\n\n\n\n")
-        if len(self.message_list) > index:
+        if len(messages) > index:
             next_index = index + 1
-            return self.message_list[next_index:]
+            return messages[next_index:]
         else:
             return []
         return

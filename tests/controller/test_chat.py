@@ -75,4 +75,3 @@ class TestMessage(TestCase):
 
         response = chat.get_updates(channel='global', index=4)
         self.assertEqual(len(response['data']), 5)
-        self.assertEqual(response['data'][0]['index'], 5)
