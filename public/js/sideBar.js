@@ -63,7 +63,7 @@
 
 		$("#addPublicChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
-			if(channelName.length === 0){
+			if(channelName.length !== 0){
                 sideBar.channels.add(channelName, '*', function(response){
                     if(user !== null) {
                         sideBar.channels.update(function(response){
