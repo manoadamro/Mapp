@@ -18,7 +18,6 @@
 		string = "";
 		var request = getRequest("/session/user_list");
 		request.execute({}, function(response) {
-			console.log(response);
 			for (i = 0; i < response.length; i++) {
 				user = response[i];
 				string +=
@@ -53,9 +52,9 @@
 		var user = this.user;
 		var messages = this.messages;
 		if (channelName !== user.channel) {
-			user.leaveChannel(user.channel, function(response) {
+			user.leaveChannel(user.channel, function() {
 				messages.loadMessagesStr();
-				user.joinChannel(channelName, function(response) {
+				user.joinChannel(channelName, function() {
 					renderWhiteList(messages.channels, user);
 				});
 			});
@@ -124,8 +123,8 @@
 		$("#deleteChannel").click(function(event) {
 			if (user !== null) {
 				var channelName = user.channel;
-				sideBar.channels.remove(channelName, function(response) {
-					user.join(DEFAULT_CHANNEL_NAME, function(response) {
+				sideBar.channels.remove(channelName, function() {
+					user.join(DEFAULT_CHANNEL_NAME, function() {
 						renderChannelView(user.channel);
 					});
 				});

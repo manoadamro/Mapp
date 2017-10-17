@@ -73,7 +73,7 @@
 		$("#send").click(function(event) {
 			var message = document.getElementById("messageForm").value;
 			if (user !== null) {
-				messages.channels.newMessage(message, user.channel, function(response) {
+				messages.channels.newMessage(message, user.channel, function() {
 					document.getElementById("messageForm").value = "";
 				});
 			}

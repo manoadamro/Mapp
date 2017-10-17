@@ -1,10 +1,7 @@
-
 var DEFAULT_CHANNEL_NAME = "global";
 var user = null;
 
-
-var renderLogInView = function(){
-
+var renderLogInView = function() {
 	session.logOut(null);
 
 	document.getElementById("menu-toggle").style.display = "none";
@@ -14,8 +11,7 @@ var renderLogInView = function(){
 	loginForm.render("page");
 };
 
-var renderChannelView = function(){
-
+var renderChannelView = function() {
 	var channels = new Channels();
 
 	var pageHtml = language.languageListHtml() + channels.channelHtml();
@@ -29,8 +25,8 @@ var renderChannelView = function(){
 
 	document.getElementById("menu-toggle").style.display = "initial";
 
-	$("#logout").click(function(event) {
-		session.logOut(function(response){
+	$("#logout").click(function() {
+		session.logOut(function() {
 			user = null;
 			renderLogInView();
 		});

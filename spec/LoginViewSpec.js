@@ -5,7 +5,7 @@ describe("Login view", function() {
 			func({
 				code: 0,
 				message: "hello",
-				data: { text: "text", author: "" }
+				data: { text: "text", author: "", timestamp: "13:50" }
 			});
 		};
 		$.post = function() {
@@ -14,7 +14,7 @@ describe("Login view", function() {
 		$.get = function() {
 			return { done: jqueryDone };
 		};
-		setLogInView();
+		renderLogInView();
 		loginButton = document.getElementById("login");
 	});
 

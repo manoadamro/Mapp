@@ -1,21 +1,16 @@
-
-
-(function(exports){
-
-	var Request = function(method, route){
+(function(exports) {
+	var Request = function(method, route) {
 		this.method = method;
 		this.route = route;
 	};
 
 	Request.prototype.execute = function(params, callback) {
-		this.method(this.route, params).done(function(response){
-			if (response.code == 0){
-				if(callback !== null && callback !== undefined) {
+		this.method(this.route, params).done(function(response) {
+			if (response.code == 0) {
+				if (callback !== null && callback !== undefined) {
 					callback(response.data);
 				}
-			}
-			else {
-				console.log(response.message);
+			} else {
 				errors.append(response.message);
 				errors.render();
 			}
@@ -34,5 +29,4 @@
 
 	exports.postRequest = postRequest;
 	exports.getRequest = getRequest;
-
 })(this);

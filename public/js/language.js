@@ -1,8 +1,7 @@
-(function(exports){
-
+(function(exports) {
 	DEFAULT_LANGUAGE = "en";
 
-	var Language = function(){
+	var Language = function() {
 		this.languageCode = DEFAULT_LANGUAGE;
 		this.languageString = getKeyByValue(LANGUAGES, DEFAULT_LANGUAGE);
 	};
@@ -20,26 +19,39 @@
 		var fullLanguage = getKeyByValue(LANGUAGES, language);
 		this.languageCode = language;
 		this.languageString = fullLanguage;
-		document.getElementById("targetLanguageLabel").innerHTML = this.targetLanguageHTML();
+		document.getElementById(
+			"targetLanguageLabel"
+		).innerHTML = this.targetLanguageHTML();
 	};
 
 	Language.prototype.generateLanguageList = function() {
 		var str = "";
 		Object.keys(LANGUAGES).forEach(function(key) {
 			var value = LANGUAGES[key];
-			str += "<a href=" + "javascript:language.changeLanguage(\"" + value + "\")>" + key + "</a>";
+			str +=
+				"<a href=" +
+				"javascript:language.changeLanguage(\"" +
+				value +
+				"\")>" +
+				key +
+				"</a>";
 		});
 		return str;
 	};
 
 	Language.prototype.languageListHtml = function() {
-		return "<p id=\"targetLanguageLabel\">" + this.targetLanguageHTML() + "</p>" +
-		"<div class=\"dropdown\">" +
-		    "<button class=\"dropbtn\">Languages</button>" +
-		    "<div class=\"dropdown-content\">" + this.generateLanguageList() + "</div>" +
-		"</div>";
+		return (
+			"<p id=\"targetLanguageLabel\">" +
+			this.targetLanguageHTML() +
+			"</p>" +
+			"<div class=\"dropdown\">" +
+			"<button class=\"dropbtn\">Languages</button>" +
+			"<div class=\"dropdown-content\">" +
+			this.generateLanguageList() +
+			"</div>" +
+			"</div>"
+		);
 	};
 
 	exports.language = new Language();
-	
 })(this);

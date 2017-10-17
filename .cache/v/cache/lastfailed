@@ -1,0 +1,8 @@
+{
+  "tests/controller/test_chat.py::TestMessage::test_delete_channel": true,
+  "tests/controller/test_chat.py::TestMessage::test_get_updates": true,
+  "tests/controller/test_chat.py::TestMessage::test_join_channel": true,
+  "tests/controller/test_chat.py::TestMessage::test_new_channel": true,
+  "tests/controller/test_session.py::TestSession::test_logout": true,
+  "tests/scripts/test_messageLog.py::TestMessageLog::test_message_added_to_db": true
+}
