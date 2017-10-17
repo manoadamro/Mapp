@@ -29,7 +29,7 @@ class Session(Controller):
             del cherrypy.session['username']
         return self.ok()
 
-    @cherrypy.expose(alias='users')
+    @cherrypy.expose(alias='user_list')
     @cherrypy.tools.json_out()
     def users(self, **_params):
         return self.ok(data=self.users)

@@ -77,8 +77,6 @@ class Chat(Controller):
         if 'channel' not in params:
             return self.error(message='no channel name provided')
 
-        print(params)
-
         channel_name = params['channel']
         user = cherrypy.session['username']
 
@@ -139,7 +137,6 @@ class Chat(Controller):
                 message[1], target_language)
             new_list.append(message)
 
-        print(new_list)
         return self.ok(data=new_list)
 
     @cherrypy.expose(alias='list')
@@ -170,7 +167,6 @@ class Chat(Controller):
         chan = self.channels[params['channel']]
         if 'username' not in cherrypy.session or cherrypy.session['username'] not in chan.white_list:
             return self.error(message='you do not have permission to edit this whitelist')
-
 
         if params['username'] not in chan.white_list:
             chan.white_list.append(params['username'])
