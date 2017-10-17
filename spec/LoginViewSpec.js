@@ -1,19 +1,6 @@
 describe("Login view", function() {
 	beforeEach(function() {
-		updateLoop = function() {};
-		jqueryDone = function(func) {
-			func({
-				code: 0,
-				message: "hello",
-				data: { text: "text", author: "", timestamp: "13:50" }
-			});
-		};
-		$.post = function() {
-			return { done: jqueryDone };
-		};
-		$.get = function() {
-			return { done: jqueryDone };
-		};
+		jQueryStub();
 		renderLogInView();
 		loginButton = document.getElementById("login");
 	});

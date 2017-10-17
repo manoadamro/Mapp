@@ -38,5 +38,3 @@ var renderChannelView = function(){
 
 	messages.loop();
 }
-
-renderLogInView();
