@@ -78,12 +78,13 @@
 .message {
 	display: block;
 	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .time {
 	display: block;
 	float: right;
-	width: 15%;
 	margin-left: 10px;
 }
 
