@@ -1,5 +1,4 @@
 from time import time
-from .database import DatabaseController
 from .message_log import MessageLog
 
 

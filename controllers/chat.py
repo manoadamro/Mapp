@@ -10,6 +10,7 @@ class Chat(Controller):
         self.channels = {'global': Channel('global', 'system')}
         self.translator = Translator()
         self.db = DatabaseController()
+        self.db.create_table('global')
 
     @cherrypy.expose(alias='create')
     @cherrypy.tools.json_out()
@@ -94,12 +95,16 @@ class Chat(Controller):
         user = cherrypy.session['username']
         channel_name = params['channel']
         message = params['message']
+        target_language = cherrypy.session['language']
 
         if channel_name not in self.channels:
             return self.error(message='channel does not exist')
 
+        translated_message = self.translator.translate_text(
+            message, target_language)
+
         self.channels[channel_name].add_message(
-            text=message, author=user, channel=channel_name)
+            text=translated_message, author=user, channel=channel_name)
         return self.ok()
 
     @cherrypy.expose(alias='update')
