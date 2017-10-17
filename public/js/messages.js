@@ -32,12 +32,12 @@
 			htmlString +=
 				'<span class="message">' +
 				'<span class="author">' +
-				data[i].author +
+				data[i][2] +
 				"</span>" +
 				": " +
-				data[i].text +
+				data[i][1] +
 				'<span class="time">' +
-				data[i].timestamp +
+				data[i][3] +
 				"</span>" +
 				"<br/>" +
 				"</span>";
@@ -47,6 +47,7 @@
 
 	Messages.prototype.loop = function() {
 		messages = this;
+		user = this.user;
 		if (user.channel !== null) {
 			messages.channels.messages(
 				user.channel,

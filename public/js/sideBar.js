@@ -5,13 +5,59 @@
 		this.messages = messages;
 	};
 
+	var addUserToWhiteList = function(name) {
+		var params = {
+			username: name,
+			channel: this.user.channel
+		};
+		var request = postRequest("/chat/add_to_whitelist");
+		request.execute(params, null);
+	};
+
+	var getOnlineUsers = function() {
+		string = "";
+		var request = getRequest("/session/user_list");
+		request.execute({}, function(response) {
+			console.log(response);
+			for (i = 0; i < response.length; i++) {
+				user = response[i];
+				string +=
+					'<a href=javascript:addUserToWhiteList("' +
+					user +
+					'")>' +
+					user +
+					"</a>";
+			}
+			document.getElementById("onlineUsers").innerHTML = string;
+		});
+	};
+
+	var renderWhiteList = function(channels, user) {
+		channels.getWhiteList(user.channel, function(response) {
+			userlist = document.getElementById("userList");
+			userList.innerHTML = "";
+			if (response[0] != "*") {
+				for (i = 0; i < response.length; i++) {
+					userList.innerHTML += "<li>" + response[i] + "</li>";
+				}
+				document.getElementById("addUser").style.display = "initial";
+				getOnlineUsers();
+			} else {
+				userList.innerHTML += "Public Channel";
+				document.getElementById("addUser").style.display = "none";
+			}
+		});
+	};
+
 	var switchChannel = function(channelName) {
-		user = this.user;
-		messages = this.messages;
+		var user = this.user;
+		var messages = this.messages;
 		if (channelName !== user.channel) {
 			user.leaveChannel(user.channel, function(response) {
-				messages.loadMessagesStr();
-				user.joinChannel(channelName, null);
+				messages.clear();
+				user.joinChannel(channelName, function(response) {
+					renderWhiteList(messages.channels, user);
+				});
 			});
 		}
 	};
@@ -43,33 +89,31 @@
 
 		$("#addPublicChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
-			sideBar.channels.add(channelName, "*", function(response) {
-				if (user !== null) {
-					user.joinChannel(channelName, function(response) {
-						renderChannelView(user.channel);
-					});
-					sideBar.channels.update(function(response) {
-						sideBar.renderChannelList(response);
-					});
-				}
-			});
-			document.getElementById("channelForm").value = "";
+			if (channelName.length !== 0) {
+				sideBar.channels.add(channelName, "*", function(response) {
+					if (user !== null) {
+						sideBar.channels.update(function(response) {
+							sideBar.renderChannelList(response);
+						});
+					}
+				});
+				document.getElementById("channelForm").value = "";
+			}
 			event.preventDefault();
 		});
 
 		$("#addPrivateChannel").click(function(event) {
 			var channelName = document.getElementById("channelForm").value;
-			sideBar.channels.add(channelName, user.name, function(response) {
-				if (user !== null) {
-					user.joinChannel(channelName, function(response) {
-						renderChannelView(user.channel);
-					});
-					sideBar.channels.update(function(response) {
-						sideBar.renderChannelList(response);
-					});
-				}
-			});
-			document.getElementById("channelForm").value = "";
+			if (channelName.length !== 0) {
+				sideBar.channels.add(channelName, user.name, function(response) {
+					if (user !== null) {
+						sideBar.channels.update(function(response) {
+							sideBar.renderChannelList(response);
+						});
+					}
+				});
+				document.getElementById("channelForm").value = "";
+			}
 			event.preventDefault();
 		});
 
@@ -92,4 +136,5 @@
 
 	exports.SideBar = SideBar;
 	exports.switchChannel = switchChannel;
+	exports.addUserToWhiteList = addUserToWhiteList;
 })(this);

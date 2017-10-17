@@ -8,6 +8,7 @@ var renderLogInView = function(){
 	session.logOut(null);
 
 	document.getElementById('menu-toggle').style.display = 'none'
+	document.getElementById('addUser').style.display = 'none'
 
 	var loginForm = new LoginForm(user);
 	loginForm.render("page");
@@ -27,7 +28,7 @@ var renderChannelView = function(){
 	sideBar.render();
 
 	document.getElementById('menu-toggle').style.display = 'initial'
-		
+
 	$("#logout").click(function(event) {
 		session.logOut(function(response){
 			user = null;

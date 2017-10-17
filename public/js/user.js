@@ -19,11 +19,12 @@
 		var request = getRequest(JOIN_CHANNEL_ROUTE);
 		request.execute(params, function(response){
 			user.channel = channelName;
-			console.log('JOINED ' + user.channel)
 			user.messageIndex = -1;
 			if(callback !== undefined && callback !== null) {
 				callback(response);
 			}
+		document.getElementById('currentChannel').innerHTML =
+		'You are currently in ' + user.channel
 		});
 	};
 
@@ -34,7 +35,6 @@
 		var user = this;
 		var request = getRequest(LEAVE_CHANNEL_ROUTE);
 		request.execute(params, function(response){
-			console.log('LEFT ' + channelName)
 			user.channel = null
 			if(callback !== undefined && callback !== null) {
 				callback(response);
