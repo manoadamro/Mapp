@@ -31,7 +31,6 @@
 		messages = this;
 		user = this.user;
 		if (user.channel !== null) {
-		    console.log(user.channel)
 			messages.channels.messages(
 				user.channel,
 				language.languageCode,

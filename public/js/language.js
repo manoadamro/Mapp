@@ -27,7 +27,7 @@
 		var str = "";
 		Object.keys(LANGUAGES).forEach(function(key) {
 			var value = LANGUAGES[key];
-			str += "<a href=" + 'javascript:language.changeLanguage("' + value + '")>' + key + "</a>";
+			str += "<a id='language-"+ value +"' href=" + 'javascript:language.changeLanguage("' + value + '")>' + key + "</a>";
 		});
 		return str;
 	};
@@ -41,5 +41,5 @@
 	}
 
 	exports.language = new Language();
-	
+
 })(this);

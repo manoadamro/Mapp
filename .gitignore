@@ -2,6 +2,9 @@
 */__pycache__
 *.pyc
 .idea/
+.cache
+_examples
+.coverage
 
 config/safe-key.json
 config/key.json
