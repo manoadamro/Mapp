@@ -3,9 +3,10 @@ from .message_log import MessageLog
 
 
 class Channel:
-    def __init__(self, name, creator):
+    def __init__(self, name, creator, white_list):
         self.message_log = MessageLog()
         self.user_log = []
+        self.white_list = white_list
         self.name = name
         self.creator = creator
         self.created_at = time()

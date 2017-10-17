@@ -9,13 +9,14 @@ class DatabaseController:
 
     def create_table(self, table):
         c.execute(
-            'CREATE TABLE IF NOT EXISTS {}(datestamp TEXT, message TEXT, author TEXT)'.format(table))
+            'CREATE TABLE IF NOT EXISTS {}(datestamp TEXT, message TEXT, author TEXT, formatted_time TEXT)'.format(table))
 
     def add_message(self, message, author, table):
         self.create_table(table)
         today = datetime.datetime.now()
+        formatted_time = today.strftime("%b %d %H:%M")
         c.execute(
-            "INSERT INTO {} VALUES(?, ?, ?)".format(table), (today, message, author,))
+            "INSERT INTO {} VALUES(?, ?, ?, ?)".format(table), (today, message, author, formatted_time,))
         conn.commit()
         self.get_all_messages(table)
 

@@ -1,5 +1,5 @@
-from time import time
 from .database import DatabaseController
+from time import gmtime, strftime, time
 
 
 class MessageLog:
@@ -33,7 +33,7 @@ class MessageLog:
             'index': index,
             'text': text,
             'author': author,
-            'timestamp': time()
+            'timestamp': strftime("%H:%M", gmtime())
         }
 
     def __len__(self):
