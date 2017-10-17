@@ -6,20 +6,23 @@ from scripts.translator import Translator
 
 class Chat(Controller):
     def __init__(self):
-        self.channels = {'global': Channel('global', 'system')}
+        self.channels = {'global': Channel('global', 'system', ['*'])}
         self.translator = Translator()
 
     @cherrypy.expose(alias='create')
     @cherrypy.tools.json_out()
     def new_channel(self, **params):
+
         if 'channel' not in params:
             return self.error(message='No channel name given')
+        elif 'white_list' not in params:
+            return self.error(message='No white_list given')
         elif 'username' not in cherrypy.session:
             return self.error(message='You must be logged into to create channels')
 
         channel_name = params['channel']
         user = cherrypy.session['username']
-        channel = Channel(channel_name, user)
+        channel = Channel(channel_name, user, [params['white_list']])
 
         if channel_name in self.channels:
             return self.error(message='Channel name already exists')
@@ -104,6 +107,12 @@ class Chat(Controller):
         if 'channel' not in params:
             return self.error(message='no channel name provided')
 
+        if 'language' not in params:
+            return self.error(message='no target language provided')
+
+        if 'index' not in params:
+            return self.error(message='no index provided')
+
         channel_name = params['channel']
         index = int(params['index'])
 
@@ -112,25 +121,16 @@ class Chat(Controller):
 
         data = self.channels[channel_name].get_messages(index)
 
-        target_language = cherrypy.session['language']
-
-        for message in data:
-            message['text'] = self.translator.translate_text(message['text'], target_language)
+        # for message in data:
+        #     message['text'] = self.translator.translate_text(message['text'], params['language'])
 
         return self.ok(data=data)
-
-    @cherrypy.expose(alias='language')
-    @cherrypy.tools.json_out()
-    def change_language(self, **params):
-        if 'language' not in params:
-            return self.error(message='no target language provided')
-
-        cherrypy.session['language'] = params['language']
-        return self.ok()
 
     @cherrypy.expose(alias='list')
     @cherrypy.tools.json_out()
     def channel_list(self, **_params):
-        list = [channel for channel in self.channels]
+        list = [channel for channel in self.channels
+                if '*' in self.channels[channel].white_list or
+                cherrypy.session['username'] in self.channels[channel].white_list]
         return self.ok(data=list)
 
