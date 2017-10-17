@@ -35,10 +35,8 @@
 	Language.prototype.languageListHtml = function() {
 		return '<p id="targetLanguageLabel">' + this.targetLanguageHTML() + '</p>' +
 		'<div class="dropdown">' +
-		'<button class="dropbtn">Languages</button>' +
-		'<div class="dropdown-content">' +
-		this.generateLanguageList() +
-		"</div>" +
+		    '<button class="dropbtn">Languages</button>' +
+		    '<div class="dropdown-content">' + this.generateLanguageList() + "</div>" +
 		"</div>";
 	}
 

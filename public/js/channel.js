@@ -44,7 +44,7 @@
 	}
 
 	Channels.prototype.getWhiteList = function(name, callback) {
-	var params = {
+	    var params = {
 			channel: name,
 		}
 		var request = getRequest(CHANNEL_WHITELIST_ROUTE);

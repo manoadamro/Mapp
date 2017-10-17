@@ -7,11 +7,32 @@
 		this.messages = messages;
 	}
 
+	var addUserToWhiteList = function(name){
+	    var params = {
+            username: name,
+            channel: this.user.channel
+	    }
+        var request = postRequest('/chat/add_to_whitelist');
+        request.execute(params, null);
+	}
+
+    var getOnlineUsers = function(){
+        string = "";
+        var request = getRequest('/session/user_list');
+        request.execute({}, function(response){
+            console.log(response);
+            for(i=0; i<response.length; i++){
+                user = response[i];
+                string += '<a href=javascript:addUserToWhiteList("' + user + '")>' + user + '</a>'
+            }
+            document.getElementById('onlineUsers').innerHTML = string;
+        })
+    }
+
     var renderWhiteList = function(channels, user){
     	channels.getWhiteList(user.channel, function(response) {
             userlist = document.getElementById('userList')
             userList.innerHTML = ''
-            console.log(response[0])
             if (response[0] != '*') {
                 for(i=0; i<response.length; i++) {
                     userList.innerHTML += '<li>' +
@@ -19,6 +40,7 @@
                     '</li>'
                 }
                 document.getElementById('addUser').style.display = 'initial'
+                getOnlineUsers();
             } else {
                 userList.innerHTML += 'Public Channel';
                 document.getElementById('addUser').style.display = 'none'
@@ -110,4 +132,5 @@
 
 	exports.SideBar = SideBar;
 	exports.switchChannel = switchChannel;
+	exports.addUserToWhiteList = addUserToWhiteList;
 })(this);
