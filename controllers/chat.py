@@ -72,6 +72,8 @@ class Chat(Controller):
         if 'channel' not in params:
             return self.error(message='no channel name provided')
 
+        print(params)
+
         channel_name = params['channel']
         user = cherrypy.session['username']
 
