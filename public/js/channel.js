@@ -54,8 +54,10 @@
 			message: message,
 			channel: channel
 		};
-		var request = getRequest(ADD_MESSAGE_ROUTE);
-		request.execute(params, callback);
+		if (message.length !== 0) {
+			var request = getRequest(ADD_MESSAGE_ROUTE);
+			request.execute(params, callback);
+		}
 	};
 
 	Channels.prototype.messages = function(
