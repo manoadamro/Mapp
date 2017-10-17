@@ -38,6 +38,7 @@
 
     ErrorLog.prototype.render = function() {
     	this.element.innerHTML = '<p>' + this.formatList() + '</p>';
+    	this.log = []
     };
 
     exports.errors = new ErrorLog();
