@@ -6,6 +6,5 @@ describe("element", function() {
 
   describe("formats message in a span", function() {
 
-    expect(error.format).toEq('')
   })
 });
