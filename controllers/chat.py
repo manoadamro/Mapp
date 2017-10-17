@@ -134,3 +134,11 @@ class Chat(Controller):
                 cherrypy.session['username'] in self.channels[channel].white_list]
         return self.ok(data=list)
 
+    @cherrypy.expose(alias='whitelist')
+    @cherrypy.tools.json_out()
+    def channel_white_list(self, **params):
+        if 'channel' not in params:
+            return self.error(message='no channel name provided')
+
+        return self.channels[params['channel']].white_list
+
