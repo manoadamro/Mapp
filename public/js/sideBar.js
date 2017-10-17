@@ -88,7 +88,9 @@
 		});
 
 		$("#addPublicChannel").click(function(event) {
-			var channelName = document.getElementById("channelForm").value;
+			var channelName = document
+				.getElementById("channelForm")
+				.value.replace(new RegExp(" ", "g"), "_");
 			if (channelName.length !== 0) {
 				sideBar.channels.add(channelName, "*", function(response) {
 					if (user !== null) {
@@ -103,7 +105,9 @@
 		});
 
 		$("#addPrivateChannel").click(function(event) {
-			var channelName = document.getElementById("channelForm").value;
+			var channelName = document
+				.getElementById("channelForm")
+				.value.replace(new RegExp(" ", "g"), "_");
 			if (channelName.length !== 0) {
 				sideBar.channels.add(channelName, user.name, function(response) {
 					if (user !== null) {
