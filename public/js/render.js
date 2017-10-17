@@ -31,7 +31,6 @@ var renderChannelView = function() {
 			renderLogInView();
 		});
 	});
-
 	messages.loop();
 };
 

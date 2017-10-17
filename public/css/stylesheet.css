@@ -10,18 +10,20 @@
 	color: rgb(186, 255, 229);
 }
 
+.buttonAndChannel {
+	background-color: blue;
+}
+
 .currentChannel {
-	text-align: center;
 	margin: 0;
-	text-align: left;
+	text-align: center;
 	position: absolute;
 	margin-top: 5px;
-	width: 12%;
+	max-width: 12%;
 }
 
 .background {
-	/*background-color: rgb(238, 241, 231);*/
-	background: white;
+	background-color: rgb(238, 249, 255);
 	/* Chrome 10-25, Safari 5.1-6 */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -53,10 +55,36 @@
 	margin: 5%;
 }
 
+.login span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.login span:after {
+	content: "\00bb";
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.login:hover span {
+	padding-right: 25px;
+}
+
+.login:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
 .map {
 	background-image: url("./../images/world-map.jpg");
 	text-shadow: 1px 1px white;
 	border-radius: 25px;
+	box-shadow: 0 0 10px black;
 }
 
 .message-form {
@@ -73,6 +101,7 @@
 .text-box {
 	margin: 0px;
 	box-shadow: 1px 1px grey;
+	border-radius: 10px;
 }
 
 .message {
@@ -88,6 +117,10 @@
 	margin-left: 10px;
 }
 
+.usernameForm {
+	border-radius: 10px;
+}
+
 .message-list {
 	max-height: 300px;
 	min-height: 300px;
@@ -95,7 +128,7 @@
 	border: 1px solid black;
 	overflow: auto;
 	background-color: white;
-	/*box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 1);*/
+	box-shadow: 0 0 5px grey;
 	border-radius: 15px;
 	margin: auto;
 	margin-bottom: 10px;
@@ -116,6 +149,22 @@
 
 hor {
 	font-weight: bold;
+}
+
+h1 {
+	max-width: inherit;
+}
+
+#send {
+	margin: 10px;
+}
+
+or {
+	font-weight: bold;
+}
+
+h1 {
+	max-width: inherit;
 }
 
 #send {
