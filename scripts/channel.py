@@ -1,5 +1,4 @@
 from time import time
-from .sentiment import Sentiment
 from .message_log import MessageLog
 
 
