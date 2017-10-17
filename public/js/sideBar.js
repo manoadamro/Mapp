@@ -54,7 +54,7 @@
 		var messages = this.messages;
 		if (channelName !== user.channel) {
 			user.leaveChannel(user.channel, function(response) {
-				messages.clear();
+				messages.loadMessagesStr();
 				user.joinChannel(channelName, function(response) {
 					renderWhiteList(messages.channels, user);
 				});
