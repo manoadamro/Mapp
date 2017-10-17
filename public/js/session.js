@@ -1,12 +1,12 @@
 
 (function(exports){
 
-	var LOG_IN_ROUTE = '/session/login';
-	var LOG_OUT_ROUTE = '/session/logout';
+	var LOG_IN_ROUTE = "/session/login";
+	var LOG_OUT_ROUTE = "/session/logout";
 	
 	var Session = function(){
 		this.username = null;
-	}
+	};
 
 	Session.prototype.logIn = function(username, callback) {
 
@@ -14,13 +14,13 @@
 			this.username = username;
 			var params = {
 				username: username
-			}
+			};
 			var request = postRequest(LOG_IN_ROUTE);
 			request.execute(params, callback);
 		} else {
 			session = this;
 			this.logOut(function(response){
-				session.login(username, callback)
+				session.login(username, callback);
 			});
 		}
 	};

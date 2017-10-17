@@ -30,13 +30,13 @@
 		var htmlString = "";
 		for (i = 0; i < data.length; i++) {
 			htmlString +=
-				'<span class="message">' +
-				'<span class="author">' +
+				"<span class=\"message\">" +
+				"<span class=\"author\">" +
 				data[i][2] +
 				"</span>" +
 				": " +
 				data[i][1] +
-				'<span class="time">' +
+				"<span class=\"time\">" +
 				data[i][3] +
 				"</span>" +
 				"<br/>" +

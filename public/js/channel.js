@@ -75,15 +75,15 @@
 
 	Channels.prototype.channelHtml = function() {
 		return (
-			'<div id="messageList" class="message-list">Loading messages...</div>' +
-			'<form class="message-form">' +
-			'<input class="text-box" type="text" type="textarea" id="messageForm"></input>' +
+			"<div id=\"messageList\" class=\"message-list\">Loading messages...</div>" +
+			"<form class=\"message-form\">" +
+			"<input class=\"text-box\" type=\"text\" type=\"textarea\" id=\"messageForm\"></input>" +
 			"<br />" +
-			'<button class="btn btn-primary" id="send">Send</button>' +
+			"<button class=\"btn btn-primary\" id=\"send\">Send</button>" +
 			"</form>" +
-			'<form class="center">' +
+			"<form class=\"center\">" +
 			"<br />" +
-			'<button class="btn btn-danger" id="logout">Log Out</button>' +
+			"<button class=\"btn btn-danger\" id=\"logout\">Log Out</button>" +
 			"</form>"
 		);
 	};

@@ -1,11 +1,11 @@
 (function(exports){
 
-	DEFAULT_LANGUAGE = 'en'
+	DEFAULT_LANGUAGE = "en";
 
 	var Language = function(){
 		this.languageCode = DEFAULT_LANGUAGE;
-		this.languageString = getKeyByValue(LANGUAGES, DEFAULT_LANGUAGE)
-	}
+		this.languageString = getKeyByValue(LANGUAGES, DEFAULT_LANGUAGE);
+	};
 
 	Language.prototype.targetLanguageHTML = function() {
 		return "Target Language: <strong>" + this.languageString + "</strong>";
@@ -16,10 +16,10 @@
 	}
 
 	Language.prototype.changeLanguage = function(language) {
-		console.log('switched language: ' + language);
+		console.log("switched language: " + language);
 		var fullLanguage = getKeyByValue(LANGUAGES, language);
-		this.languageCode = language
-		this.languageString = fullLanguage
+		this.languageCode = language;
+		this.languageString = fullLanguage;
 		document.getElementById("targetLanguageLabel").innerHTML = this.targetLanguageHTML();
 	};
 
@@ -27,18 +27,18 @@
 		var str = "";
 		Object.keys(LANGUAGES).forEach(function(key) {
 			var value = LANGUAGES[key];
-			str += "<a href=" + 'javascript:language.changeLanguage("' + value + '")>' + key + "</a>";
+			str += "<a href=" + "javascript:language.changeLanguage(\"" + value + "\")>" + key + "</a>";
 		});
 		return str;
 	};
 
 	Language.prototype.languageListHtml = function() {
-		return '<p id="targetLanguageLabel">' + this.targetLanguageHTML() + '</p>' +
-		'<div class="dropdown">' +
-		    '<button class="dropbtn">Languages</button>' +
-		    '<div class="dropdown-content">' + this.generateLanguageList() + "</div>" +
+		return "<p id=\"targetLanguageLabel\">" + this.targetLanguageHTML() + "</p>" +
+		"<div class=\"dropdown\">" +
+		    "<button class=\"dropbtn\">Languages</button>" +
+		    "<div class=\"dropdown-content\">" + this.generateLanguageList() + "</div>" +
 		"</div>";
-	}
+	};
 
 	exports.language = new Language();
 	

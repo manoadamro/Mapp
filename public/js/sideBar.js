@@ -22,9 +22,9 @@
 			for (i = 0; i < response.length; i++) {
 				user = response[i];
 				string +=
-					'<a href=javascript:addUserToWhiteList("' +
+					"<a href=javascript:addUserToWhiteList(\"" +
 					user +
-					'")>' +
+					"\")>" +
 					user +
 					"</a>";
 			}
@@ -68,9 +68,9 @@
 		for (i = 0; i < channelList.length; i++) {
 			sideBarChans.innerHTML +=
 				"<li>" +
-				'<a href=javascript:switchChannel("' +
+				"<a href=javascript:switchChannel(\"" +
 				channelList[i] +
-				'") >' +
+				"\") >" +
 				channelList[i] +
 				"</a>" +
 				"</li>";
