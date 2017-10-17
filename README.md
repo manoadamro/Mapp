@@ -18,7 +18,7 @@ $ python3 mapp.py
 
 ## Testing
 
-Run the unit test folder using ```$ bash test ``` in the terminal.
+Run the unit test folder using ```$ bash test ``` in the terminal. The tests will reset all database entries.
 To run the feature tests open SpecRunner.html in the browser.
 
 ## Features
