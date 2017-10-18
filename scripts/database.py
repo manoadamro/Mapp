@@ -33,13 +33,8 @@ class DatabaseController:
             dict_messages.append(self._dict_factory(c, row))
         return dict_messages
 
-    def delete_all_entries(self):
-        c.execute("DELETE FROM chatMessages")
-
-    def update_entry(self, old_message, new_message):
-        c.execute(
-            "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
-        conn.commit()
+    def delete_all_entries(self, table):
+        c.execute("DELETE FROM {}".format(table))
 
     def _dict_factory(self, cursor, row):
         d = {}
