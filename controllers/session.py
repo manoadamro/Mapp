@@ -31,7 +31,7 @@ class Session(Controller):
 
     @cherrypy.expose(alias='user_list')
     @cherrypy.tools.json_out()
-    def users(self, **_params):
+    def get_users(self, **_params):
         return self.ok(data=self.users)
 
     def _purge_user(self, user):
