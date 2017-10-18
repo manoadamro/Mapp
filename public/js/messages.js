@@ -74,9 +74,7 @@
 			var message = document.getElementById("messageForm").value;
 			document.getElementById("messageForm").value = "";
 			if (user !== null) {
-				messages.channels.newMessage(message, user.channel, function() {
-					document.getElementById("messageForm").value = "";
-				});
+				messages.channels.newMessage(message, user.channel);
 			}
 			event.preventDefault();
 		});
