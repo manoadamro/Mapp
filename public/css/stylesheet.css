@@ -12,6 +12,8 @@
 #privateChannelUsers {
 	text-align: right;
 	align-items: right;
+	right: 0px;
+	position: absolute;
 }
 
 .buttonAndChannel {
