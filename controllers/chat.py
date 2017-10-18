@@ -40,6 +40,8 @@ class Chat(Controller):
     def delete_channel(self, **params):
         if 'channel' not in params:
             return self.error(message='no channel name provided')
+        if 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to delete channels')
 
         user = cherrypy.session['username']
         channel_name = params['channel']
@@ -58,6 +60,8 @@ class Chat(Controller):
 
         if 'channel' not in params:
             return self.error(message='no channel name provided')
+        if 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to join channels')
 
         channel_name = params['channel']
         user = cherrypy.session['username']
@@ -76,6 +80,8 @@ class Chat(Controller):
 
         if 'channel' not in params:
             return self.error(message='no channel name provided')
+        if 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to join channels')
 
         channel_name = params['channel']
         user = cherrypy.session['username']
@@ -94,6 +100,8 @@ class Chat(Controller):
             return self.error(message='no channel name provided')
         elif 'message' not in params:
             return self.error(message='no message provided')
+        if 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to send messages')
 
         user = cherrypy.session['username']
         channel_name = params['channel']
@@ -109,15 +117,14 @@ class Chat(Controller):
     @cherrypy.expose(alias='update')
     @cherrypy.tools.json_out()
     def get_updates(self, **params):
-
         if 'channel' not in params:
             return self.error(message='no channel name provided')
-
-        if 'language' not in params:
+        elif 'language' not in params:
             return self.error(message='no target language provided')
-
-        if 'index' not in params:
+        elif 'index' not in params:
             return self.error(message='no index provided')
+        elif 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to get messages')
 
         channel_name = params['channel']
         index = int(params['index'])
@@ -132,13 +139,15 @@ class Chat(Controller):
         for message in data:
             message['message'] = self.translator.translate_text(
                 message['message'], target_language)
-            new_list.append(message)
 
-        return self.ok(data=new_list)
+        return self.ok(data=data)
 
     @cherrypy.expose(alias='list')
     @cherrypy.tools.json_out()
     def channel_list(self, **_params):
+        if 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to get channels')
+
         list = [channel for channel in self.channels
                 if '*' in self.channels[channel].white_list or
                 cherrypy.session['username'] in self.channels[channel].white_list]
@@ -160,9 +169,11 @@ class Chat(Controller):
             return self.error(message='no username provided')
         elif 'channel' not in params:
             return self.error(message='no channel name provided')
+        elif 'username' not in cherrypy.session:
+            return self.error(message='you must be logged in to edit white lists')
 
         chan = self.channels[params['channel']]
-        if 'username' not in cherrypy.session or cherrypy.session['username'] not in chan.white_list:
+        if cherrypy.session['username'] not in chan.white_list:
             return self.error(message='you do not have permission to edit this whitelist')
 
         if params['username'] not in chan.white_list:
