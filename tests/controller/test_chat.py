@@ -279,6 +279,5 @@ class TestChat(TestCase):
         chan = Channel(self.channel_name, self.username, [self.username])
         self.chat.channels[self.channel_name] = chan
         response = self.chat.add_to_whitelist(username=self.username + '1', channel=self.channel_name)
-        print(response)
         self.assertEqual(response['code'], 0)
         self.assertEqual(response['message'], '')
