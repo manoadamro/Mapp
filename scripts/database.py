@@ -18,7 +18,6 @@ class DatabaseController:
         c.execute(
             "INSERT INTO {} VALUES(?, ?, ?, ?)".format(table), (today, message, author, formatted_time,))
         conn.commit()
-        self.get_all_messages(table)
 
     def print_all_messages(self, table):
         c.execute("SELECT * FROM {}".format(table))
@@ -28,21 +27,25 @@ class DatabaseController:
     def get_all_messages(self, table):
         str = ''
         c.execute("SELECT * FROM {}".format(table))
-        return c.fetchall()
-        c.close()
+        entries = c.fetchall()
+        dict_messages = []
+        for row in entries:
+            dict_messages.append(self.dict_factory(c, row))
+        return dict_messages
 
     def delete_message(self, message):
         c.execute("DELETE FROM chatMessages WHERE message=?", (message,))
-        c.close()
 
     def delete_all_entries(self):
         c.execute("DELETE FROM chatMessages")
-        c.close()
 
     def update_entry(self, old_message, new_message):
         c.execute(
             "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
         conn.commit()
 
-# c.close()
-# conn.close()
+    def dict_factory(self, cursor, row):
+        d = {}
+        for idx, col in enumerate(cursor.description):
+            d[col[0]] = row[idx]
+        return d

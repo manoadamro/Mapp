@@ -32,12 +32,12 @@
 			htmlString +=
 				"<span class=\"message\">" +
 				"<span class=\"author\">" +
-				data[i][2] +
+				data[i].author +
 				"</span>" +
 				": " +
-				data[i][1] +
+				data[i].message +
 				"<span class=\"time\">" +
-				data[i][3] +
+				data[i].formatted_time +
 				"</span>" +
 				"<br/>" +
 				"</span>";
