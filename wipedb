@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-
+echo "messages was"
+cat db/messages.db
 rm db/*
 touch db/messages.db
+echo "messages is"
+cat db/messages.db
+echo " "
