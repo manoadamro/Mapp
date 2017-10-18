@@ -28,6 +28,19 @@
 	overflow: auto;
 }
 
+.dropdown-content-users {
+	display: none;
+	overflow-x: hidden;
+	text-align: center;
+	position: relative;
+	background-color: white;
+	border-radius: 5px;
+	min-width: 50px;
+	z-index: 1;
+	max-height: 250px;
+	overflow: auto;
+}
+
 .dropdown-content a {
 	color: black;
 	padding: 12px 16px;
