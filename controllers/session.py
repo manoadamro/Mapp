@@ -25,7 +25,7 @@ class Session(Controller):
         if 'username' in cherrypy.session:
             user = cherrypy.session['username']
             self._purge_user(user)
-            self.users.remove(cherrypy.session['username'])
+            self.users.remove(user)
             del cherrypy.session['username']
         return self.ok()
 

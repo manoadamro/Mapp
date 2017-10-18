@@ -7,7 +7,7 @@
 	};
 
 	Language.prototype.targetLanguageHTML = function() {
-		return "Target Language: <strong>" + this.languageString + "</strong>";
+		return "Receiving messages in <strong>" + this.languageString + "</strong>";
 	};
 
 	function getKeyByValue(object, value) {
@@ -15,7 +15,6 @@
 	}
 
 	Language.prototype.changeLanguage = function(language) {
-		console.log("switched language: " + language);
 		var fullLanguage = getKeyByValue(LANGUAGES, language);
 		this.languageCode = language;
 		this.languageString = fullLanguage;

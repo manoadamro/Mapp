@@ -1,6 +1,5 @@
 .vertical-center {
 	min-height: 100%;
-	/* Fallback for browsers do NOT support vh unit */
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
@@ -24,12 +23,10 @@
 
 .background {
 	background-color: rgb(238, 249, 255);
-	/* Chrome 10-25, Safari 5.1-6 */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .createChannelButton {
@@ -38,7 +35,6 @@
 	border: none;
 	padding: 0 !important;
 	font: inherit;
-	/*border is optional*/
 	border-bottom: 1px solid #444;
 	cursor: pointer;
 }
@@ -155,18 +151,6 @@ h1 {
 	max-width: inherit;
 }
 
-#send {
-	margin: 10px;
-}
-
 or {
 	font-weight: bold;
-}
-
-h1 {
-	max-width: inherit;
-}
-
-#send {
-	margin: 10px;
 }

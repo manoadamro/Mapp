@@ -136,10 +136,12 @@ class Chat(Controller):
         data = self.channels[channel_name].get_messages(
             channel=channel_name, index=index)
 
-        for message in data:
-            message['message'] = self.translator.translate_text(
-                message['message'], target_language)
+        def translate_messages(data):
+            for message in data:
+                message['message'] = self.translator.translate_text(
+                    message['message'], target_language)
 
+        translate_messages(data)
         return self.ok(data=data)
 
     @cherrypy.expose(alias='list')
