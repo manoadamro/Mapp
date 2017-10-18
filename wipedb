@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm db/*
+touch db/messages.db
