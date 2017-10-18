@@ -3,11 +3,6 @@ describe("Channel view", function() {
 		jQueryStub();
 	});
 
-	afterEach(function() {
-		document.getElementById("messageForm").innerHTML = "";
-		document.getElementById("messageList").innerHTML = "";
-	});
-
 	describe("Sending a message", function() {
 		it("The text box clears after sending", function() {
 			document.getElementById("messageForm").innerHTML = "text";
@@ -20,6 +15,13 @@ describe("Channel view", function() {
 			expect(document.getElementById("targetLanguageLabel").innerHTML).toEqual(
 				"Target Language: <strong>Afrikaans</strong>"
 			);
+		});
+	});
+
+	describe("is able to log out", function() {
+		it("Takes you bakc to login page when logging out", function() {
+			document.getElementById("logout").click()
+			expect(document.getElementById("login").innerHTML).toBe("Log In");
 		});
 	});
 });
