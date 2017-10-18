@@ -25,4 +25,13 @@ describe("Channel view", function() {
 		});
 	});
 
+	describe("creating a channel", function() {
+		it("channel name box is blank after clicking create public channel button", function() {
+			document.getElementById("channelForm").value = "Test channel"
+			document.getElementById("addPublicChannel").click()
+			expect(document.getElementById("channelForm").innerHTML).toBe("");
+		});
+
+	});
+
 });
