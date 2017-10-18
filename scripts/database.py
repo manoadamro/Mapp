@@ -30,11 +30,8 @@ class DatabaseController:
         entries = c.fetchall()
         dict_messages = []
         for row in entries:
-            dict_messages.append(self.dict_factory(c, row))
+            dict_messages.append(self._dict_factory(c, row))
         return dict_messages
-
-    def delete_message(self, message):
-        c.execute("DELETE FROM chatMessages WHERE message=?", (message,))
 
     def delete_all_entries(self):
         c.execute("DELETE FROM chatMessages")
@@ -44,7 +41,7 @@ class DatabaseController:
             "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
         conn.commit()
 
-    def dict_factory(self, cursor, row):
+    def _dict_factory(self, cursor, row):
         d = {}
         for idx, col in enumerate(cursor.description):
             d[col[0]] = row[idx]
