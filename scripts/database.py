@@ -18,32 +18,34 @@ class DatabaseController:
         c.execute(
             "INSERT INTO {} VALUES(?, ?, ?, ?)".format(table), (today, message, author, formatted_time,))
         conn.commit()
-        self.get_all_messages(table)
 
     def print_all_messages(self, table):
-        with conn:
-            c.execute("SELECT * FROM {}".format(table))
-            for row in c.fetchall():
-                print(row)
+        c.execute("SELECT * FROM {}".format(table))
+        for row in c.fetchall():
+            print(row)
 
     def get_all_messages(self, table):
         str = ''
-        with conn:
-            c.execute("SELECT * FROM {}".format(table))
-            return c.fetchall()
+        c.execute("SELECT * FROM {}".format(table))
+        entries = c.fetchall()
+        dict_messages = []
+        for row in entries:
+            dict_messages.append(self.dict_factory(c, row))
+        return dict_messages
 
     def delete_message(self, message):
-        with conn:
-            c.execute("DELETE FROM chatMessages WHERE message=?", (message,))
+        c.execute("DELETE FROM chatMessages WHERE message=?", (message,))
 
     def delete_all_entries(self):
-        with conn:
-            c.execute("DELETE FROM chatMessages")
+        c.execute("DELETE FROM chatMessages")
 
     def update_entry(self, old_message, new_message):
-        with conn:
-            c.execute(
-                "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
+        c.execute(
+            "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
+        conn.commit()
 
-# c.close()
-# conn.close()
+    def dict_factory(self, cursor, row):
+        d = {}
+        for idx, col in enumerate(cursor.description):
+            d[col[0]] = row[idx]
+        return d

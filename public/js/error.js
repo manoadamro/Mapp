@@ -1,46 +1,42 @@
+(function(exports) {
+	ERROR_MESSAGE_ELEMENT_ID = "error-messages";
 
-(function(exports){
+	var Error = function(message) {
+		this.message = message;
+	};
 
-	ERROR_MESSAGE_ELEMENT_ID = 'error-messages';
+	Error.prototype.format = function() {
+		return "<span>" + this.message + "</span>";
+	};
 
-    var Error = function(message){
-        this.message = message;
-    }
+	var ErrorLog = function() {
+		this.element = document.getElementById(ERROR_MESSAGE_ELEMENT_ID);
+		this.clear();
+	};
 
-    Error.prototype.format = function() {
-    	return '<span>' + this.message + '</span>'
-    };
+	ErrorLog.prototype.append = function(message) {
+		var error = new Error(message);
+		this.log.push(error);
+	};
 
+	ErrorLog.prototype.clear = function() {
+		this.log = [];
+		this.element.innerHTML = "";
+	};
 
-    var ErrorLog = function(){
-    	this.element = document.getElementById(ERROR_MESSAGE_ELEMENT_ID);
-    	this.clear();
-    }
+	ErrorLog.prototype.formatList = function() {
+		var string = "";
+		for (var i = this.log.length - 1; i >= 0; i--) {
+			var line = this.log[i].format() + "<br />";
+			string += line;
+		}
+		return string;
+	};
 
-    ErrorLog.prototype.append = function(message) {
-    	var error = new Error(message);
-    	this.log.push(error)
-    };
+	ErrorLog.prototype.render = function() {
+		this.element.innerHTML = "<p>" + this.formatList() + "</p>";
+		this.log = [];
+	};
 
-    ErrorLog.prototype.clear = function() {
-    	this.log = [];
-    	this.element.innerHTML = ''
-    };
-
-    ErrorLog.prototype.formatList = function() {
-    	var string = '';
-    	for (var i = this.log.length - 1; i >= 0; i--) {
-    		var line =  this.log[i].format() + '<br />';
-    		string += line;
-    	}
-    	return string;
-    };
-
-    ErrorLog.prototype.render = function() {
-    	this.element.innerHTML = '<p>' + this.formatList() + '</p>';
-    	this.log = []
-    };
-
-    exports.errors = new ErrorLog();
-
+	exports.errors = new ErrorLog();
 })(this);

@@ -21,10 +21,10 @@ To run the server use ```bash start``` and access in your browser on http://loca
 
 ## Testing
 
-Run the unit test folder using ```$ bash test ``` in the terminal.
+Run the unit test folder using ```$ bash test ``` in the terminal. The tests will reset all database entries.
 To run the feature tests open SpecRunner.html in the browser.
 
-To test coverage run: ````--cov=. tests/``` in the terminal.
+To test coverage run: ```--cov=. tests/``` in the terminal.
 
 ## Features
 

@@ -4,22 +4,40 @@
 		this.channels = channels;
 	};
 
+	Messages.prototype.loadMessagesStr = function() {
+		this.assignMessageList("Loading messages...");
+	};
+
 	Messages.prototype.clear = function() {
-		document.getElementById("messageList").innerHTML = "";
+		this.assignMessageList("");
+	};
+
+	Messages.prototype.assignMessageList = function(content) {
+		document.getElementById("messageList").innerHTML = content;
+	};
+
+	Messages.prototype._checkIfLoading = function() {
+		if (
+			document.getElementById("messageList").innerHTML === "Loading messages..."
+		) {
+			this.clear();
+		}
 	};
 
 	Messages.prototype.renderMessages = function(data) {
+		messageList = document.getElementById("messageList").innerHTML;
+		this._checkIfLoading();
 		var htmlString = "";
 		for (i = 0; i < data.length; i++) {
 			htmlString +=
-				'<span class="message">' +
-				'<span class="author">' +
-				data[i][2] +
+				"<span class=\"message\">" +
+				"<span class=\"author\">" +
+				data[i].author +
 				"</span>" +
 				": " +
-				data[i][1] +
-				'<span class="time">' +
-				data[i][3] +
+				data[i].message +
+				"<span class=\"time\">" +
+				data[i].formatted_time +
 				"</span>" +
 				"<br/>" +
 				"</span>";
@@ -54,8 +72,9 @@
 		messages = this;
 		$("#send").click(function(event) {
 			var message = document.getElementById("messageForm").value;
+			document.getElementById("messageForm").value = "";
 			if (user !== null) {
-				messages.channels.newMessage(message, user.channel, function(response) {
+				messages.channels.newMessage(message, user.channel, function() {
 					document.getElementById("messageForm").value = "";
 				});
 			}
