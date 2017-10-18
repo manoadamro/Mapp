@@ -132,9 +132,8 @@ class Chat(Controller):
         for message in data:
             message['message'] = self.translator.translate_text(
                 message['message'], target_language)
-            new_list.append(message)
 
-        return self.ok(data=new_list)
+        return self.ok(data=data)
 
     @cherrypy.expose(alias='list')
     @cherrypy.tools.json_out()
