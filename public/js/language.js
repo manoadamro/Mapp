@@ -43,13 +43,29 @@
 			"<p id=\"targetLanguageLabel\">" +
 			this.targetLanguageHTML() +
 			"</p>" +
-			"<div class=\"dropdown\">" +
+			"<div class=\"dropdown\" id='dropdown'>" +
 			"<button class=\"dropbtn\">Languages</button>" +
-			"<div class=\"dropdown-content\">" +
+			"<div class=\"dropdown-content\" >" +
+			"<input type='text' id='myInput' placeholder='Search...' onkeyup='language.filterFunction()'>" +
 			this.generateLanguageList() +
 			"</div>" +
 			"</div>"
 		);
+	};
+
+	Language.prototype.filterFunction = function() {
+		var input, filter, ul, li, a, i;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		div = document.getElementById("dropdown");
+		a = div.getElementsByTagName("a");
+		for (i = 0; i < a.length; i++) {
+			if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+				a[i].style.display = "";
+			} else {
+				a[i].style.display = "none";
+			}
+		}
 	};
 
 	exports.language = new Language();

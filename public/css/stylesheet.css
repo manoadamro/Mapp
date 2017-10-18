@@ -9,6 +9,10 @@
 	color: rgb(186, 255, 229);
 }
 
+#privateChannelUsers {
+	text-align: right;
+}
+
 .buttonAndChannel {
 	background-color: blue;
 }
