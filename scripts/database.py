@@ -21,29 +21,28 @@ class DatabaseController:
         self.get_all_messages(table)
 
     def print_all_messages(self, table):
-        with conn:
-            c.execute("SELECT * FROM {}".format(table))
-            for row in c.fetchall():
-                print(row)
+        c.execute("SELECT * FROM {}".format(table))
+        for row in c.fetchall():
+            print(row)
 
     def get_all_messages(self, table):
         str = ''
-        with conn:
-            c.execute("SELECT * FROM {}".format(table))
-            return c.fetchall()
+        c.execute("SELECT * FROM {}".format(table))
+        return c.fetchall()
+        c.close()
 
     def delete_message(self, message):
-        with conn:
-            c.execute("DELETE FROM chatMessages WHERE message=?", (message,))
+        c.execute("DELETE FROM chatMessages WHERE message=?", (message,))
+        c.close()
 
     def delete_all_entries(self):
-        with conn:
-            c.execute("DELETE FROM chatMessages")
+        c.execute("DELETE FROM chatMessages")
+        c.close()
 
     def update_entry(self, old_message, new_message):
-        with conn:
-            c.execute(
-                "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
+        c.execute(
+            "UPDATE chatMessages SET message = ? WHERE message = ?", (old_message, new_message,))
+        conn.commit()
 
 # c.close()
 # conn.close()
