@@ -29,7 +29,8 @@ class Server:
                 'server.socket_port': port,
                 'server.socket_host': '0.0.0.0',
                 'tools.sessions.on': True,
-                'tools.staticdir.root': getcwd()
+                'tools.staticdir.root': getcwd(),
+                'engine.timeout_monitor.on': False
             }
         )
         for item in self.site_map:
