@@ -25,6 +25,3 @@ class Channel:
 
     def get_messages(self, channel, index):
         return self.message_log.get_messages(channel=channel, index=index)
-
-    def sentiment(self):
-        return self.total_sentiment / len(self.message_log)
