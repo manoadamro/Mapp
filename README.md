@@ -39,7 +39,3 @@ To test coverage run: ```pytest --cov=. tests/``` in the terminal.
   - Back-end: Python, CherryPy
   - Front-end: Javascript, JQuery
   - Testing: unittest (Python), pytest, Jasmine, Travis CI
-
-## Deployment
-
-You can find this deployed [here](http://globomessenger.herokuapp.com/).
