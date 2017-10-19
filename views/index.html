@@ -23,14 +23,14 @@
         </li>
         <li>
           <form id="createChannel">
-            <input class="channelForm" type="text" placeholder="Channel name" id="channelForm" onkeydown="if (event.keyCode == 13) return false;" >
+            <input class="channelForm" type="text" placeholder="Channel name" id="channelForm" onkeydown="if (event.keyCode == 13) return false;">
             <li class="addChannel"><button id="addPublicChannel" class="createChannelButton">Create Public Channel</button></li>
             <li class="addChannel"><button id="addPrivateChannel" class="createChannelButton">Create Private Channel</button></li>
           </form>
           <br />
           <li style="color: white">Channels</li>
           <div id="sidebar-channels"></div>
-          </li>
+        </li>
       </ul>
     </div>
 
@@ -43,12 +43,12 @@
         <div id="currentChannel" class="currentChannel"></div>
 
         <div class="main-page" id="page"></div>
-          <div id="userList" class="userList"></div>
+        <div id="userList" class="userList"></div>
 
-          <div id ="addUser" class="dropdown">
-              <button class="dropbtn">Add User</button>
-              <div id="onlineUsers" class="dropdown-content"></div>
-          </div>
+        <div id="addUser" class="dropdown">
+          <button class="dropbtn">Add User</button>
+          <div id="onlineUsers" class="dropdown-content"></div>
+        </div>
 
         <div class="center" id="error-messages"></div>
       </div>
@@ -67,12 +67,13 @@
   <script src="/static/js/language.js"></script>
   <script src="/static/js/request.js"></script>
   <script src="/static/js/session.js"></script>
-  <script src="/static/js/channel.js"></script>
   <script src="/static/js/user.js"></script>
   <script src="/static/js/messages.js"></script>
+  <script src="/static/js/channel.js"></script>
   <script src="/static/js/sideBar.js"></script>
   <script src="/static/js/loginForm.js"></script>
   <script src="/static/js/render.js"></script>
   <script src="/static/js/index.js"></script>
 </footer>
+
 </html>

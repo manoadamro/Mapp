@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 rm db/*
-python3 -m unittest discover -s . -p 'test_*.py'
+python3 -m unittest discover -s . -p 'test_*.py' -v
 rm db/*
+touch db/messages.db

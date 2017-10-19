@@ -1,22 +1,18 @@
 .dropbtn {
 	background-color: white;
 	color: black;
-	padding: 16px;
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
+	box-shadow: 0 0 5px black;
+	border-radius: 10px;
 }
-
-/* The container <div> - needed to position the dropdown content */
 
 .dropdown {
 	height: auto;
 	position: relative;
 	display: inline-block;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
-
-/* Dropdown Content (Hidden by Default) */
 
 .dropdown-content {
 	display: none;
@@ -27,14 +23,10 @@
 	position: absolute;
 	background-color: #f9f9f9;
 	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-
-	max-height:250px;/* you can change as you need it */
-    overflow:auto;/* to get scroll */
+	max-height: 250px;
+	overflow: auto;
 }
-
-/* Links inside the dropdown */
 
 .dropdown-content a {
 	color: black;
@@ -43,19 +35,13 @@
 	display: block;
 }
 
-/* Change color of dropdown links on hover */
-
 .dropdown-content a:hover {
 	background-color: #f1f1f1;
 }
 
-/* Show the dropdown menu on hover */
-
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
 
 .dropdown:hover .dropbtn {
 	background-color: white;

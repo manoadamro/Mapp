@@ -24,7 +24,7 @@ class TestMessageLog(TestCase):
             log.add_message(text='message%i' %
                             i, author='me', channel='global')
         updates = log.get_messages('global', 4)
-        self.assertEqual(len(updates), (old_updates_length + 10))
+        self.assertEqual(len(updates), (old_updates_length + 6))
 
     def test_message_added_to_db(self):
         log = MessageLog()

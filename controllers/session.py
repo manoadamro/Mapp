@@ -25,13 +25,13 @@ class Session(Controller):
         if 'username' in cherrypy.session:
             user = cherrypy.session['username']
             self._purge_user(user)
-            self.users.remove(cherrypy.session['username'])
+            self.users.remove(user)
             del cherrypy.session['username']
         return self.ok()
 
     @cherrypy.expose(alias='user_list')
     @cherrypy.tools.json_out()
-    def users(self, **_params):
+    def get_users(self, **_params):
         return self.ok(data=self.users)
 
     def _purge_user(self, user):

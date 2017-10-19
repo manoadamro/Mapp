@@ -1,27 +1,50 @@
+import cherrypy
 from unittest import TestCase
 from controllers.session import Session
-import cherrypy
 
 
 class TestSession(TestCase):
 
-    def test_login(self):
-        sesh = Session()
-        cherrypy.session = {}
-        response = sesh.login(username='Liz', language='en')
-        self.assertEqual(response['code'], 0)
-        self.assertEqual(cherrypy.session['username'], 'Liz')
+    username = 'test'
+    session = None
 
-        response = sesh.login(username='Liz', language='en')
+    def setUp(self):
+        cherrypy.session = {}
+        self.session = Session()
+
+    def tearDown(self):
+        pass
+
+    def test_login_with_no_username(self):
+        response = self.session.login()
         self.assertEqual(response['code'], 1)
+        self.assertEqual(response['message'], 'no username provided')
+        self.assertFalse('username' in cherrypy.session)
+
+    def test_login_when_already_logged_in(self):
+        cherrypy.session['username'] = 'test'
+        response = self.session.login(username=self.username)
+        self.assertEqual(response['code'], 1)
+        self.assertEqual(response['message'], 'already logged in')
+
+    def test_valid_login(self):
+        response = self.session.login(username=self.username)
+        self.assertEqual(response['code'], 0)
+        self.assertEqual(response['message'], '')
+
+        self.assertEqual(cherrypy.session['username'], self.username)
+        self.assertTrue(self.username in self.session.users)
 
     def test_logout(self):
-        sesh = Session()
-        cherrypy.session = {}
-        sesh.login(username='Liz', language='en')
-        response = sesh.logout()
-        self.assertEqual(response['code'], 0)
-        self.assertNotIn('username', cherrypy.session)
+        cherrypy.session['username'] = self.username
+        self.session.users.append(self.username)
+        self.session.logout()
+        self.assertFalse(self.username in self.session.users)
+        self.assertFalse('username' in cherrypy.session)
 
-        response = sesh.logout()
-        self.assertEqual(response['code'], 1)
+    def test_users(self):
+        self.session.users.append(self.username)
+        response = self.session.get_users()
+        self.assertEqual(response['code'], 0)
+        self.assertEqual(response['message'], '')
+        self.assertEqual(response['data'], [self.username])
